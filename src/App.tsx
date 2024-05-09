@@ -10,14 +10,7 @@ function App() {
         <p>
           Brain Defrost FrontEnd
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <p>Learn some more about CI/CD</p>
       </header>
     </div>
   );
