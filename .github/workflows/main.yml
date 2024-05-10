@@ -2,8 +2,6 @@ name: CI and CD
 
 on:
   push:
-    branches:
-      - main
   pull_request:
     branches:
       - main
@@ -26,6 +24,7 @@ jobs:
           build: npm run build
           start: npm start
   build:
+    needs: cypress-run
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -51,10 +50,11 @@ jobs:
     environment:
       name: github-pages
       url: 'https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/'
+    if: github.ref == 'refs/heads/main'
     steps:
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
-      - name: Deploy
-        uses: actions/deploy-pages@v4
+    - name: Setup Pages
+      uses: actions/configure-pages@v5
+    - name: Deploy
+      uses: actions/deploy-pages@v4
 
         
