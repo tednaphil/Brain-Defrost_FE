@@ -12,12 +12,11 @@ interface CreateGameResponse {
     type: string;
     attributes: {
       preview_link: string;
-      status: string;
+      started: boolean;
       number_of_questions: number;
       number_of_players: number;
       topic: string;
       time_limit: number;
-      rating: number;
     };
     relationships: {
       players: {
@@ -40,7 +39,7 @@ interface GenerateGameLinkResponse {
   };
 }
 
-interface JoinGameSessionResponse {
+interface GameResponse {
   data: {
     id: string;
     type: string;
@@ -52,17 +51,7 @@ interface JoinGameSessionResponse {
   };
 }
 
-interface GetPlayerInformationResponse {
-  data: {
-    id: string;
-    type: string;
-    attributes: {
-      display_name: string;
-      answers_correct: number;
-      answers_incorrect: number;
-    };
-  };
-}
+
 interface GetFinalGameStatsResponse {
   data: {
     id: string;
