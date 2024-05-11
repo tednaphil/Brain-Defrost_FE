@@ -103,3 +103,5 @@ interface Question {
     options: string[];
   };
 }
+
+export {}
