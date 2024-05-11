@@ -1,46 +1,106 @@
-# Getting Started with Create React App
+# <p align="center">🧠Brain Defrost🥶</p>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<p align="center">Abstract</p>
 
-## Available Scripts
+### <p align="center">Contributors</p>
+<div align="center">
+  
+  [Martin Chavez](https://github.com/Chavezgm), [Ethan Duvall](https://github.com/EthanDuvall), [Jess Kohl](https://github.com/kohljd), [Tayla Phillips](https://github.com/tednaphil), [Laura Vega](https://github.com/laurarvegav)
 
-In the project directory, you can run:
+</div>
 
-### `npm start`
+## Preview:
+<div align="center">
+  <img src="" alt="app demo">
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+</div>
+<p align="center">Technologies Used</p>
+<div align="center">
+  <img src="https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=fff&style=for-the-badge" alt="typescript badge">
+  <img src="https://img.shields.io/badge/HTML5-E34F26?logo=html5&logoColor=fff&style=for-the-badge" alt="html badge">
+  <img src="https://img.shields.io/badge/CSS3-1572B6?logo=css3&logoColor=fff&style=for-the-badge" alt="css badge">
+  <img src="https://img.shields.io/badge/React-61DAFB?logo=react&logoColor=000&style=for-the-badge" alt="react badge">
+  <img src="https://img.shields.io/badge/React%20Router-CA4245?logo=reactrouter&logoColor=fff&style=for-the-badge" alt="router badge">
+  <img src="https://img.shields.io/badge/Cypress-69D3A7?logo=cypress&logoColor=fff&style=for-the-badge" alt="cypress badge">
+  <img src="https://img.shields.io/badge/Figma-F24E1E?logo=figma&logoColor=fff&style=for-the-badge" alt="figma badge">
+  <img src="https://img.shields.io/badge/Lighthouse-F44B21?logo=lighthouse&logoColor=fff&style=for-the-badge" alt="lighthouse badge">
+  <img src="https://img.shields.io/badge/GitHub%20Actions-2088FF?logo=githubactions&logoColor=fff&style=for-the-badge" alt="github actions badge">
+  <img src="https://img.shields.io/badge/Postman-FF6C37?logo=postman&logoColor=fff&style=for-the-badge" alt="postman badge">
+  <img src="https://img.shields.io/badge/Socket.io-010101?logo=socketdotio&logoColor=fff&style=for-the-badge" alt="socket.io badge">
+  <!-- other badges -->
+</div>
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Installation Instructions
+Note: the front-end and back-end are both deployed, so installation is not needed to use the web app. FE installation is required to run tests.
 
-### `npm test`
+### FE Installation Instructions:
+<!-- - add list of instructions -->
+- Run the following on command line to clone the repo and run the app locally:
+    ```
+    git clone git@github.com:Brain-Defrost/Brain-Defrost_FE.git
+    cd Brain-Defrost_FE
+    npm install
+    npm start
+    ```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### BE Installation Instructions:
+- Link to [BE repo](https://github.com/Brain-Defrost/Brain-Defrost_BE)
+- Deployed API link `url here`
+- Run the following on command line to clone the repo and run the server locally:
+    ```
 
-### `npm run build`
+    ```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Run Tests:
+- Ensure you're running the app locally (see FE Installation Instructions above)
+- Run the following on command line to open Cypress: `npm run cypress`
+- Click `E2E Testing`, then `Start E2E Testing` in desired browser
+- Select `App_spec` to run user story tests
+<!-- input line for gameplay test spec-->
+- Select `Error_spec` to run error handling tests
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Context:
+<!-- wins, challenges, time spent, goals, approaches etc -->
+- ~ hours to complete test suite and functionality
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Goals
 
-### `npm run eject`
+<details close>
+  
+  ```
+  - point
+  - point
+  
+  ```
+  
+</details>
+  
+### Wins
+  
+<details close>
+  
+  ```
+  - CI/CD pipeline implementation
+  - Postman mock server used during development
+  
+  ```
+  
+</details>
+  
+### Challenges
+  
+<details close>
+  
+  ```
+  - point
+  - point
+  
+  ```
+  
+</details>
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Design Comp
+<div align="center">
+  <img src="" alt="design composition">
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+</div>
