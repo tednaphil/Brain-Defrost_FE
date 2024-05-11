@@ -1,10 +1,45 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+:root {
+  --main-bg-color: #9AC6C5;
+  --sec-bg-color: #5B2A86;
+  --main-acc-color: #360568;
+  --sec-acc-color: #A5E6BA;
+  --thrd-acc-color: #7785AC;
+  --main-text-color: #000000;
+  --sec-text-color: #ffffff;
+  --rounded-border: 12px;
+  --border-style: #360568 solid 2px;
+  --main-drop-shadow: drop-shadow(15px 15px #360568);
+  --sec-drop-shadow: drop-shadow(10px 10px #A5E6BA);
+}
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  background-color: var(--main-bg-color);
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.2rem;
+  color: var(--main-text-color);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+h1 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 4.5rem;
+}
+
+h2 {
+  font-weight: bold;
+  font-size: 3rem;
+}
+
+h3 {
+  font-size: 2.5rem;
 }
 
 code {

@@ -7,9 +7,9 @@ function App() {
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <p>
+        <h1>
           Brain Defrost FrontEnd
-        </p>
+        </h1>
         <p>Learn some more about CI/CD</p>
       </header>
     </div>
