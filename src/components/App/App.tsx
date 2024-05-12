@@ -1,7 +1,7 @@
 import React from 'react';
 import logo from '../../logo.svg';
 import './App.css';
-import { getGame, getPlayer } from '../Util/fetchCalls'
+import { getGame, getPlayer, getStats } from '../Util/fetchCalls'
 import { useEffect, useState } from 'react';
 
 function App() {
@@ -9,6 +9,7 @@ function App() {
   useEffect(() => {
     fetchGame()
     fetchPlayer()
+    fetchStats()
   }, [])
 
   const fetchGame = async () => {
@@ -25,6 +26,14 @@ function App() {
       console.log(player)
     } catch(error) {
         console.log(`fetchPlayer catch block ${error}`)
+    }
+  }
+  const fetchStats = async () => {
+    try {
+      const stats = await getStats()
+      console.log(stats)
+    } catch(error) {
+        console.log(`fetchStats catch block ${error}`)
     }
   }
 
