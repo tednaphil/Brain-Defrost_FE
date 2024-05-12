@@ -2,7 +2,7 @@ import React from 'react';
 import logo from '../../logo.svg';
 import './App.css';
 import { getGame, getPlayer, getStats } from '../Util/fetchCalls'
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
 function App() {
 
