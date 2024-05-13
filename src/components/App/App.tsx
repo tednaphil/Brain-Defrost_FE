@@ -46,7 +46,7 @@ function App() {
         <h1 className="header-text">Brain Defrost</h1>
       </header>
       <Routes>
-        <Route path = "/Brain-Defrost_FE" element = {<Home/>}/>
+        <Route path = "/" element = {<Home/>}/>
       </Routes>
     </>
   );
