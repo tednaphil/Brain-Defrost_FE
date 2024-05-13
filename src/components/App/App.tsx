@@ -13,11 +13,11 @@ import ErrorPage from "../ErrorPage/ErrorPage";
 
 function App() {
 
-  useEffect(() => {
-    fetchGame()
-    fetchPlayer()
-    fetchStats()
-  }, [])
+  // useEffect(() => {
+  //   fetchGame()
+  //   fetchPlayer()
+  //   fetchStats()
+  // }, [])
 
   const fetchGame = async () => {
     try {
