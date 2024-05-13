@@ -14,16 +14,17 @@ function JoinGameForm() {
 
     //check if displayname is available
     //if displayname is already in use, display message to user
-    //if displayname is available and game not in progress, allow them to join
+    //if displayname is available and game not in progress and the max number of players is not met,
+    //allow user to join
 
     const createPlayer = async (gameID: string  | undefined, nameString: string) => {
         const newPlayer = await postPlayer(gameID, nameString);
-        console.log(newPlayer)
+        console.log({newPlayer});
     }
 
     const handleSubmission = async (e: any, gameID: string  | undefined, nameString: string) => {
-        e.preventDefault()
-        createPlayer(gameID, nameString)
+        e.preventDefault();
+        createPlayer(gameID, nameString);
         //update App state or wherever current players are stored
         navigate(`/game/lobby/${gameid}`);
     }
