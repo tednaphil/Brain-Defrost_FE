@@ -1,6 +1,6 @@
 describe('Brain Defrost GamePlay Stories', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:3000/')
+    cy.visit('http://localhost:3000/Brain-Defrost_FE')
   })
   it('Allows user to start a game', () => {
   })

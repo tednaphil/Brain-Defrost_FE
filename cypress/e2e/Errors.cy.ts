@@ -1,6 +1,6 @@
 describe('Brain Defrost Error Handling', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:3000/')
+    cy.visit('http://localhost:3000/Brain-Defrost_FE')
   })
   it('Displays error message if game cannot be made', () => {
   })
