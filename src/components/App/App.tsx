@@ -1,6 +1,7 @@
-import React from 'react';
-import logo from '../../logo.svg';
-import './App.css';
+import React from "react";
+import {Routes, Route} from "react-router-dom"
+import "./App.css";
+import Home from "../Home/Home";
 import { getGame, getPlayer, getStats } from '../Util/fetchCalls'
 import { useEffect } from 'react';
 
@@ -40,15 +41,14 @@ function App() {
 
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <h1>
-          Brain Defrost FrontEnd
-        </h1>
-        <p>Learn some more about CI/CD</p>
+    <>
+      <header>
+        <h1 className="header-text">Brain Defrost</h1>
       </header>
-    </div>
+      <Routes>
+        <Route path = "/Brain-Defrost_FE" element = {<Home/>}/>
+      </Routes>
+    </>
   );
 }
 
