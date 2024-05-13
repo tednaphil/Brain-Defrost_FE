@@ -3,6 +3,7 @@ import './Game.css';
 function Game() {
     return (
         <>
+        <h2>Game</h2>
         </>
     )
 }

@@ -3,6 +3,7 @@ import './Lobby.css';
 function Lobby() {
     return (
         <>
+        <h2>Lobby</h2>
         </>
     )
 }

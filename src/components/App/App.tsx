@@ -2,8 +2,14 @@ import React from "react";
 import {Routes, Route} from "react-router-dom"
 import "./App.css";
 import Home from "../Home/Home";
+import Lobby from "../Lobby/Lobby";
+import JoinGameForm from "../JoinGameForm/JoinGameForm";
+import Game from "../Game/Game";
+import Stats from "../Stats/Stats";
 import { getGame, getPlayer, getStats } from '../Util/fetchCalls'
 import { useEffect } from 'react';
+import ErrorPage from "../ErrorPage/ErrorPage";
+
 
 function App() {
 
@@ -47,6 +53,11 @@ function App() {
       </header>
       <Routes>
         <Route path = "/" element = {<Home/>}/>
+        <Route path = "/game/lobby/:gameid" element = {<Lobby/>}/>
+        <Route path = "/join/:gameid" element = {<JoinGameForm/>}/>
+        <Route path = "/game/play/:gameid" element = {<Game />}/>
+        <Route path = "/game/results/:gameid" element = {<Stats />}/>
+        <Route path = "*" element = {<ErrorPage />}/>
       </Routes>
     </>
   );
