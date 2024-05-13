@@ -1,11 +1,12 @@
 import './JoinGameForm.css';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { postPlayer } from '../Util/fetchCalls';
 
 function JoinGameForm() {
     const { gameid } = useParams<string>();
     const [displayName, setDisplayName] = useState<string>('');
+    const navigate = useNavigate();
     
     //on mount, check if game exists
     //if it does not, show user feedback and a link to home page
@@ -23,6 +24,8 @@ function JoinGameForm() {
     const handleSubmission = async (e: any, gameID: string  | undefined, nameString: string) => {
         e.preventDefault()
         createPlayer(gameID, nameString)
+        //update App state or wherever current players are stored
+        navigate(`/game/lobby/${gameid}`);
     }
 
     return (
