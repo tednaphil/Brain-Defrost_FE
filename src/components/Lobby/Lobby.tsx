@@ -1,20 +1,19 @@
 import './Lobby.css';
-import type { Game, Player } from '../Util/interfaces';
+import type { Player } from '../Util/interfaces';
 import { useState, useEffect } from 'react';
 
 interface Props {
-    game: Game | object,
     players: Player[]
 }
 
-function Lobby({game, players}: Props) {
+function Lobby({players}: Props) {
     const [sessionGame, setSessionGame] = useState({});
     const [sessionPlayers, setSessionPlayers] = useState([]);
+    console.log('sessionGame', sessionGame)
 
     useEffect(() => {
         // @ts-expect-error
         const sessionGame = JSON.parse(sessionStorage.getItem('game'))
-        console.log('sessionGame', sessionGame)
         setSessionGame(sessionGame)
         // @ts-expect-error
         const sessionPlayers = JSON.parse(sessionStorage.getItem('players'))
@@ -32,14 +31,6 @@ function Lobby({game, players}: Props) {
             // @ts-expect-error
             >{player.attributes.display_name}</p>
         )})
-    
-    // const playerNames = players.map(player => {
-    //     return(
-    //         <p
-    //         key={player.id}
-    //         >{player.attributes.display_name}</p>
-    //     )
-    // })
 
     return (
         <>

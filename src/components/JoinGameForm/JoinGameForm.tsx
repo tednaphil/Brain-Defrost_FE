@@ -43,7 +43,6 @@ function JoinGameForm({players, setPlayers}: Props) {
     const handleSubmission = async (e: any, gameID: string  | undefined, nameString: string) => {
         e.preventDefault();
         createPlayer(gameID, nameString);
-        //update App state or wherever current players are stored
         navigate(`/game/lobby/${gameid}`);
     }
 
