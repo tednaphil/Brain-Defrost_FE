@@ -30,7 +30,7 @@ function Home() {
   return (
     <div className="home">
       <h2 className="form-title">Generate A New Trivia Game!</h2>
-      <form onSubmit={handleSubmit}>
+      <form className="create-game-form" onSubmit={handleSubmit}>
         <section>
           <label htmlFor="name"> Choose a display name</label>
           <input
@@ -38,6 +38,7 @@ function Home() {
             className="name-input"
             id="name"
             name="name"
+            placeholder="Brainiac"
             value={formData.name}
             onChange={handleChange}
             required
@@ -49,11 +50,12 @@ function Home() {
               type="text"
               name="category"
               id="category"
+              placeholder="music"
               value={formData.category}
               onChange={handleChange}
               required
             />
-            <label htmlFor="category"> Select A Category </label>
+            <label htmlFor="category">Category</label>
           </section>
           <section>
             <input
