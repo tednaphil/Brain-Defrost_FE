@@ -1,0 +1,9 @@
+{
+    "id": "3",
+    "type": "player",
+    "attributes": {
+      "display_name": "student2",
+      "answers_correct": 1,
+      "answers_incorrect": 0
+    }
+  }
