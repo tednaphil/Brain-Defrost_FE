@@ -7,11 +7,12 @@ import JoinGameForm from "../JoinGameForm/JoinGameForm";
 import Game from "../Game/Game";
 import Stats from "../Stats/Stats";
 // import { getGame, getPlayer, getStats } from '../Util/fetchCalls'
-// import { useEffect } from 'react';
+import { useState } from 'react';
 import ErrorPage from "../ErrorPage/ErrorPage";
 
 
 function App() {
+  const [game, setGame] = useState({});
 
   // useEffect(() => {
   //   fetchGame()
@@ -47,12 +48,13 @@ function App() {
 
 
   return (
+
     <>
       <header>
         <h1 className="header-text">Brain Defrost</h1>
       </header>
       <Routes>
-        <Route path = "/" element = {<Home/>}/>
+        <Route path = "/" element = {<Home setGame={setGame} />}/>
         <Route path = "/game/lobby/:gameid" element = {<Lobby/>}/>
         <Route path = "/join/:gameid" element = {<JoinGameForm/>}/>
         <Route path = "/game/play/:gameid" element = {<Game />}/>

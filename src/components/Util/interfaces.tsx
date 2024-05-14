@@ -6,25 +6,23 @@ export interface CreateGameRequest {
   display_name: string;
 }
 
-interface CreateGameResponse {
-  data: {
-    id: string;
-    type: string;
-    attributes: {
-      preview_link: string;
-      started: boolean;
-      number_of_questions: number;
-      number_of_players: number;
-      topic: string;
-      time_limit: number;
+export interface Game {
+  id: string;
+  type: string;
+  attributes: {
+    preview_link: string;
+    started: boolean;
+    number_of_questions: number;
+    number_of_players: number;
+    topic: string;
+    time_limit: number;
+  };
+  relationships: {
+    players: {
+      data: Player[];
     };
-    relationships: {
-      players: {
-        data: Player[];
-      };
-      questions: {
-        data: Question[];
-      };
+    questions: {
+      data: Question[];
     };
   };
 }

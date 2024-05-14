@@ -1,9 +1,14 @@
 import React, { FormEvent, useState } from "react";
 import "./Home.css";
 import { useNavigate } from "react-router-dom";
-// import { postGame } from "../Util/fetchCalls";
+import { postGame } from "../Util/fetchCalls";
+import type { Game } from "../Util/interfaces";
 
-function Home() {
+interface Props {
+  setGame: (game: Game) => void
+}
+
+function Home({setGame}: Props) {
   const [formData, setFormData] = useState({
     topic: '',
     number_of_questions: 1,
@@ -20,14 +25,34 @@ function Home() {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(formData);
+    // console.log(formData);
     createGame();
+    // console.log(game)
+    
+    //navigate to lobby with id returned in new game object
+  
+    Navigate(`Game/Lobby/${101213}`)
   };
 
-  function createGame() {
+  const createGame = async () => {
+    const gameSpecs = {
+      topic: formData.topic,
+      number_of_questions: Number(formData.number_of_questions),
+      time_limit: formData.time_limit,
+      number_of_players: Number(formData.number_of_players),
+      display_name: formData.display_name
+    };
 
-    console.log("I made a fetchcall!")
-    Navigate(`Game/Lobby/${101213}`)
+    try {
+      const newGame = await postGame(gameSpecs)
+      setGame(newGame.data);
+      console.log('newGame', newGame)
+
+    } catch(error) {
+      console.log(error)
+    }
+    // console.log("I made a fetchcall!")
+    // Navigate(`Game/Lobby/${101213}`)
   }
 
   return (
