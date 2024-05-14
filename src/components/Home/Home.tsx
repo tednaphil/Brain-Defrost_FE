@@ -40,6 +40,7 @@ function Home({setGame}: Props) {
     try {
       const newGame = await postGame(gameSpecs);
       setGame(newGame.data);
+      //save game in session storage
       const gameID = newGame.data.id;
       Navigate(`Game/Lobby/${gameID}`);
       console.log('newGame', newGame);

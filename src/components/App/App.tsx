@@ -55,7 +55,7 @@ function App() {
       </header>
       <Routes>
         <Route path = "/" element = {<Home setGame={setGame} />}/>
-        <Route path = "/game/lobby/:gameid" element = {<Lobby/>}/>
+        <Route path = "/game/lobby/:gameid" element = {<Lobby game={game} />}/>
         <Route path = "/join/:gameid" element = {<JoinGameForm/>}/>
         <Route path = "/game/play/:gameid" element = {<Game />}/>
         <Route path = "/game/results/:gameid" element = {<Stats />}/>
