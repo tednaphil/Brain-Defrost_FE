@@ -25,7 +25,7 @@ const getPlayer = async () => {
         return await response.json();
     }
     catch (error: unknown) {
-        console.log('API CALLS catch block - player', error)
+        console.log('API CALLS catch block - get player', error)
         throw error
     }
 }
@@ -40,10 +40,35 @@ const getStats = async () => {
         return await response.json();
     }
     catch (error: unknown) {
-        console.log('API CALLS catch block - player', error)
+        console.log('API CALLS catch block - stats', error)
         throw error
     }
 }
 
+const postPlayer = async (gameID: string | undefined, displayName: string) => {
+    try{
+        const response = await fetch(`https://c98a077d-6c2a-4ca9-a867-cf11b6279230.mock.pstmn.io/api/v1/games/${gameID}/players`, {
+            method: "POST",
+            body: JSON.stringify({
+                "display_name": displayName
+            }),
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
+        if(!response.ok) {
+            const status = response.status
+            console.log(status)
+            throw new Error(`Couldn't get player ${status}`)
+        }
+        return await response.json();
+    }
+    catch (error: unknown) {
+        console.log('API CALLS catch block - create player', error)
+        throw error
+    }
 
-export { getGame, getPlayer, getStats }
+}
+
+
+export { getGame, getPlayer, getStats, postPlayer }
