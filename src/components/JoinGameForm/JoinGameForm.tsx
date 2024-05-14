@@ -31,8 +31,8 @@ function JoinGameForm() {
 
     return (
         <form className='entry-form' onSubmit={(e) => {handleSubmission(e, gameid, displayName)}}>
-                <input id='display-name-input'type='text' placeholder='Enter Display Name' value={displayName} onChange={(e) => setDisplayName(e.target.value)} required></input>
-                <button>Join Game!</button>
+                <input id='display-name-input' name='display name' type='text' placeholder='Enter Display Name' value={displayName} onChange={(e) => setDisplayName(e.target.value)} required></input>
+                <button id='join-game-button' name='join'>Join Game!</button>
         </form>
     )
 }
