@@ -1,6 +1,7 @@
 import './Lobby.css';
 import type { Player } from '../Util/interfaces';
 import { useState, useEffect } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 
 interface Props {
     players: Player[]
@@ -10,6 +11,8 @@ function Lobby({players}: Props) {
     const [sessionGame, setSessionGame] = useState({});
     const [sessionPlayers, setSessionPlayers] = useState([]);
     console.log('sessionGame', sessionGame)
+    const { gameid } = useParams()
+    const navigate = useNavigate();
 
     useEffect(() => {
         // @ts-expect-error
@@ -22,7 +25,6 @@ function Lobby({players}: Props) {
     }, [players])
 
     
-    
     const playerNames = sessionPlayers.map(player => {
         return(
             <p
@@ -32,11 +34,27 @@ function Lobby({players}: Props) {
             >{player.attributes.display_name}</p>
         )})
 
+    const startGame = () => {
+        navigate(`/game/play/${gameid}`, {state: sessionGame});
+        //instead, pass new object with up to date players and game questions
+        //and other needed details until websockets are set up
+        
+        //make started game post request, update respective game state property
+    }
+
     return (
-        <>
-        <h2>Lobby</h2>
-        {playerNames.length && playerNames}
-        </>
+        <main className='lobby'>
+            <h2>Lobby</h2>
+            <section className='details'>
+                <button className='start-game-btn' onClick={startGame}>Start Game!</button>
+            </section>
+            <section className='players'>
+                {playerNames.length && playerNames}
+            </section>
+        
+        
+        
+        </main>
     )
 }
 

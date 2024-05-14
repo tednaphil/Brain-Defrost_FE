@@ -14,6 +14,7 @@ import ErrorPage from "../ErrorPage/ErrorPage";
 function App() {
   const [game, setGame] = useState({});
   const [players, setPlayers] = useState([]);
+  //create questions state and consider also storing in session storage
   console.log(game)
   // useEffect(() => {
   //   fetchGame()
