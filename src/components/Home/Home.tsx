@@ -25,13 +25,7 @@ function Home({setGame}: Props) {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // console.log(formData);
     createGame();
-    // console.log(game)
-    
-    //navigate to lobby with id returned in new game object
-  
-    Navigate(`Game/Lobby/${101213}`)
   };
 
   const createGame = async () => {
@@ -44,15 +38,14 @@ function Home({setGame}: Props) {
     };
 
     try {
-      const newGame = await postGame(gameSpecs)
+      const newGame = await postGame(gameSpecs);
       setGame(newGame.data);
-      console.log('newGame', newGame)
-
+      const gameID = newGame.data.id;
+      Navigate(`Game/Lobby/${gameID}`);
+      console.log('newGame', newGame);
     } catch(error) {
-      console.log(error)
+      console.log(error);
     }
-    // console.log("I made a fetchcall!")
-    // Navigate(`Game/Lobby/${101213}`)
   }
 
   return (
