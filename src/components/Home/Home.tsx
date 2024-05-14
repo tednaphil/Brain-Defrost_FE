@@ -1,13 +1,15 @@
 import React, { FormEvent, useState } from "react";
 import "./Home.css";
 import { useNavigate } from "react-router-dom";
+// import { postGame } from "../Util/fetchCalls";
 
 function Home() {
   const [formData, setFormData] = useState({
-    name: "",
-    category: "",
-    players: "",
-    questions: ""
+    topic: '',
+    number_of_questions: 1,
+    time_limit: 30,
+    number_of_players: 1,
+    display_name: ''
   });
 
   const Navigate = useNavigate()
@@ -23,6 +25,7 @@ function Home() {
   };
 
   function createGame() {
+
     console.log("I made a fetchcall!")
     Navigate(`Game/Lobby/${101213}`)
   }
@@ -37,9 +40,9 @@ function Home() {
             type="text"
             className="name-input"
             id="name"
-            name="name"
+            name="display_name"
             placeholder="Brainiac"
-            value={formData.name}
+            value={formData.display_name}
             onChange={handleChange}
             required
           />
@@ -48,10 +51,10 @@ function Home() {
           <section>
             <input
               type="text"
-              name="category"
+              name="topic"
               id="category"
               placeholder="music"
-              value={formData.category}
+              value={formData.topic}
               onChange={handleChange}
               required
             />
@@ -60,12 +63,12 @@ function Home() {
           <section>
             <input
               type="number"
-              name="players"
+              name="number_of_players"
               id="players"
               min="1"
               max="30"
               placeholder="1"
-              value={formData.players}
+              value={formData.number_of_players}
               onChange={handleChange}
               required
             />
@@ -74,12 +77,12 @@ function Home() {
           <section>
             <input
               type="number"
-              name="questions"
+              name="number_of_questions"
               id="questions"
               min="1"
               max="25"
               placeholder="1"
-              value={formData.questions}
+              value={formData.number_of_questions}
               onChange={handleChange}
               required
             />
