@@ -3,13 +3,14 @@
     margin: 0 auto;
     padding: 20px;
     min-height: 400px;
-    width: 800px;
+    width: 80%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-items: space-around;
     & #display-name-notif {
         color: var(--sec-text-color);
+        text-align: center;
     }
     & input {
         margin: 20px 0;
