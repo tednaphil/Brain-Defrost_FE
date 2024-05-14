@@ -1,4 +1,4 @@
-interface CreateGameRequest {
+export interface CreateGameRequest {
   topic: string;
   number_of_questions: number;
   time_limit: number;
