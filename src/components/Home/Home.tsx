@@ -2,13 +2,14 @@ import React, { FormEvent, useState } from "react";
 import "./Home.css";
 import { useNavigate } from "react-router-dom";
 import { postGame } from "../Util/fetchCalls";
-import type { Game } from "../Util/interfaces";
+import type { Game, Player } from "../Util/interfaces";
 
 interface Props {
-  setGame: (game: Game) => void
+  setGame: (game: Game) => void,
+  setPlayers: (playersArray: Player[]) => void
 }
 
-function Home({setGame}: Props) {
+function Home({setGame, setPlayers}: Props) {
   const [formData, setFormData] = useState({
     topic: '',
     number_of_questions: 1,
@@ -40,7 +41,9 @@ function Home({setGame}: Props) {
     try {
       const newGame = await postGame(gameSpecs);
       setGame(newGame.data);
-      //save game in session storage
+      setPlayers([newGame.data.relationships.players.data[0]]);
+      sessionStorage.setItem('game', JSON.stringify(newGame.data));
+      sessionStorage.setItem('players', JSON.stringify([newGame.data.relationships.players.data[0]]));
       const gameID = newGame.data.id;
       Navigate(`Game/Lobby/${gameID}`);
       console.log('newGame', newGame);

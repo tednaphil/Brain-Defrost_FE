@@ -11,7 +11,11 @@ describe('Brain Defrost User Stories', () => {
         statusCode: 201,
         fixture: 'createdGame'
       }).as('createGame')
-
+    cy.get('#name').type('creator')
+    .get('#category').type('music')
+    .get('#players').type('7')
+    .get('#questions').type('8')
+    .get('.create-btn').click()
   })
   it('Allows user to join a game', () => {
     cy.intercept('POST', 'https://c98a077d-6c2a-4ca9-a867-cf11b6279230.mock.pstmn.io/api/v1/games/1/players',

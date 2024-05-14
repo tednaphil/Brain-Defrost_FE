@@ -69,7 +69,7 @@ interface GetFinalGameStatsResponse {
   };
 }
 
-interface Player {
+export interface Player {
   id: number;
   type: string;
   attributes: {

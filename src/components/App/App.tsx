@@ -13,6 +13,7 @@ import ErrorPage from "../ErrorPage/ErrorPage";
 
 function App() {
   const [game, setGame] = useState({});
+  const [players, setPlayers] = useState([]);
 
   // useEffect(() => {
   //   fetchGame()
@@ -54,9 +55,11 @@ function App() {
         <h1 className="header-text">Brain Defrost</h1>
       </header>
       <Routes>
-        <Route path = "/" element = {<Home setGame={setGame} />}/>
-        <Route path = "/game/lobby/:gameid" element = {<Lobby game={game} />}/>
-        <Route path = "/join/:gameid" element = {<JoinGameForm/>}/>
+        {/* @ts-expect-error */}
+        <Route path = "/" element = {<Home setGame={setGame} setPlayers={setPlayers} />}/>
+        <Route path = "/game/lobby/:gameid" element = {<Lobby game={game} players={players} />}/>
+        {/* @ts-expect-error */}
+        <Route path = "/join/:gameid" element = {<JoinGameForm players={players} setPlayers={setPlayers} />}/>
         <Route path = "/game/play/:gameid" element = {<Game />}/>
         <Route path = "/game/results/:gameid" element = {<Stats />}/>
         <Route path = "*" element = {<ErrorPage />}/>
