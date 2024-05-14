@@ -36,6 +36,7 @@ function Home() {
           <input
             type="text"
             className="name-input"
+            id="name"
             name="name"
             value={formData.name}
             onChange={handleChange}
@@ -47,6 +48,7 @@ function Home() {
             <input
               type="text"
               name="category"
+              id="category"
               value={formData.category}
               onChange={handleChange}
               required
@@ -57,6 +59,7 @@ function Home() {
             <input
               type="number"
               name="players"
+              id="players"
               min="1"
               max="30"
               placeholder="1"
@@ -70,6 +73,7 @@ function Home() {
             <input
               type="number"
               name="questions"
+              id="questions"
               min="1"
               max="25"
               placeholder="1"
