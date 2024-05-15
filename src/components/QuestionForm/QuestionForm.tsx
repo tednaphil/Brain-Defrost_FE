@@ -1,19 +1,25 @@
 import "./QuestionForm.css";
 import type { Question } from "../Util/interfaces";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 interface Props {
   currentQuestion: Question;
-  nextQuestion: () => void;
+  roundTimer: () => void;
+  timeLeft: number;
 }
 
-function QuestionForm({ currentQuestion, nextQuestion }: Props) {
+function QuestionForm({ currentQuestion, roundTimer, timeLeft }: Props) {
   // Map through answer options to return answer option inputs to render
   // in the form
   const [isLockedIn, setIsLockedIn] = useState(false);
+
+  useEffect(() => {
+    roundTimer()
+  },[])
   return (
     <>
       <h2 className="question">{currentQuestion.attributes.question_text}</h2>
+      <p>{timeLeft}</p>
       <form className="question-form">
         {/* answer options here */}
         <label

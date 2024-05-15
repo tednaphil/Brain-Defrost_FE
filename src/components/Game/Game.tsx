@@ -14,17 +14,33 @@ function Game() {
         question.attributes.question_number === questionCounter
     )
   );
-// this should work but i cant really test becuase i cant get postman to send more then 1 question even though i updated the data no clue
+  const [isRoundGoing, setIsRoundGoing] = useState(true);
+  const [timeLeft, setTimeLeft] = useState(5);
+  const [intermission, setIntermission] = useState(20);
+/*
+For some reson the set time left isnt working / isnt updating our variable 
+  function roundTimer() {
+    const timer = setInterval(() => {
+      if (isRoundGoing && timeLeft > 0) {
+        setTimeLeft(10)
+        console.log( setTimeLeft(10))
+      } else if (timeLeft === 0) {
+        clearInterval(timer);
+        setIsRoundGoing(false);
+        console.log("hi");
+      }
+    }, 1000);
+  }
+*/
   function nextQuestion() {
-    const nextCounter = questionCounter + 1;
-    const nextQuestion = sessionGame.relationships.questions.data.find(
-      (question: Question) =>
-        question.attributes.question_number === nextCounter
-    );
-
-    if (nextQuestion) {
-      setQuestionCounter(nextCounter);
-      setCurrentQuestion(nextQuestion);
+    setQuestionCounter(questionCounter + 1);
+    if (questionCounter) {
+      setCurrentQuestion(
+        sessionGame.relationships.questions.data.find(
+          (question: Question) =>
+            question.attributes.question_number === questionCounter
+        )
+      );
     } else {
       console.log("No more questions.");
     }
@@ -32,12 +48,13 @@ function Game() {
 
   return (
     <>
-      {currentQuestion &&
+      {currentQuestion && (
         <QuestionForm
           currentQuestion={currentQuestion}
-          nextQuestion={nextQuestion}
+          roundTimer={roundTimer}
+          timeLeft={timeLeft}
         />
-      }
+      )}
     </>
   );
 }
