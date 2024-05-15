@@ -40,7 +40,6 @@ function Lobby({players}: Props) {
     
     const copyURL = () => {
         navigator.clipboard.writeText(joinURL);
-        console.log(joinURL)
     };
 
 
@@ -54,7 +53,6 @@ function Lobby({players}: Props) {
 
     return (
         <main className='lobby'>
-            {/* <h2>Lobby</h2> */}
             <section className='details'>
                 <h2 className='game-topic'><span>Topic</span><br/>{game.attributes.topic}</h2>
                 <h2 className='question-count'>{`${game.attributes.number_of_questions} Questions`}</h2>
@@ -66,11 +64,9 @@ function Lobby({players}: Props) {
                 <button className='start-game-btn' onClick={startGame}>Start Game!</button>
             </section>
             <section className='players'>
+                <h2 className='players-heading'>Players</h2>
                 {playerNames.length && playerNames}
             </section>
-        
-        
-        
         </main>
     )
 }
