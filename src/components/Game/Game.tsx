@@ -14,7 +14,6 @@ function Game() {
     console.log(currentQuestion)
     return (
         <>
-        <h2>Game</h2>
         <QuestionForm currentQuestion={currentQuestion}/>
         </>
     )

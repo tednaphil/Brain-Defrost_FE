@@ -1,12 +1,13 @@
 .lobby {
     background-color: var(--sec-bg-color);
     width: 100%;
-    height: 90vh;
+    height: 82.2vh;
     padding: 60px 40px;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-evenly;
 }
+
 
 .start-game-btn {
     background-color: var(--sec-acc-color);
@@ -39,7 +40,7 @@
         color: var(--sec-text-color);
         padding: 15px 40px;
         font-size: 2rem;
-        margin-top: -300px;
+        margin-top: -240px;
     }
 }
 
@@ -65,3 +66,7 @@
     }
 }
 
+.lobby-details{
+    margin:0;
+    font-size: 4vh;
+}

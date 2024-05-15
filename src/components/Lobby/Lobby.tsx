@@ -54,9 +54,9 @@ function Lobby({players}: Props) {
     return (
         <main className='lobby'>
             <section className='details'>
-                <h2 className='game-topic'><span>Topic</span><br/>{game.attributes.topic}</h2>
-                <h2 className='question-count'>{`${game.attributes.number_of_questions} Questions`}</h2>
-                <h2 className='join-url-heading'>Share the Link to invite players!</h2>
+                <h2 className='game-topic lobby-details'><span>Topic</span><br/>{game.attributes.topic}</h2>
+                <h2 className='question-count lobby-details'>{`${game.attributes.number_of_questions} Questions`}</h2>
+                <h2 className='join-url-heading lobby-details'>Share the Link to invite players!</h2>
                 <div className='join-url-container'>
                     <p className='join-url'>{joinURL}</p>
                     <button id='copy-url-btn' onClick={copyURL}><Copy /></button>
