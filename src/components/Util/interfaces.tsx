@@ -79,7 +79,7 @@ export interface Player {
   };
 }
 
-interface Question {
+export interface Question {
   id: string | null;
   type: string;
   attributes: {
