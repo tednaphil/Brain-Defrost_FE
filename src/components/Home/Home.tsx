@@ -45,7 +45,7 @@ function Home({setGame, setPlayers}: Props) {
       sessionStorage.setItem('game', JSON.stringify(newGame.data));
       sessionStorage.setItem('players', JSON.stringify([newGame.data.relationships.players.data[0]]));
       const gameID = newGame.data.id;
-      Navigate(`Game/Lobby/${gameID}`);
+      Navigate(`game/lobby/${gameID}`, {state: newGame.data});
       console.log('newGame', newGame);
     } catch(error) {
       console.log(error);
@@ -74,13 +74,13 @@ function Home({setGame, setPlayers}: Props) {
             <input
               type="text"
               name="topic"
-              id="category"
+              id="topic"
               placeholder="music"
               value={formData.topic}
               onChange={handleChange}
               required
             />
-            <label htmlFor="category">Category</label>
+            <label htmlFor="topic">Topic</label>
           </section>
           <section>
             <input

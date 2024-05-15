@@ -13,6 +13,7 @@ function JoinGameForm({players, setPlayers}: Props) {
     const { gameid } = useParams<string>();
     const [displayName, setDisplayName] = useState<string>('');
     const [sessionPlayers, setSessionPlayers] = useState([]);
+    const [sessionGame, setSessionGame] = useState([]);
     const [nameAvailable, setNameAvailable] = useState<boolean>(true);
     
     
@@ -22,6 +23,9 @@ function JoinGameForm({players, setPlayers}: Props) {
         // @ts-expect-error
         const sessionPlayers = JSON.parse(sessionStorage.getItem('players'))
         setSessionPlayers(sessionPlayers)
+        // @ts-expect-error
+        const sessionGame = JSON.parse(sessionStorage.getItem('game'))
+        setSessionGame(sessionGame)
     }, [])
 
     const isNameAvailable = (nameInput: string) => {
@@ -64,7 +68,7 @@ function JoinGameForm({players, setPlayers}: Props) {
     const handleSubmission = async (e: any, gameID: string  | undefined, nameString: string) => {
         e.preventDefault();
         createPlayer(gameID, nameString);
-        navigate(`/game/lobby/${gameid}`);
+        navigate(`/game/lobby/${gameid}`, {state: sessionGame});
     }
 
     return (

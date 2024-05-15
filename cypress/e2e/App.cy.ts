@@ -12,7 +12,7 @@ describe('Brain Defrost User Stories', () => {
         fixture: 'createdGame'
       }).as('createGame')
     cy.get('#name').type('creator')
-    .get('#category').type('music')
+    .get('#topic').type('music')
     .get('#players').type('7')
     .get('#questions').type('8')
     .get('.create-btn').click()
@@ -24,7 +24,7 @@ describe('Brain Defrost User Stories', () => {
         fixture: 'createdGame'
       }).as('createGame')
     cy.get('#name').type('creator')
-    .get('#category').type('music')
+    .get('#topic').type('music')
     .get('#players').type('7')
     .get('#questions').type('8')
     .get('.create-btn').click()

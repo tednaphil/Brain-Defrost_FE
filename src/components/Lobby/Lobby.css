@@ -1,9 +1,22 @@
 .lobby {
     background-color: var(--sec-bg-color);
     width: 100%;
-    height: 100vh;
+    height: 90vh;
+    padding: 40px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
 .start-game-btn {
     background-color: var(--sec-acc-color);
+}
+
+.details, .players {
+    background-color: white;
+    padding: 15px;
+}
+
+.details {
+    min-width: 60%;
 }

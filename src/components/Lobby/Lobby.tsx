@@ -1,17 +1,23 @@
 import './Lobby.css';
 import type { Player } from '../Util/interfaces';
 import { useState, useEffect } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams, useLocation } from 'react-router-dom';
 
 interface Props {
-    players: Player[]
+    players: Player[],
+    // game: Game
 }
 
 function Lobby({players}: Props) {
     const [sessionGame, setSessionGame] = useState({});
     const [sessionPlayers, setSessionPlayers] = useState([]);
     console.log('sessionGame', sessionGame)
-    const { gameid } = useParams()
+    const location = useLocation();
+    // const [game, setGame] = useState({})
+    const game = location.state;
+    console.log('game', game);
+    const { gameid } = useParams();
+    const joinURL = `http://localhost:3000/Brain-Defrost_FE/Game/Lobby/${gameid}`;
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -44,8 +50,13 @@ function Lobby({players}: Props) {
 
     return (
         <main className='lobby'>
-            <h2>Lobby</h2>
+            {/* <h2>Lobby</h2> */}
             <section className='details'>
+                <h2 className='game-topic'><span>Topic</span><br/>{game.attributes.topic}</h2>
+                <h2 className='question-count'>{`${game.attributes.number_of_questions} Questions`}</h2>
+                <h2>Share the Link to invite players!</h2>
+                <p>{joinURL}</p>
+
                 <button className='start-game-btn' onClick={startGame}>Start Game!</button>
             </section>
             <section className='players'>
