@@ -1,5 +1,6 @@
 import "./QuestionForm.css";
 import type { Question } from "../Util/interfaces";
+import { useState } from "react";
 
 interface Props {
   currentQuestion: Question;
@@ -9,7 +10,7 @@ interface Props {
 function QuestionForm({ currentQuestion, nextQuestion }: Props) {
   // Map through answer options to return answer option inputs to render
   // in the form
-
+  const [isLockedIn, setIsLockedIn] = useState(false);
   return (
     <>
       <h2 className="question">{currentQuestion.attributes.question_text}</h2>
@@ -20,7 +21,13 @@ function QuestionForm({ currentQuestion, nextQuestion }: Props) {
           className="option-label"
           style={{ backgroundColor: "#d9534f" }}
         >
-          <input type="radio" name="option" className="option-input" id="option1" required />
+          <input
+            type="radio"
+            name="option"
+            className="option-input"
+            id="option1"
+            required
+          />
           <span>Option 1</span>
         </label>
         <label
@@ -28,7 +35,13 @@ function QuestionForm({ currentQuestion, nextQuestion }: Props) {
           className="option-label"
           style={{ backgroundColor: "#0275d8" }}
         >
-          <input type="radio" name="option" className="option-input" id="option2" required />
+          <input
+            type="radio"
+            name="option"
+            className="option-input"
+            id="option2"
+            required
+          />
           <span>Option 2</span>
         </label>
         <label
@@ -36,7 +49,13 @@ function QuestionForm({ currentQuestion, nextQuestion }: Props) {
           className="option-label"
           style={{ backgroundColor: " #5cb85c" }}
         >
-          <input type="radio" name="option" className="option-input" id="option3" required />
+          <input
+            type="radio"
+            name="option"
+            className="option-input"
+            id="option3"
+            required
+          />
           <span>Option 3</span>
         </label>
         <label
@@ -44,19 +63,27 @@ function QuestionForm({ currentQuestion, nextQuestion }: Props) {
           className="option-label"
           style={{ backgroundColor: "#f0ad4e" }}
         >
-          <input type="radio" name="option" className="option-input" id="option4" required />
+          <input
+            type="radio"
+            name="option"
+            className="option-input"
+            id="option4"
+            required
+          />
           <span>Option 4</span>
         </label>
 
         <button
+          disabled={isLockedIn}
           onClick={(e) => {
-            e.preventDefault(); 
-            nextQuestion();
+            e.preventDefault();
+            setIsLockedIn(true)
+            //nextQuestion();
           }}
           className="submit-answer-btn"
           type="button"
         >
-          Submit
+          {isLockedIn ? <span>Locked In</span> : <span> Lock in?</span>}
         </button>
       </form>
       <p className="question-number">
