@@ -2,10 +2,10 @@ import './Lobby.css';
 import type { Player } from '../Util/interfaces';
 import { useState, useEffect } from 'react';
 import { useNavigate, useParams, useLocation } from 'react-router-dom';
+import { Copy } from 'react-feather';
 
 interface Props {
-    players: Player[],
-    // game: Game
+    players: Player[]
 }
 
 function Lobby({players}: Props) {
@@ -13,11 +13,9 @@ function Lobby({players}: Props) {
     const [sessionPlayers, setSessionPlayers] = useState([]);
     console.log('sessionGame', sessionGame)
     const location = useLocation();
-    // const [game, setGame] = useState({})
     const game = location.state;
-    console.log('game', game);
     const { gameid } = useParams();
-    const joinURL = `http://localhost:3000/Brain-Defrost_FE/Game/Lobby/${gameid}`;
+    const joinURL = `http://localhost:3000/Brain-Defrost_FE/join/${gameid}`;
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -38,7 +36,13 @@ function Lobby({players}: Props) {
             key={player.id}
             // @ts-expect-error
             >{player.attributes.display_name}</p>
-        )})
+        )});
+    
+    const copyURL = () => {
+        navigator.clipboard.writeText(joinURL);
+        console.log(joinURL)
+    };
+
 
     const startGame = () => {
         navigate(`/game/play/${gameid}`, {state: sessionGame});
@@ -54,9 +58,11 @@ function Lobby({players}: Props) {
             <section className='details'>
                 <h2 className='game-topic'><span>Topic</span><br/>{game.attributes.topic}</h2>
                 <h2 className='question-count'>{`${game.attributes.number_of_questions} Questions`}</h2>
-                <h2>Share the Link to invite players!</h2>
-                <p>{joinURL}</p>
-
+                <h2 className='join-url-heading'>Share the Link to invite players!</h2>
+                <div className='join-url-container'>
+                    <p className='join-url'>{joinURL}</p>
+                    <button id='copy-url-btn' onClick={copyURL}><Copy /></button>
+                </div>
                 <button className='start-game-btn' onClick={startGame}>Start Game!</button>
             </section>
             <section className='players'>
