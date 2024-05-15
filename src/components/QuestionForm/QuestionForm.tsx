@@ -3,53 +3,59 @@ import type { Question } from "../Util/interfaces";
 
 interface Props {
   currentQuestion: Question;
+  nextQuestion: () => void;
 }
 
-function QuestionForm({ currentQuestion }: Props) {
-  //map through answer options to return answer option inputs to render
-  //in the form
-  function nextQuestion(){
+function QuestionForm({ currentQuestion, nextQuestion }: Props) {
+  // Map through answer options to return answer option inputs to render
+  // in the form
 
-  }
   return (
     <>
       <h2 className="question">{currentQuestion.attributes.question_text}</h2>
       <form className="question-form">
         {/* answer options here */}
         <label
-          htmlFor="option-1"
+          htmlFor="option1"
           className="option-label"
           style={{ backgroundColor: "#d9534f" }}
         >
-          <input type="radio" name="option-1" className="question-input" required/>
-          <span>Option</span>
+          <input type="radio" name="option" className="option-input" id="option1" required />
+          <span>Option 1</span>
         </label>
         <label
-          htmlFor="option-2"
+          htmlFor="option2"
           className="option-label"
           style={{ backgroundColor: "#0275d8" }}
         >
-          <input type="radio" name="option-2" className="question-input" required/>
-          <span>Option</span>
+          <input type="radio" name="option" className="option-input" id="option2" required />
+          <span>Option 2</span>
         </label>
         <label
-          htmlFor="option-3"
+          htmlFor="option3"
           className="option-label"
           style={{ backgroundColor: " #5cb85c" }}
         >
-          <input type="radio" name="option-3" className="question-input" required/>
-          <span>Option</span>
+          <input type="radio" name="option" className="option-input" id="option3" required />
+          <span>Option 3</span>
         </label>
         <label
-          htmlFor="option-4"
+          htmlFor="option4"
           className="option-label"
           style={{ backgroundColor: "#f0ad4e" }}
         >
-          <input type="radio" name="option-4" className="question-input" required/>
-          <span>Option</span>
+          <input type="radio" name="option" className="option-input" id="option4" required />
+          <span>Option 4</span>
         </label>
 
-        <button onClick={e => nextQuestion()}className="submit-answer-btn" type="submit">
+        <button
+          onClick={(e) => {
+            e.preventDefault(); 
+            nextQuestion();
+          }}
+          className="submit-answer-btn"
+          type="button"
+        >
           Submit
         </button>
       </form>
