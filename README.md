@@ -56,7 +56,7 @@ Note: the front-end and back-end are both deployed, so installation is not neede
 - Run the following on command line to open Cypress: `npm run cypress`
 - Click `E2E Testing`, then `Start E2E Testing` in desired browser
 - Select `App_spec` to run user story tests
-<!-- input line for gameplay test spec-->
+- Select `GamePlay_spec` to run game play test
 - Select `Error_spec` to run error handling tests
 
 ## Context:
@@ -101,6 +101,6 @@ Note: the front-end and back-end are both deployed, so installation is not neede
 
 ## Design Comp
 <div align="center">
-  <img src="" alt="design composition">
+  <img src=".github/Brain Defrost Comp.png" alt="design composition">
 
 </div>

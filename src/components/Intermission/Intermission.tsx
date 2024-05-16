@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import "./Intermission.css";
-import splat from "../../Star 1.png";
+import splat from "../../images/Star 1.png";
 interface Props {
   isRoundGoing: boolean;
   setIsRoundGoing: React.Dispatch<React.SetStateAction<boolean>>;
