@@ -5,6 +5,17 @@ describe('Brain Defrost User Stories', () => {
   })
   it('Displays homepage', () => {
     cy.get('h1').contains('Brain Defrost')
+    .get('.form-title').contains('Generate A New Trivia Game!')
+    .get('label[for=name]').contains('Choose a display name')
+    .get('#name').should('have.value', '')
+    .get('label[for=topic]').contains('Topic')
+    .get('#topic').should('have.value', '')
+    .get('label[for=players]').contains('How many players')
+    .get('#players').should('have.value', '1')
+    .get('label[for=questions]').contains('How many Questions')
+    .get('#questions').should('have.value', '1')
+    .get('.create-btn').contains('Create')
+    .get('.footer-title').contains('More info about Brain Defrost')
   })
   it('Allows user to generate a new game', () => {
     cy.intercept('POST', 'https://c98a077d-6c2a-4ca9-a867-cf11b6279230.mock.pstmn.io/api/v1/games',

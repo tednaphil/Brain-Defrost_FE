@@ -19,6 +19,7 @@ function Game() {
   const [intermission, setIntermission] = useState(20);
 /*
 For some reson the set time left isnt working / isnt updating our variable 
+*/
   function roundTimer() {
     const timer = setInterval(() => {
       if (isRoundGoing && timeLeft > 0) {
@@ -31,7 +32,7 @@ For some reson the set time left isnt working / isnt updating our variable
       }
     }, 1000);
   }
-*/
+
   function nextQuestion() {
     setQuestionCounter(questionCounter + 1);
     if (questionCounter) {
