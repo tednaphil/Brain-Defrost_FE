@@ -15,10 +15,10 @@ function Intermission({
   usersRight,
   nextQuestion,
 }: Props) {
-  const [intermissionTimer, setIntermissionTimer] = useState(20);
+  const [intermissionTimer, setIntermissionTimer] = useState(5);
 
   function roundTimer() {
-    setIntermissionTimer(20);
+    setIntermissionTimer(5);
     const timer = setInterval(() => {
       setIntermissionTimer((preTimeLeft) => preTimeLeft - 1);
     }, 1000);

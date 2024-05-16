@@ -30,7 +30,7 @@ function QuestionForm({
   }
 
   function roundTimer() {
-    setTimeLeft(5);
+    setTimeLeft(20);
     const timer = setInterval(() => {
       setTimeLeft((preTimeLeft) => preTimeLeft - 1);
     }, 1000);
@@ -80,55 +80,6 @@ function QuestionForm({
         <p className="time-left">{timeLeft}</p>
         <form className="question-form">
           {answerOptions}
-          {/* <label htmlFor="option1" className="option-label">
-            <input
-              type="radio"
-              name="option"
-              className="option-input"
-              id="option1"
-              onChange={handleOptionChange}
-              value={currentQuestion.attributes.options[0]}
-              required
-            />
-            <span>{currentQuestion.attributes.options[0]}</span>
-          </label>
-          <label htmlFor="option2" className="option-label">
-            <input
-              type="radio"
-              name="option"
-              className="option-input"
-              id="option2"
-              onChange={handleOptionChange}
-              value={currentQuestion.attributes.options[1]}
-              required
-            />
-            <span>{currentQuestion.attributes.options[1]}</span>
-          </label>
-          <label htmlFor="option3" className="option-label">
-            <input
-              type="radio"
-              name="option"
-              className="option-input"
-              id="option3"
-              onChange={handleOptionChange}
-              value={currentQuestion.attributes.options[2]}
-              required
-            />
-            <span>{currentQuestion.attributes.options[2]}</span>
-          </label>
-          <label htmlFor="option4" className="option-label">
-            <input
-              type="radio"
-              name="option"
-              className="option-input"
-              id="option4"
-              onChange={handleOptionChange}
-              value={currentQuestion.attributes.options[3]}
-              required
-            />
-            <span>{currentQuestion.attributes.options[3]}</span>
-          </label> */}
-
           <button
             disabled={isLockedIn}
             onClick={(e) => {
