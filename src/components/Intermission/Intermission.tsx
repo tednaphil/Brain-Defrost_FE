@@ -7,10 +7,10 @@ interface Props {
   correctAnswer: string
 }
 function Intermission({ isRoundGoing, setIsRoundGoing, correctAnswer }: Props) {
-  const [intermissionTimer, setIntermissionTimer] = useState(20);
+  const [intermissionTimer, setIntermissionTimer] = useState(200);
 
   function roundTimer() {
-    setIntermissionTimer(20);
+    setIntermissionTimer(200);
     const timer = setInterval(() => {
       setIntermissionTimer((preTimeLeft) => preTimeLeft - 1);
     }, 1000);
@@ -33,13 +33,13 @@ function Intermission({ isRoundGoing, setIsRoundGoing, correctAnswer }: Props) {
   return (
     <>
       <p className="time-left">{intermissionTimer}</p>
-      <div>
-        <section>
-            <h2>The Correct Answer Is</h2>
+      <div className="intermission-holder">
+        <section className="correct-answer-holder">
+            <h2>The Correct Answer Is:</h2>
             <h3>{correctAnswer}</h3>
         </section>
-        <section>
-            <h2>Who got It Right</h2>
+        <section className="correct-player-display">
+            <h2>Who got It Right?</h2>
             <li>
                 {/* list of right answers */}
             </li>

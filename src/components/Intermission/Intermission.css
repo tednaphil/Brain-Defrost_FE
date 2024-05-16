@@ -1,0 +1,29 @@
+.intermission-holder {
+  display: flex;
+  justify-content: space-evenly;
+  background-color: white;
+  height: 82vh;
+}
+
+.intermission-holder
+h2,
+.intermission-holder 
+h3{
+  font-size: 3vh;
+}
+
+.correct-answer-holder,
+.correct-player-display{
+  height: 70%;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.correct-player-display
+li{
+    
+    overflow-y: auto;
+    width: 100%;
+}
+
+
