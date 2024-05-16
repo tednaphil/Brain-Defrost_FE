@@ -19,7 +19,7 @@ function QuestionForm({
   // in the form
 
   const [isLockedIn, setIsLockedIn] = useState(false);
-  const [timeLeft, setTimeLeft] = useState(5);
+  const [timeLeft, setTimeLeft] = useState(30);
   const [selectedOption, setSelectedOption] = useState<string>("");
 
   function handleOptionChange(e: React.ChangeEvent<HTMLInputElement>) {
@@ -32,7 +32,7 @@ function QuestionForm({
   }
 
   function roundTimer() {
-    setTimeLeft(5);
+    setTimeLeft(30);
     const timer = setInterval(() => {
       setTimeLeft((preTimeLeft) => preTimeLeft - 1);
     }, 1000);
