@@ -5,8 +5,8 @@
       "attributes": {
           "link": "www.example.com",
           "started": false,
-          "number_of_questions": 8,
-          "number_of_players": 7,
+          "number_of_questions": 2,
+          "number_of_players": 3,
           "topic": "music",
           "time_limit": 30
       },
@@ -55,102 +55,6 @@
                               "Taylor Swift",
                               "Adele",
                               "Madonna"
-                          ]
-                      }
-                  },
-                  {
-                      "id": null,
-                      "type": "question",
-                      "attributes": {
-                          "topic": "Music Trivia",
-                          "question_text": "What instrument does Elton John famously play?",
-                          "question_number": 3,
-                          "answer": "Piano",
-                          "options": [
-                              "Guitar",
-                              "Drums",
-                              "Violin",
-                              "Piano"
-                          ]
-                      }
-                  },
-                  {
-                      "id": null,
-                      "type": "question",
-                      "attributes": {
-                          "topic": "Music Trivia",
-                          "question_text": "Which song by Michael Jackson features a famous zombie dance?",
-                          "question_number": 4,
-                          "answer": "Thriller",
-                          "options": [
-                              "Beat It",
-                              "Billie Jean",
-                              "Smooth Criminal",
-                              "Thriller"
-                          ]
-                      }
-                  },
-                  {
-                      "id": null,
-                      "type": "question",
-                      "attributes": {
-                          "topic": "Music Trivia",
-                          "question_text": "What genre of music did Elvis Presley become famous for?",
-                          "question_number": 5,
-                          "answer": "Rock n' Roll",
-                          "options": [
-                              "Jazz",
-                              "Blues",
-                              "Country",
-                              "Rock n' Roll"
-                          ]
-                      }
-                  },
-                  {
-                      "id": null,
-                      "type": "question",
-                      "attributes": {
-                          "topic": "Music Trivia",
-                          "question_text": "Which band released the album 'Dark Side of the Moon'?",
-                          "question_number": 6,
-                          "answer": "Pink Floyd",
-                          "options": [
-                              "Led Zeppelin",
-                              "The Rolling Stones",
-                              "The Beatles",
-                              "Pink Floyd"
-                          ]
-                      }
-                  },
-                  {
-                      "id": null,
-                      "type": "question",
-                      "attributes": {
-                          "topic": "Music Trivia",
-                          "question_text": "Who is the best-selling female artist of all time?",
-                          "question_number": 7,
-                          "answer": "Madonna",
-                          "options": [
-                              "Celine Dion",
-                              "Whitney Houston",
-                              "Mariah Carey",
-                              "Madonna"
-                          ]
-                      }
-                  },
-                  {
-                      "id": null,
-                      "type": "question",
-                      "attributes": {
-                          "topic": "Music Trivia",
-                          "question_text": "What is the name of Rihanna's debut single?",
-                          "question_number": 8,
-                          "answer": "Pon de Replay",
-                          "options": [
-                              "Umbrella",
-                              "Diamonds",
-                              "Love on the Brain",
-                              "Pon de Replay"
                           ]
                       }
                   }

@@ -5,7 +5,7 @@
       "attributes": {
         "link": "www.example.com",
         "started": true,
-        "number_of_questions": 8,
+        "number_of_questions": 2,
         "number_of_players": 7,
         "topic": "music",
         "time_limit": 30
@@ -18,7 +18,7 @@
               "type": "player",
               "attributes": {
                 "display_name": "creator",
-                "answers_correct": 7,
+                "answers_correct": 1,
                 "answers_incorrect": 1
               }
             },
@@ -28,7 +28,7 @@
                 "attributes": {
                   "display_name": "student1",
                   "answers_correct": 0,
-                  "answers_incorrect": 8
+                  "answers_incorrect": 0
                 }
               },
               {
@@ -37,7 +37,7 @@
                 "attributes": {
                   "display_name": "student2",
                   "answers_correct": 2,
-                  "answers_incorrect": 6
+                  "answers_incorrect": 0
                 }
               }
           ]
