@@ -1,5 +1,5 @@
 import "./Game.css";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import type { Question } from "../Util/interfaces";
 import {useLocation, useNavigate, useParams } from "react-router-dom";
 import QuestionForm from "../QuestionForm/QuestionForm";

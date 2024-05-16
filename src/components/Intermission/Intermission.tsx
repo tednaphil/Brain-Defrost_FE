@@ -36,6 +36,7 @@ function Intermission({
   useEffect(() => {
     console.log(correctAnswer);
     roundTimer();
+    // eslint-disable-next-line
   }, []);
 
   useEffect(() => {
@@ -43,6 +44,7 @@ function Intermission({
       nextQuestion();
       setIsRoundGoing(true);
     }
+    // eslint-disable-next-line
   }, [intermissionTimer]);
 
   return (

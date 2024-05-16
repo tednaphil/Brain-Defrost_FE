@@ -46,10 +46,12 @@ function QuestionForm({
     if (timeLeft === 0) {
       setIsRoundGoing(false);
     }
+    // eslint-disable-next-line
   }, [timeLeft]);
 
   useEffect(() => {
     roundTimer();
+    // eslint-disable-next-line
   }, []);
 
   return (
