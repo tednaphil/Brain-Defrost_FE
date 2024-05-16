@@ -4,6 +4,7 @@ import type { Question } from "../Util/interfaces";
 import {useLocation, useNavigate, useParams } from "react-router-dom";
 import QuestionForm from "../QuestionForm/QuestionForm";
 import Intermission from "../Intermission/Intermission";
+import { patchPlayer } from "../Util/fetchCalls";
 
 function Game() {
   const location = useLocation();
@@ -11,6 +12,7 @@ function Game() {
   const { gameid } = useParams();
   const sessionGame = location.state;
   const [questionCounter, setQuestionCounter] = useState(1);
+  const [usersRight, setUsersRight] = useState <string[]>([])
   const [currentQuestion, setCurrentQuestion] = useState(
     sessionGame.relationships.questions.data.find(
       (question: Question) =>
@@ -22,14 +24,8 @@ function Game() {
       (question: Question) => question.attributes.question_number === 1
     )?.attributes.answer
   );
-
   const [isRoundGoing, setIsRoundGoing] = useState(true);
-
-  useEffect(() => {
-    if (!isRoundGoing) {
-      nextQuestion();
-    }
-  }, [isRoundGoing]);
+    
 
   function nextQuestion() {
     const newQuestionCounter = questionCounter + 1;
@@ -41,13 +37,21 @@ function Game() {
     );
 
     if (nextQuestion) {
+      setUsersRight([])
       setCurrentQuestion(nextQuestion);
       setCurrentAnswer(nextQuestion.attributes.answer);
     } else {
       Navigate(`/game/results/${gameid}`);
     }
   }
+  const checkAnswer  = async (ans : string) => {
+    if(ans === currentAnswer){
+      // we will change this wehn we are able to save current user to session storage
+      const rightPlayer = await patchPlayer(gameid!)
+      setUsersRight([...usersRight,(rightPlayer.data.attributes.display_name)])
 
+    }
+  }
   return (
     <>
       {isRoundGoing ? (
@@ -55,12 +59,15 @@ function Game() {
           currentQuestion={currentQuestion}
           isRoundGoing={isRoundGoing}
           setIsRoundGoing={setIsRoundGoing}
+          checkAnswer ={checkAnswer}
         />
       ) : (
         <Intermission
           isRoundGoing={isRoundGoing}
           setIsRoundGoing={setIsRoundGoing}
           correctAnswer={currentAnswer}
+          usersRight={usersRight}
+          nextQuestion = {nextQuestion}
         />
       )}
     </>

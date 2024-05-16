@@ -6,12 +6,14 @@ interface Props {
   currentQuestion: Question;
   isRoundGoing: Boolean;
   setIsRoundGoing: React.Dispatch<React.SetStateAction<boolean>>;
+  checkAnswer: (ans :string) => void
 }
 
 function QuestionForm({
   currentQuestion,
   isRoundGoing,
   setIsRoundGoing,
+  checkAnswer
 }: Props) {
   // Map through answer options to return answer option inputs to render
   // in the form
@@ -25,10 +27,10 @@ function QuestionForm({
   }
 
   function handleQuestionSubmit() {
-    if (selectedOption) {
-      console.log("Selected answer:", selectedOption);
-    }
+    checkAnswer(selectedOption)
+    
   }
+
   function roundTimer() {
     setTimeLeft(5);
     const timer = setInterval(() => {
@@ -38,11 +40,14 @@ function QuestionForm({
       clearInterval(timer);
     }
   }
+
+
   useEffect(() => {
     if (timeLeft === 0) {
       setIsRoundGoing(false);
     }
   }, [timeLeft]);
+
   useEffect(() => {
     roundTimer();
   }, []);

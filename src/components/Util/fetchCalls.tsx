@@ -120,4 +120,5 @@ const patchPlayer = async (gameid: string) => {
   }
 };
 
+
 export { getGame, getPlayer, getStats, postPlayer, postGame, patchPlayer };
