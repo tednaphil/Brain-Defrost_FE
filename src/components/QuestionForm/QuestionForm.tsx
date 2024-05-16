@@ -52,18 +52,14 @@ function QuestionForm({
     // eslint-disable-next-line
   }, []);
 
-  // Map through answer options to return answer option inputs to render
-  // in the form
-
   let answerOptions = currentQuestion.attributes.options.map((option, index) => {
     return (
-      <label htmlFor={`option${index}`} className="option-label">
+      <label htmlFor={`option${index}`} className="option-label" key={`option${index}`}>
             <input
               type="radio"
               name="option"
               className="option-input"
               id={`option${index}`}
-              key={`option${index}`}
               onChange={handleOptionChange}
               value={option}
               required
