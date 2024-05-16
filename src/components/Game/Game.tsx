@@ -16,7 +16,7 @@ function Game() {
   );
   const [isRoundGoing, setIsRoundGoing] = useState(true);
   const [timeLeft, setTimeLeft] = useState(5);
-  const [intermission, setIntermission] = useState(20);
+  // const [intermission, setIntermission] = useState(20);
 /*
 For some reson the set time left isnt working / isnt updating our variable 
 */
@@ -46,6 +46,8 @@ For some reson the set time left isnt working / isnt updating our variable
       console.log("No more questions.");
     }
   }
+
+  console.log(nextQuestion)
 
   return (
     <>

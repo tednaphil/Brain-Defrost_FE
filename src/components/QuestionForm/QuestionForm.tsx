@@ -15,7 +15,7 @@ function QuestionForm({ currentQuestion, roundTimer, timeLeft }: Props) {
 
   useEffect(() => {
     roundTimer()
-  },[])
+  },[roundTimer])
   return (
     <>
       <h2 className="question">{currentQuestion.attributes.question_text}</h2>
