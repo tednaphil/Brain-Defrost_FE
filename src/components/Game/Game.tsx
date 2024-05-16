@@ -1,61 +1,73 @@
 import "./Game.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type { Question } from "../Util/interfaces";
-import { useLocation } from "react-router-dom";
+import {useLocation, useNavigate, useParams } from "react-router-dom";
 import QuestionForm from "../QuestionForm/QuestionForm";
+import Intermission from "../Intermission/Intermission";
+import { patchPlayer } from "../Util/fetchCalls";
 
 function Game() {
   const location = useLocation();
+  const Navigate = useNavigate();
+  const { gameid } = useParams();
   const sessionGame = location.state;
   const [questionCounter, setQuestionCounter] = useState(1);
+  const [usersRight, setUsersRight] = useState <string[]>([])
   const [currentQuestion, setCurrentQuestion] = useState(
     sessionGame.relationships.questions.data.find(
       (question: Question) =>
         question.attributes.question_number === questionCounter
     )
   );
+  const [currentAnswer, setCurrentAnswer] = useState(
+    sessionGame.relationships.questions.data.find(
+      (question: Question) => question.attributes.question_number === 1
+    )?.attributes.answer
+  );
   const [isRoundGoing, setIsRoundGoing] = useState(true);
-  const [timeLeft, setTimeLeft] = useState(5);
-  // const [intermission, setIntermission] = useState(20);
-/*
-For some reson the set time left isnt working / isnt updating our variable 
-*/
-  function roundTimer() {
-    const timer = setInterval(() => {
-      if (isRoundGoing && timeLeft > 0) {
-        setTimeLeft(10)
-        console.log( setTimeLeft(10))
-      } else if (timeLeft === 0) {
-        clearInterval(timer);
-        setIsRoundGoing(false);
-        console.log("hi");
-      }
-    }, 1000);
-  }
+    
 
   function nextQuestion() {
-    setQuestionCounter(questionCounter + 1);
-    if (questionCounter) {
-      setCurrentQuestion(
-        sessionGame.relationships.questions.data.find(
-          (question: Question) =>
-            question.attributes.question_number === questionCounter
-        )
-      );
+    const newQuestionCounter = questionCounter + 1;
+    setQuestionCounter(newQuestionCounter);
+
+    const nextQuestion = sessionGame.relationships.questions.data.find(
+      (question: Question) =>
+        question.attributes.question_number === newQuestionCounter
+    );
+
+    if (nextQuestion) {
+      setUsersRight([])
+      setCurrentQuestion(nextQuestion);
+      setCurrentAnswer(nextQuestion.attributes.answer);
     } else {
-      console.log("No more questions.");
+      Navigate(`/game/results/${gameid}`);
     }
   }
+  const checkAnswer  = async (ans : string) => {
+    if(ans === currentAnswer){
+      // we will change this wehn we are able to save current user to session storage
+      const rightPlayer = await patchPlayer(gameid!)
+      setUsersRight([...usersRight,(rightPlayer.data.attributes.display_name)])
 
-  console.log(nextQuestion)
-
+    }
+  }
   return (
     <>
-      {currentQuestion && (
+      {isRoundGoing ? (
         <QuestionForm
           currentQuestion={currentQuestion}
-          roundTimer={roundTimer}
-          timeLeft={timeLeft}
+          isRoundGoing={isRoundGoing}
+          setIsRoundGoing={setIsRoundGoing}
+          checkAnswer ={checkAnswer}
+        />
+      ) : (
+        <Intermission
+          isRoundGoing={isRoundGoing}
+          setIsRoundGoing={setIsRoundGoing}
+          correctAnswer={currentAnswer}
+          usersRight={usersRight}
+          nextQuestion = {nextQuestion}
         />
       )}
     </>
