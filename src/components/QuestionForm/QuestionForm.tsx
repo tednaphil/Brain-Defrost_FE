@@ -4,97 +4,121 @@ import { useEffect, useState } from "react";
 
 interface Props {
   currentQuestion: Question;
-  roundTimer: () => void;
-  timeLeft: number;
+  isRoundGoing: Boolean;
+  setIsRoundGoing: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-function QuestionForm({ currentQuestion, roundTimer, timeLeft }: Props) {
+function QuestionForm({
+  currentQuestion,
+  isRoundGoing,
+  setIsRoundGoing,
+}: Props) {
   // Map through answer options to return answer option inputs to render
   // in the form
-  const [isLockedIn, setIsLockedIn] = useState(false);
 
+  const [isLockedIn, setIsLockedIn] = useState(false);
+  const [timeLeft, setTimeLeft] = useState(5);
+  const [selectedOption, setSelectedOption] = useState<string>("");
+
+  function handleOptionChange(e: React.ChangeEvent<HTMLInputElement>) {
+    setSelectedOption(e.target.value);
+  }
+
+  function handleQuestionSubmit() {
+    if (selectedOption) {
+      console.log("Selected answer:", selectedOption);
+    }
+  }
+  function roundTimer() {
+    setTimeLeft(5);
+    const timer = setInterval(() => {
+      setTimeLeft((preTimeLeft) => preTimeLeft - 1);
+    }, 1000);
+    if (!isRoundGoing) {
+      clearInterval(timer);
+    }
+  }
   useEffect(() => {
-    roundTimer()
-  },[])
+    if (timeLeft === 0) {
+      setIsRoundGoing(false);
+    }
+  }, [timeLeft]);
+  useEffect(() => {
+    roundTimer();
+  }, []);
+
   return (
     <>
-      <h2 className="question">{currentQuestion.attributes.question_text}</h2>
-      <p>{timeLeft}</p>
-      <form className="question-form">
-        {/* answer options here */}
-        <label
-          htmlFor="option1"
-          className="option-label"
-          style={{ backgroundColor: "#d9534f" }}
-        >
-          <input
-            type="radio"
-            name="option"
-            className="option-input"
-            id="option1"
-            required
-          />
-          <span>Option 1</span>
-        </label>
-        <label
-          htmlFor="option2"
-          className="option-label"
-          style={{ backgroundColor: "#0275d8" }}
-        >
-          <input
-            type="radio"
-            name="option"
-            className="option-input"
-            id="option2"
-            required
-          />
-          <span>Option 2</span>
-        </label>
-        <label
-          htmlFor="option3"
-          className="option-label"
-          style={{ backgroundColor: " #5cb85c" }}
-        >
-          <input
-            type="radio"
-            name="option"
-            className="option-input"
-            id="option3"
-            required
-          />
-          <span>Option 3</span>
-        </label>
-        <label
-          htmlFor="option4"
-          className="option-label"
-          style={{ backgroundColor: "#f0ad4e" }}
-        >
-          <input
-            type="radio"
-            name="option"
-            className="option-input"
-            id="option4"
-            required
-          />
-          <span>Option 4</span>
-        </label>
+      <div className="question-form-holder">
+        <h2 className="question">{currentQuestion.attributes.question_text}</h2>
+        <p className="time-left">{timeLeft}</p>
+        <form className="question-form">
+          <label htmlFor="option1" className="option-label">
+            <input
+              type="radio"
+              name="option"
+              className="option-input"
+              id="option1"
+              onChange={handleOptionChange}
+              value={currentQuestion.attributes.options[0]}
+              required
+            />
+            <span>{currentQuestion.attributes.options[0]}</span>
+          </label>
+          <label htmlFor="option2" className="option-label">
+            <input
+              type="radio"
+              name="option"
+              className="option-input"
+              id="option2"
+              onChange={handleOptionChange}
+              value={currentQuestion.attributes.options[1]}
+              required
+            />
+            <span>{currentQuestion.attributes.options[1]}</span>
+          </label>
+          <label htmlFor="option3" className="option-label">
+            <input
+              type="radio"
+              name="option"
+              className="option-input"
+              id="option3"
+              onChange={handleOptionChange}
+              value={currentQuestion.attributes.options[2]}
+              required
+            />
+            <span>{currentQuestion.attributes.options[2]}</span>
+          </label>
+          <label htmlFor="option4" className="option-label">
+            <input
+              type="radio"
+              name="option"
+              className="option-input"
+              id="option4"
+              onChange={handleOptionChange}
+              value={currentQuestion.attributes.options[3]}
+              required
+            />
+            <span>{currentQuestion.attributes.options[3]}</span>
+          </label>
 
-        <button
-          disabled={isLockedIn}
-          onClick={(e) => {
-            e.preventDefault();
-            setIsLockedIn(true)
-            //nextQuestion();
-          }}
-          className="submit-answer-btn"
-          type="button"
-        >
-          {isLockedIn ? <span>Locked In</span> : <span> Lock in?</span>}
-        </button>
-      </form>
-      <p className="question-number">
-        {currentQuestion.attributes.question_number}
-      </p>
+          <button
+            disabled={isLockedIn}
+            onClick={(e) => {
+              e.preventDefault();
+              setIsLockedIn(true);
+              handleQuestionSubmit();
+            }}
+            className="submit-answer-btn"
+            type="button"
+          >
+            {isLockedIn ? <span>Locked In</span> : <span> Lock in?</span>}
+          </button>
+        </form>
+        <p className="question-number">
+          {currentQuestion.attributes.question_number}
+        </p>
+      </div>
     </>
   );
 }
