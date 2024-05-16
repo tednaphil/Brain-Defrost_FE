@@ -15,8 +15,6 @@ function QuestionForm({
   setIsRoundGoing,
   checkAnswer
 }: Props) {
-  // Map through answer options to return answer option inputs to render
-  // in the form
 
   const [isLockedIn, setIsLockedIn] = useState(false);
   const [timeLeft, setTimeLeft] = useState(5);
@@ -54,13 +52,35 @@ function QuestionForm({
     // eslint-disable-next-line
   }, []);
 
+  // Map through answer options to return answer option inputs to render
+  // in the form
+
+  let answerOptions = currentQuestion.attributes.options.map((option, index) => {
+    return (
+      <label htmlFor={`option${index}`} className="option-label">
+            <input
+              type="radio"
+              name="option"
+              className="option-input"
+              id={`option${index}`}
+              key={`option${index}`}
+              onChange={handleOptionChange}
+              value={option}
+              required
+            />
+            <span>{option}</span>
+          </label>
+    )
+  })
+
   return (
     <>
       <div className="question-form-holder">
         <h2 className="question">{currentQuestion.attributes.question_text}</h2>
         <p className="time-left">{timeLeft}</p>
         <form className="question-form">
-          <label htmlFor="option1" className="option-label">
+          {answerOptions}
+          {/* <label htmlFor="option1" className="option-label">
             <input
               type="radio"
               name="option"
@@ -107,7 +127,7 @@ function QuestionForm({
               required
             />
             <span>{currentQuestion.attributes.options[3]}</span>
-          </label>
+          </label> */}
 
           <button
             disabled={isLockedIn}
