@@ -18,7 +18,7 @@ function Lobby({players}: Props) {
    // const joinURL = `http://localhost:3000/Brain-Defrost_FE/join/${gameid}`;
     const navigate = useNavigate();
     const [joinURL, setJoinUrl] = useState('')
-
+/*
     const createJoinLink = () => {
         console.log(sessionPlayers)
         console.log(sessionGame)
@@ -26,17 +26,19 @@ function Lobby({players}: Props) {
         let encodedQuestion = encodeURIComponent(stringQuestion)
         setJoinUrl(`http://localhost:3000/Brain-Defrost_FE/join/${gameid}/?data=${encodedQuestion}`)
     }
-    
+    */
     useEffect(() => {
         // @ts-expect-error
         const sessionGame = JSON.parse(sessionStorage.getItem('game'))
         setSessionGame(sessionGame)
-        createJoinLink()
+        let stringQuestion = JSON.stringify(game)
+        let encodedQuestion = encodeURIComponent(stringQuestion)
+        setJoinUrl(`http://localhost:3000/Brain-Defrost_FE/join/${gameid}/?data=${encodedQuestion}`)
         // @ts-expect-error
         const sessionPlayers = JSON.parse(sessionStorage.getItem('players'))
         setSessionPlayers(sessionPlayers)
         console.log('sessionPlayers', sessionPlayers)
-    }, [players, createJoinLink])
+    }, [players])
 
     
     const playerNames = sessionPlayers.map(player => {
