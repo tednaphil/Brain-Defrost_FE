@@ -46,18 +46,20 @@
 
 .join-url-container {
     border: solid 1px black;
-    width: 90%;
+    width: 50%;
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-evenly;
     & .join-url {
-        font-size: 1rem;
+        margin: 0;
+        font-size: 2rem;
         font-weight: 200;
     }
     & #copy-url-btn {
         background: none;
         border: none;
+        height: 24;
         & :hover {
             cursor: pointer;
             transform: scale(1.1);
