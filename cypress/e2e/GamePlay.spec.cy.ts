@@ -72,4 +72,7 @@ describe('Brain Defrost GamePlay Stories', () => {
     //test end of game display and url
     
   })
+  it('Allows non-creator player to play game', () => {
+    
+  })
 })
