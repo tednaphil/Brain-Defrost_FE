@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import "./Intermission.css";
-import splat from "../../Star 1.png";
+import splat from "../../images/Star 1.png";
 interface Props {
   isRoundGoing: boolean;
   setIsRoundGoing: React.Dispatch<React.SetStateAction<boolean>>;
@@ -15,10 +15,10 @@ function Intermission({
   usersRight,
   nextQuestion,
 }: Props) {
-  const [intermissionTimer, setIntermissionTimer] = useState(20);
+  const [intermissionTimer, setIntermissionTimer] = useState(5);
 
   function roundTimer() {
-    setIntermissionTimer(20);
+    setIntermissionTimer(5);
     const timer = setInterval(() => {
       setIntermissionTimer((preTimeLeft) => preTimeLeft - 1);
     }, 1000);
@@ -36,6 +36,7 @@ function Intermission({
   useEffect(() => {
     console.log(correctAnswer);
     roundTimer();
+    // eslint-disable-next-line
   }, []);
 
   useEffect(() => {
@@ -43,6 +44,7 @@ function Intermission({
       nextQuestion();
       setIsRoundGoing(true);
     }
+    // eslint-disable-next-line
   }, [intermissionTimer]);
 
   return (

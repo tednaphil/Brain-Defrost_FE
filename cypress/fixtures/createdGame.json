@@ -1,49 +1,66 @@
 {
-    "data": {
-      "id": "1",
+  "data": {
+      "id": 1,
       "type": "game",
       "attributes": {
-        "link": "www.example.com",
-        "started": false,
-        "number_of_questions": 8,
-        "number_of_players": 7,
-        "topic": "music",
-        "time_limit": 30
+          "link": "www.example.com",
+          "started": false,
+          "number_of_questions": 2,
+          "number_of_players": 3,
+          "topic": "music",
+          "time_limit": 30
       },
       "relationships": {
-        "players": {
-          "data": [
-            {
-              "id": "1",
-              "type": "player",
-              "attributes": {
-                "display_name": "creator",
-                "answers_correct": 0,
-                "answers_incorrect": 0
-              }
-            }
-          ]
-        },
-        "questions": {
-          "data": [
-            {
-              "id": 1,
-              "type": "question",
-              "attributes": {
-                "topic": "music",
-                "question_text": "How many beats is a quarter note in 4/4 time?",
-                "question_number": 1,
-                "answer": "one beat",
-                "options": [
-                  "one beat",
-                  "two beats",
-                  "three beats",
-                  "four beats"
-                ]
-              }
-            }
-          ]
-        }
+          "players": {
+              "data": [
+                  {
+                      "id": 1,
+                      "type": "player",
+                      "attributes": {
+                          "display_name": "creator",
+                          "answers_correct": 0,
+                          "answers_incorrect": 0,
+                          "questions_correct": []
+                      }
+                  }
+              ]
+          },
+          "questions": {
+              "data": [
+                  {
+                      "id": null,
+                      "type": "question",
+                      "attributes": {
+                          "topic": "Music Trivia",
+                          "question_text": "Who is the lead vocalist of The Beatles?",
+                          "question_number": 1,
+                          "answer": "John Lennon",
+                          "options": [
+                              "Paul McCartney",
+                              "George Harrison",
+                              "Ringo Starr",
+                              "John Lennon"
+                          ]
+                      }
+                  },
+                  {
+                      "id": null,
+                      "type": "question",
+                      "attributes": {
+                          "topic": "Music Trivia",
+                          "question_text": "Which artist is known as the 'Queen of Pop'?",
+                          "question_number": 2,
+                          "answer": "Madonna",
+                          "options": [
+                              "Beyonce",
+                              "Taylor Swift",
+                              "Adele",
+                              "Madonna"
+                          ]
+                      }
+                  }
+              ]
+          }
       }
-    }
   }
+}

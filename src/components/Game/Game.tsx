@@ -1,10 +1,10 @@
 import "./Game.css";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import type { Player, Question } from "../Util/interfaces";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import QuestionForm from "../QuestionForm/QuestionForm";
 import Intermission from "../Intermission/Intermission";
-import { patchPlayer, getPlayer, getAllPlayers } from "../Util/fetchCalls";
+import { patchPlayer, getAllPlayers } from "../Util/fetchCalls";
 
 function Game() {
   const location = useLocation();
