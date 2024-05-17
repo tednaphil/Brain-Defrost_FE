@@ -10,6 +10,11 @@ describe('Brain Defrost GamePlay Stories', () => {
         statusCode: 200,
         fixture: 'patchedPlayer1'
       }).as('updatePlayer1')
+    cy.intercept('GET', 'https://c98a077d-6c2a-4ca9-a867-cf11b6279230.mock.pstmn.io/api/v1/games/1/players',
+      {
+        statusCode: 200,
+        fixture: 'intermissionResponse'
+      }).as('getIntermission')
     //intercept started game patch when implemented
     cy.visit('http://localhost:3000/Brain-Defrost_FE')
     cy.get('#name').type('creator').should('have.value', 'creator')

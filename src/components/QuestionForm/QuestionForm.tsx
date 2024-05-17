@@ -6,14 +6,14 @@ interface Props {
   currentQuestion: Question;
   isRoundGoing: Boolean;
   setIsRoundGoing: React.Dispatch<React.SetStateAction<boolean>>;
-  checkAnswer: (ans :string) => void
+  checkAnswer: (ans: string) => void;
 }
 
 function QuestionForm({
   currentQuestion,
   isRoundGoing,
   setIsRoundGoing,
-  checkAnswer
+  checkAnswer,
 }: Props) {
 
   const [isLockedIn, setIsLockedIn] = useState(false);
@@ -22,11 +22,6 @@ function QuestionForm({
 
   function handleOptionChange(e: React.ChangeEvent<HTMLInputElement>) {
     setSelectedOption(e.target.value);
-  }
-
-  function handleQuestionSubmit() {
-    checkAnswer(selectedOption)
-    
   }
 
   function roundTimer() {
@@ -39,9 +34,9 @@ function QuestionForm({
     }
   }
 
-
   useEffect(() => {
     if (timeLeft === 0) {
+      checkAnswer(selectedOption);
       setIsRoundGoing(false);
     }
     // eslint-disable-next-line
@@ -61,6 +56,7 @@ function QuestionForm({
               className="option-input"
               id={`option${index}`}
               onChange={handleOptionChange}
+              disabled={isLockedIn}
               value={option}
               required
             />
@@ -81,7 +77,6 @@ function QuestionForm({
             onClick={(e) => {
               e.preventDefault();
               setIsLockedIn(true);
-              handleQuestionSubmit();
             }}
             className="submit-answer-btn"
             type="button"
