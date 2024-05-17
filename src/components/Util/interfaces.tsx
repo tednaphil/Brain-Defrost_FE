@@ -76,6 +76,7 @@ export interface Player {
     display_name: string;
     answers_correct: number;
     answers_incorrect: number;
+    questions_correct:string[];
   };
 }
 

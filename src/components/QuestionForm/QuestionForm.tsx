@@ -6,14 +6,14 @@ interface Props {
   currentQuestion: Question;
   isRoundGoing: Boolean;
   setIsRoundGoing: React.Dispatch<React.SetStateAction<boolean>>;
-  checkAnswer: (ans :string) => void
+  checkAnswer: (ans: string) => void;
 }
 
 function QuestionForm({
   currentQuestion,
   isRoundGoing,
   setIsRoundGoing,
-  checkAnswer
+  checkAnswer,
 }: Props) {
   // Map through answer options to return answer option inputs to render
   // in the form
@@ -26,11 +26,6 @@ function QuestionForm({
     setSelectedOption(e.target.value);
   }
 
-  function handleQuestionSubmit() {
-    checkAnswer(selectedOption)
-    
-  }
-
   function roundTimer() {
     setTimeLeft(30);
     const timer = setInterval(() => {
@@ -41,9 +36,9 @@ function QuestionForm({
     }
   }
 
-
   useEffect(() => {
     if (timeLeft === 0) {
+      checkAnswer(selectedOption);
       setIsRoundGoing(false);
     }
   }, [timeLeft]);
@@ -66,6 +61,7 @@ function QuestionForm({
               id="option1"
               onChange={handleOptionChange}
               value={currentQuestion.attributes.options[0]}
+              disabled={isLockedIn}
               required
             />
             <span>{currentQuestion.attributes.options[0]}</span>
@@ -78,6 +74,7 @@ function QuestionForm({
               id="option2"
               onChange={handleOptionChange}
               value={currentQuestion.attributes.options[1]}
+              disabled={isLockedIn}
               required
             />
             <span>{currentQuestion.attributes.options[1]}</span>
@@ -90,6 +87,7 @@ function QuestionForm({
               id="option3"
               onChange={handleOptionChange}
               value={currentQuestion.attributes.options[2]}
+              disabled={isLockedIn}
               required
             />
             <span>{currentQuestion.attributes.options[2]}</span>
@@ -102,6 +100,7 @@ function QuestionForm({
               id="option4"
               onChange={handleOptionChange}
               value={currentQuestion.attributes.options[3]}
+              disabled={isLockedIn}
               required
             />
             <span>{currentQuestion.attributes.options[3]}</span>
@@ -112,7 +111,6 @@ function QuestionForm({
             onClick={(e) => {
               e.preventDefault();
               setIsLockedIn(true);
-              handleQuestionSubmit();
             }}
             className="submit-answer-btn"
             type="button"
