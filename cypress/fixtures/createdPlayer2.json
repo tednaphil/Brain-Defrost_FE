@@ -1,0 +1,12 @@
+{
+    "data": {
+        "id": "2",
+        "type": "player",
+        "attributes": {
+            "display_name": "student1",
+            "answers_correct": 0,
+            "answers_incorrect": 0,
+            "questions_correct": []
+        }
+    }
+}

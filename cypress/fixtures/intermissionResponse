@@ -1,0 +1,16 @@
+{
+  "data": [
+    {
+      "id": "1",
+      "type": "player",
+      "attributes": {
+        "display_name": "creator",
+        "answers_correct": 1,
+        "answers_incorrect": 0,
+        "questions_correct": [
+          "1"
+        ]
+      }
+    }
+  ]
+}

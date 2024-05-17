@@ -1,0 +1,39 @@
+.intermission-holder {
+  display: flex;
+  justify-content: space-evenly;
+  background-color: white;
+  height: 82vh;
+}
+
+.intermission-holder h2,
+.intermission-holder h3 {
+  font-size: 3vh;
+}
+
+.correct-player-display {
+  height: 70%;
+  display: flex;
+  justify-content: space-evenly;
+}
+.correct-answer-holder{
+  height: 100%;
+  display: flex;
+  justify-content: space-evenly;
+
+}
+.correct-player-display li {
+  overflow-y: auto;
+  width: 100%;
+}
+
+.correct-answer-display {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
+  width: 50vh;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}

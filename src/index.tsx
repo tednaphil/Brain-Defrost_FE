@@ -9,10 +9,8 @@ const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
-  <BrowserRouter>
-    <React.StrictMode>
+  <BrowserRouter basename='/Brain-Defrost_FE'>
       <App />
-    </React.StrictMode>
   </BrowserRouter>
 );
 

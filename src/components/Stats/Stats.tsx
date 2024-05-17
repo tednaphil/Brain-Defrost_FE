@@ -3,6 +3,7 @@ import './Stats.css';
 function Stats() {
     return (
         <>
+        <h2>Stats</h2>
         </>
     )
 }
