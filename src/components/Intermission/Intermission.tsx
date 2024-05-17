@@ -28,8 +28,8 @@ function Intermission({
   }
 
   function displayUsers() {
-    return usersRight.map((user: string) => {
-      return <h3>{user}</h3>;
+    return usersRight.map((user: string, index: number) => {
+      return <h3 key={index}>{user}</h3>;
     });
   }
 
