@@ -38,7 +38,7 @@ function Lobby({players}: Props) {
         const sessionPlayers = JSON.parse(sessionStorage.getItem('players'))
         setSessionPlayers(sessionPlayers)
         console.log('sessionPlayers', sessionPlayers)
-    }, [players])
+    }, [players, game, gameid])
 
     
     const playerNames = sessionPlayers.map(player => {
