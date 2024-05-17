@@ -5,7 +5,8 @@
         "attributes": {
             "display_name": "student1",
             "answers_correct": 0,
-            "answers_incorrect": 1
+            "answers_incorrect": 1,
+            "questions_correct": []
         }
     }
 }

@@ -19,7 +19,8 @@
                       "attributes": {
                           "display_name": "creator",
                           "answers_correct": 0,
-                          "answers_incorrect": 0
+                          "answers_incorrect": 0,
+                          "questions_correct": []
                       }
                   }
               ]
