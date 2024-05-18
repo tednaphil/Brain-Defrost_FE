@@ -1,4 +1,4 @@
-import "./Alert.css";
+import "./Modal.css";
 import brain from '../../images/VaporWaveBrain.png'
 // import { useState } from "react";
 

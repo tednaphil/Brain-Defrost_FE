@@ -1,6 +1,6 @@
 import React, { FormEvent, useState } from "react";
 import "./Home.css";
-import Modal from "../Alert/Alert";
+import Modal from "../Modal/Modal";
 import { useNavigate } from "react-router-dom";
 import { postGame } from "../Util/fetchCalls";
 import type { Game, Player } from "../Util/interfaces";

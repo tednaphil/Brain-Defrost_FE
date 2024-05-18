@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { postPlayer } from '../Util/fetchCalls';
 import type { Player } from '../Util/interfaces';
+import Modal from '../Modal/Modal';
 
 interface Props {
     setPlayers: (array: Player[]) => void,
@@ -15,6 +16,7 @@ function JoinGameForm({players, setPlayers}: Props) {
     const [sessionPlayers, setSessionPlayers] = useState([]);
     const [sessionGame, setSessionGame] = useState([]);
     const [nameAvailable, setNameAvailable] = useState<boolean>(true);
+    const [error, setError] = useState<string>('');
     
     
     const navigate = useNavigate();
@@ -55,7 +57,8 @@ function JoinGameForm({players, setPlayers}: Props) {
     
 
     const createPlayer = async (gameID: string  | undefined, nameString: string) => {
-        const newPlayer = await postPlayer(gameID, nameString);
+        try {
+            const newPlayer = await postPlayer(gameID, nameString);
         //confirm the displayname is still available
         //if displayname is already in use at time of submission, display message to user
         //if displayname is available and game not in progress and the max number of players is not met,
@@ -63,20 +66,31 @@ function JoinGameForm({players, setPlayers}: Props) {
         console.log({newPlayer});
         setPlayers([...players, newPlayer.data]);
         sessionStorage.setItem('players', JSON.stringify([...sessionPlayers, newPlayer.data]));
+        navigate(`/game/lobby/${gameid}`, {state: sessionGame});
+        } catch (error) {
+            setError(`${error}`);
+            console.log(error);
+        }
+        
     }
 
     const handleSubmission = async (e: any, gameID: string  | undefined, nameString: string) => {
         e.preventDefault();
         createPlayer(gameID, nameString);
-        navigate(`/game/lobby/${gameid}`, {state: sessionGame});
+        // if (error === '') {
+        //     navigate(`/game/lobby/${gameid}`, {state: sessionGame});
+        // }
     }
 
     return (
+        <>
+        {error && <Modal setError={setError} alert={error}/>}
         <form className='entry-form' onSubmit={(e) => {handleSubmission(e, gameid, displayName)}}>
                 {!nameAvailable && <p id='display-name-notif'>That display name is taken. Please choose another one!</p>}
                 <input id='display-name-input' name='display name' type='text' placeholder='Enter Display Name' value={displayName} onChange={(e) => handleChange(e)} required></input>
                 <button id='join-game-button' name='join'>Join Game!</button>
         </form>
+        </>
     )
 }
 
