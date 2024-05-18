@@ -66,6 +66,7 @@ function Home({ setGame, setPlayers}: Props) {
         "players",
         JSON.stringify([newGame.data.relationships.players.data[0]])
       );
+      sessionStorage.setItem("currentPlayer" , JSON.stringify(newGame.data.relationships.players.data[0]))
       const gameID = newGame.data.id;
       Navigate(`game/lobby/${gameID}`, { state: newGame.data });
       console.log("newGame", newGame);

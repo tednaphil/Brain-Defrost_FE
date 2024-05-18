@@ -27,10 +27,9 @@ function JoinGameForm({ players, setPlayers }: Props) {
       const data = JSON.parse(decodeURIComponent(encodedString));
       setSessionPlayers(data.relationships.players.data);
       setSessionGame(data);
-      console.log(sessionGame);
       sessionStorage.setItem("game", JSON.stringify(data));
     }
-  }, [encodedString,sessionGame]);
+  }, [encodedString]);
 
   const isNameAvailable = (nameInput: string): boolean => {
     const playerNames = sessionPlayers.map(
@@ -63,6 +62,7 @@ function JoinGameForm({ players, setPlayers }: Props) {
       const newPlayer = await postPlayer(gameID, nameString);
       // console.log({newPlayer});
       setPlayers([...players, newPlayer.data]);
+      sessionStorage.setItem('currentPlayer', JSON.stringify(newPlayer.data))
       sessionStorage.setItem(
         "players",
         JSON.stringify([...sessionPlayers, newPlayer.data])
