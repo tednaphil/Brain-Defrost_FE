@@ -1,17 +1,11 @@
 # <p align="center">🧠Brain Defrost🥶</p>
+<p align="center">Version: Beta</p>
 
-<p align="center">Abstract</p>
-
-### <p align="center">Contributors</p>
-<div align="center">
-  
-  [Martin Chavez](https://github.com/Chavezgm), [Ethan Duvall](https://github.com/EthanDuvall), [Jess Kohl](https://github.com/kohljd), [Tayla Phillips](https://github.com/tednaphil), [Laura Vega](https://github.com/laurarvegav)
-
-</div>
+<p align="center">This app allows a player to create a trivia game to get the brain going in a quick and easy way! The app provides a list of multiple choice trivia questions and shows you how you did at the end of the game.</p>
 
 ## Preview:
 <div align="center">
-  <img src="" alt="app demo">
+  <img src=".github/Brain Defrost Demo.gif" alt="app demo">
 
 </div>
 <p align="center">Technologies Used</p>
@@ -26,15 +20,15 @@
   <img src="https://img.shields.io/badge/Lighthouse-F44B21?logo=lighthouse&logoColor=fff&style=for-the-badge" alt="lighthouse badge">
   <img src="https://img.shields.io/badge/GitHub%20Actions-2088FF?logo=githubactions&logoColor=fff&style=for-the-badge" alt="github actions badge">
   <img src="https://img.shields.io/badge/Postman-FF6C37?logo=postman&logoColor=fff&style=for-the-badge" alt="postman badge">
+  <!--
   <img src="https://img.shields.io/badge/Socket.io-010101?logo=socketdotio&logoColor=fff&style=for-the-badge" alt="socket.io badge">
-  <!-- other badges -->
+   other badges -->
 </div>
 
 ## Installation Instructions
 Note: the front-end and back-end are both deployed, so installation is not needed to use the web app. FE installation is required to run tests.
 
 ### FE Installation Instructions:
-<!-- - add list of instructions -->
 - Run the following on command line to clone the repo and run the app locally:
     ```
     git clone git@github.com:Brain-Defrost/Brain-Defrost_FE.git
@@ -44,12 +38,9 @@ Note: the front-end and back-end are both deployed, so installation is not neede
     ```
 
 ### BE Installation Instructions:
-- Link to [BE repo](https://github.com/Brain-Defrost/Brain-Defrost_BE)
-- Deployed API link `url here`
-- Run the following on command line to clone the repo and run the server locally:
-    ```
-
-    ```
+- Link to [Brain Defrost BE repo](https://github.com/Brain-Defrost/Brain-Defrost_BE)
+- Deployed API link `https://brain-defrost-f8afea5ead0a.herokuapp.com`
+- See setup instructions [here](https://github.com/Brain-Defrost/Brain-Defrost_BE#instructions)
 
 ### Run Tests:
 - Ensure you're running the app locally (see FE Installation Instructions above)
@@ -60,16 +51,18 @@ Note: the front-end and back-end are both deployed, so installation is not neede
 - Select `Error_spec` to run error handling tests
 
 ## Context:
-<!-- wins, challenges, time spent, goals, approaches etc -->
-- ~ hours to complete test suite and functionality
+<!-- wins, challenges, about 20 hours spent, goals, approaches etc -->
+This project was completed during a 1 week sprint (*about 20 hours*). The team comprised 2 frontend developers and 3 backend developers as a Capstone Project for the final inning of Turing School of Software and Design bootcamp. Part 1 of the project was planning and completing our app's minimum viable product (MVP). Part 2 will focus on refinement and adding additional features.
 
 ### Goals
 
 <details close>
   
   ```
-  - point
-  - point
+  - Use scrum methodology to collaborate as a full stack team and provide production-ready software
+  - Explore new concepts, libraries, or patterns
+  - Practice professional git workflow
+  - Build application that executes in development, test, CI, and production enfironments
   
   ```
   
@@ -81,7 +74,7 @@ Note: the front-end and back-end are both deployed, so installation is not neede
   
   ```
   - CI/CD pipeline implementation
-  - Postman mock server used during development
+  - Postman mock server used for network requests during development
   
   ```
   
@@ -92,8 +85,22 @@ Note: the front-end and back-end are both deployed, so installation is not neede
 <details close>
   
   ```
-  - point
-  - point
+  - Testing gameplay and different user perspectives(game creator vs joining player) efficiently but thoroughly
+  - Developing features for players to join game from a different browing session/window/device - problem approached by using encoded data stored in URL
+  - Single-page application routing incompatability with GitHub Pages - problem approached by using a rerouting script in the `index.html` file
+  
+  ```
+  
+</details>
+
+### Upcoming Features
+  
+<details close>
+  
+  ```
+  - Multi-player capability with WebSockets
+  - Requests made to Brain Defrost BE for AI generated questions and unique gameplay (currently making requests to Postman mock server)
+  - UI refinement and responsiveness
   
   ```
   
@@ -102,5 +109,14 @@ Note: the front-end and back-end are both deployed, so installation is not neede
 ## Design Comp
 <div align="center">
   <img src=".github/Brain Defrost Comp.png" alt="design composition">
-
 </div>
+
+### <p align="center">Contributors</p>
+**BE Team**
+  - Martin Chavez - [Github](https://github.com/Chavezgm) | [LinkedIn](https://www.linkedin.com/in/martin-chavez-garcia/)
+  - Jess Kohl - [Github](https://github.com/kohljd) | [LinkedIn](https://www.linkedin.com/in/jessica-kohl-545785113/)
+  - Laura Vega - [Github](https://github.com/laurarvegav) | [LinkedIn](https://www.linkedin.com/in/laurarvegav/)
+  
+**FE Team**
+  - Ethan Duvall - [Github](https://github.com/EthanDuvall) | [LinkedIn](https://www.linkedin.com/in/eaduvall/)
+  - Tayla Phillips - [Github](https://github.com/tednaphil) | [LinkedIn](https://www.linkedin.com/in/taylarichardsphillips/)
