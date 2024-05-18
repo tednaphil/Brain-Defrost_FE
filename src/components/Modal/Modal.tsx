@@ -1,6 +1,5 @@
 import "./Modal.css";
 import brain from '../../images/VaporWaveBrain.png'
-// import { useState } from "react";
 
 interface Props {
     alert: string,
@@ -8,16 +7,9 @@ interface Props {
 }
 
 function Modal({alert, setError}: Props) {
-    // const [open, setOpen] = useState<boolean>(false);
-
     const handleClose = () => {
-        // setOpen(false);
         setError('');
     };
-
-    // const handleOpen = () => {
-    //     setOpen(true);
-    // };
 
     return (
         <dialog open className="alert-modal">

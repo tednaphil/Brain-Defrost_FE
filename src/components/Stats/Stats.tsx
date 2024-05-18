@@ -79,7 +79,7 @@ function Stats() {
           {rankings.length > 0 && displayRankings()}
         </ol>
       </section>
-      <button onClick={goHome}>Generate A New Game</button>
+      <button className='new-game-btn' onClick={goHome}>Generate A New Game</button>
     </div>
   );
 }

@@ -58,11 +58,7 @@ function JoinGameForm({ players, setPlayers }: Props) {
     const createPlayer = async (gameID: string  | undefined, nameString: string) => {
         try {
             const newPlayer = await postPlayer(gameID, nameString);
-        //confirm the displayname is still available
-        //if displayname is already in use at time of submission, display message to user
-        //if displayname is available and game not in progress and the max number of players is not met,
-        //allow user to join etc...
-        console.log({newPlayer});
+        // console.log({newPlayer});
         setPlayers([...players, newPlayer.data]);
         sessionStorage.setItem('players', JSON.stringify([...sessionPlayers, newPlayer.data]));
         navigate(`/game/lobby/${gameid}`, {state: sessionGame});

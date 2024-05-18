@@ -8,10 +8,9 @@ import type { Game, Player } from "../Util/interfaces";
 interface Props {
   setGame: (game: Game) => void;
   setPlayers: (playersArray: Player[]) => void;
-  // setError: (error: string) => void
 }
 
-function Home({ setGame, setPlayers/*, setError*/ }: Props) {
+function Home({ setGame, setPlayers}: Props) {
   const [error, setError] = useState<string>('');
   const [formData, setFormData] = useState({
     topic: "",
@@ -72,7 +71,6 @@ function Home({ setGame, setPlayers/*, setError*/ }: Props) {
       console.log("newGame", newGame);
     } catch (error) {
       setError(`${error}`);
-      //display modal
       console.log(error);
     }
   };

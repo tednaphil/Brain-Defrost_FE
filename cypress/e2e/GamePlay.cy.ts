@@ -15,6 +15,11 @@ describe('Brain Defrost GamePlay Stories', () => {
         statusCode: 200,
         fixture: 'intermissionResponse'
       }).as('getIntermission')
+    cy.intercept('GET', 'https://c98a077d-6c2a-4ca9-a867-cf11b6279230.mock.pstmn.io/api/v1/games/1/stats',
+    {
+      statusCode: 200,
+      fixture: 'gameStats'
+    }).as('getStats')
     //intercept started game patch when implemented
     cy.visit('http://localhost:3000/Brain-Defrost_FE')
     cy.get('#name').type('creator').should('have.value', 'creator')
@@ -24,7 +29,7 @@ describe('Brain Defrost GamePlay Stories', () => {
     .get('.create-btn').click()
 
     .get('.start-game-btn').click()
-    //check url
+    .url().should('include', 'game/play/1')
     .get('.question').contains('Who is the lead vocalist of The Beatles?')
     .get('.question-form').children().should('have.length', 5)
     .get('.time-left').contains('20')
@@ -69,10 +74,23 @@ describe('Brain Defrost GamePlay Stories', () => {
     .get('.correct-player-display').contains('ul', 'No one got it right!')
     cy.wait(5000)
 
-    //test end of game display and url
+    .url().should('include', 'game/results/1')
+    .get('h1').contains('Good game!')
+    .get('.rankings-list').children().should('have.length', 3)
+    .get('.rankings-list').contains('student2 2Pts')
+    .get('.rankings-list').contains('creator 1Pts')
+    .get('.rankings-list').contains('student1 0Pts')
+    .get('.top-three').children().should('have.length', 3)
+    .get('.second-place').contains('h3', 'creator')
+    .get('.second').contains('2nd')
+    .get('.first-place').contains('h3', 'student2')
+    .get('.first').contains('1st')
+    .get('.third-place').contains('h3', 'student1')
+    .get('.third').contains('3rd')
+    .get('.new-game-btn').contains('Generate A New Game')
     
   })
-  it('Allows non-creator player to play game', () => {
+  // it('Allows non-creator player to play game', () => {
     
-  })
+  // })
 })
