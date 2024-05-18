@@ -163,6 +163,33 @@ const getFinalStats = async () => {
     throw error;
   }
 };
+
+const patchGame = async (gameID: string) => {
+  try {
+    const response = await fetch(
+      `https://c98a077d-6c2a-4ca9-a867-cf11b6279230.mock.pstmn.io/api/v1/games/${gameID}`,
+      // `https://brain-defrost-f8afea5ead0a.herokuapp.com/api/v1/games/${gameid}`,
+      {
+        method: "PATCH",
+        body: JSON.stringify({
+          started: true
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    if (!response.ok) {
+      const status = response.status;
+      console.log(status);
+      throw new Error(`Couldn't start game - ${status}`);
+    }
+    return await response.json();
+  } catch (error: unknown) {
+    console.log("API CALLS catch block - patch game", error);
+    throw error;
+  }
+};
 export {
   getGame,
   getPlayer,
@@ -171,5 +198,6 @@ export {
   postGame,
   patchPlayer,
   getAllPlayers,
-  getFinalStats
+  getFinalStats,
+  patchGame
 };
