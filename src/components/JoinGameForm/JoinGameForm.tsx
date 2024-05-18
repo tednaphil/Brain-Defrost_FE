@@ -30,7 +30,7 @@ function JoinGameForm({ players, setPlayers }: Props) {
       console.log(sessionGame);
       sessionStorage.setItem("game", JSON.stringify(data));
     }
-  }, [encodedString]);
+  }, [encodedString,sessionGame]);
 
   const isNameAvailable = (nameInput: string): boolean => {
     const playerNames = sessionPlayers.map(
