@@ -37,7 +37,8 @@ function Lobby({players}: Props) {
         // @ts-expect-error
         const sessionPlayers = JSON.parse(sessionStorage.getItem('players'))
         setSessionPlayers(sessionPlayers)
-        console.log('sessionPlayers', sessionPlayers)
+        console.log('sessionGame', sessionGame)
+        console.log('game',game)
     }, [players, game, gameid])
 
     
