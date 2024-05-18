@@ -18,13 +18,12 @@
   --border-style: #360568 solid 2px;
   --main-drop-shadow: drop-shadow(15px 15px #360568);
   --sec-drop-shadow: drop-shadow(10px 10px #A5E6BA);
+  --main-box-shadow: 5px 5px 5px #c8c8c8;
 }
 
 body {
   margin: 0;
   background-color: var(--main-bg-color);
-  /* font-family: 'Poppins', sans-serif;
-  font-size: 1.2rem; */
   color: var(--main-text-color);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -42,6 +41,13 @@ h2 {
 
 h3 {
   font-size: 2.5rem;
+}
+
+button {
+  &:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+  }
 }
 
 code {

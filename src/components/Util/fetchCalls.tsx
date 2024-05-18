@@ -4,11 +4,13 @@ const getGame = async () => {
   try {
     const response = await fetch(
       "https://c98a077d-6c2a-4ca9-a867-cf11b6279230.mock.pstmn.io/api/v1/games/1"
+      // "https://brain-defrost-f8afea5ead0a.herokuapp.com/api/v1/games/1"
+      //if we use this request, let's make sure we update it to be dynamically invoked
     );
     if (!response.ok) {
       const status = response.status;
       console.log(status);
-      throw new Error(`Couldn't get game ${status}`);
+      throw new Error(`Couldn't get game - ${status}`);
     }
     return await response.json();
   } catch (error: unknown) {
@@ -20,11 +22,12 @@ const getPlayer = async () => {
   try {
     const response = await fetch(
       "https://c98a077d-6c2a-4ca9-a867-cf11b6279230.mock.pstmn.io/api/v1/games/1/players/1"
+      // "https://brain-defrost-f8afea5ead0a.herokuapp.com/api/v1/games/1/players/1"
     );
     if (!response.ok) {
       const status = response.status;
       console.log(status);
-      throw new Error(`Couldn't get player ${status}`);
+      throw new Error(`Couldn't get player - ${status}`);
     }
     return await response.json();
   } catch (error: unknown) {
@@ -32,15 +35,16 @@ const getPlayer = async () => {
     throw error;
   }
 };
-const getStats = async () => {
+const getStats = async (gameID: string) => {
   try {
     const response = await fetch(
       "https://c98a077d-6c2a-4ca9-a867-cf11b6279230.mock.pstmn.io/api/v1/games/1/stats"
+      // `https://brain-defrost-f8afea5ead0a.herokuapp.com/api/v1/games/${gameID}/stats`
     );
     if (!response.ok) {
       const status = response.status;
       console.log(status);
-      throw new Error(`Couldn't get player ${status}`);
+      throw new Error(`Couldn't get stats - ${status}`);
     }
     return await response.json();
   } catch (error: unknown) {
@@ -53,6 +57,7 @@ const postPlayer = async (gameID: string | undefined, displayName: string) => {
   try {
     const response = await fetch(
       `https://c98a077d-6c2a-4ca9-a867-cf11b6279230.mock.pstmn.io/api/v1/games/${gameID}/players`,
+      // `https://brain-defrost-f8afea5ead0a.herokuapp.com/api/v1/games/${gameID}/players`,
       {
         method: "POST",
         body: JSON.stringify({
@@ -66,7 +71,7 @@ const postPlayer = async (gameID: string | undefined, displayName: string) => {
     if (!response.ok) {
       const status = response.status;
       console.log(status);
-      throw new Error(`Couldn't get player ${status}`);
+      throw new Error(`Couldn't create player - ${status}`);
     }
     return await response.json();
   } catch (error: unknown) {
@@ -78,6 +83,7 @@ const postGame = async (formData: CreateGameRequest) => {
   try {
     const response = await fetch(
       "https://c98a077d-6c2a-4ca9-a867-cf11b6279230.mock.pstmn.io/api/v1/games/",
+      // "https://brain-defrost-f8afea5ead0a.herokuapp.com/api/v1/games",
       {
         method: "POST",
         body: JSON.stringify(formData),
@@ -89,7 +95,7 @@ const postGame = async (formData: CreateGameRequest) => {
     if (!response.ok) {
       const status = response.status;
       console.log(status);
-      throw new Error(`Couldn't get player ${status}`);
+      throw new Error(`Couldn't create game - ${status}`);
     }
     return await response.json();
   } catch (error: unknown) {
@@ -97,10 +103,11 @@ const postGame = async (formData: CreateGameRequest) => {
     throw error;
   }
 };
-const patchPlayer = async (gameid: string) => {
+const patchPlayer = async (gameID: string/*, playerID: string*/) => {
   try {
     const response = await fetch(
-      `https://c98a077d-6c2a-4ca9-a867-cf11b6279230.mock.pstmn.io/api/v1/games/${gameid}/players/1`,
+      `https://c98a077d-6c2a-4ca9-a867-cf11b6279230.mock.pstmn.io/api/v1/games/${gameID}/players/1`,
+      // `https://brain-defrost-f8afea5ead0a.herokuapp.com/api/v1/games/${gameid}/players/${playerID}`,
       {
         method: "PATCH",
         headers: {
@@ -111,7 +118,7 @@ const patchPlayer = async (gameid: string) => {
     if (!response.ok) {
       const status = response.status;
       console.log(status);
-      throw new Error(`Couldn't get player ${status}`);
+      throw new Error(`Couldn't update player - ${status}`);
     }
     return await response.json();
   } catch (error: unknown) {
@@ -120,10 +127,29 @@ const patchPlayer = async (gameid: string) => {
   }
 };
 
-const getAllPlayers = async () => {
+const getAllPlayers = async (gameID: string | undefined) => {
   try {
     const response = await fetch(
       `https://c98a077d-6c2a-4ca9-a867-cf11b6279230.mock.pstmn.io/api/v1/games/1/players`,
+      // `https://brain-defrost-f8afea5ead0a.herokuapp.com/api/v1/games/${gameID}/players`,
+      { method: "GET" }
+    );
+    if (!response.ok) {
+      const status = response.status;
+      console.log(status);
+      throw new Error(`Couldn't get players - ${status}`);
+    }
+    return await response.json();
+  } catch (error: unknown) {
+    console.log("API CALLS catch block - patch player", error);
+    throw error;
+  }
+};
+
+const getFinalStats = async () => {
+  try {
+    const response = await fetch(
+      `https://c98a077d-6c2a-4ca9-a867-cf11b6279230.mock.pstmn.io/api/v1/games/1/stats`,
       { method: "GET" }
     );
     if (!response.ok) {
@@ -138,4 +164,40 @@ const getAllPlayers = async () => {
   }
 };
 
-export { getGame, getPlayer, getStats, postPlayer, postGame, patchPlayer, getAllPlayers};
+const patchGame = async (gameID: string | undefined) => {
+  try {
+    const response = await fetch(
+      `https://c98a077d-6c2a-4ca9-a867-cf11b6279230.mock.pstmn.io/api/v1/games/${gameID}`,
+      // `https://brain-defrost-f8afea5ead0a.herokuapp.com/api/v1/games/${gameid}`,
+      {
+        method: "PATCH",
+        body: JSON.stringify({
+          started: true
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    if (!response.ok) {
+      const status = response.status;
+      console.log(status);
+      throw new Error(`Couldn't start game - ${status}`);
+    }
+    return await response.json();
+  } catch (error: unknown) {
+    console.log("API CALLS catch block - patch game", error);
+    throw error;
+  }
+};
+export {
+  getGame,
+  getPlayer,
+  getStats,
+  postPlayer,
+  postGame,
+  patchPlayer,
+  getAllPlayers,
+  getFinalStats,
+  patchGame
+};

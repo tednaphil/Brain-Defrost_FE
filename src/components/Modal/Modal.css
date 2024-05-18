@@ -1,24 +1,20 @@
-.error-page {
-    margin: 0 auto;
-    padding: 40px;
-    padding-top: 5px;
+.alert-modal {
     text-align: center;
-    width: 80%;
+    width: 50%;
     border: var(--border-style);
     background-color: var(--sec-bg-color);
     color: white;
-    filter: var(--sec-drop-shadow);
+    box-shadow: var(--main-box-shadow);
     & h2 {
         margin: 0;
     }
-    & p {
-        padding-bottom: 20px;
-    }
     & .close-btn {
-        text-decoration: none;
-        color: var(--main-text-color);
         border-radius: var(--rounded-border);
+        border: none;
         background-color: var(--sec-acc-color);
         padding: 15px 30px;
     }
+}
+.alert-img {
+    width: 230px;
 }

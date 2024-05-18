@@ -11,6 +11,10 @@
   margin: 0;
   top: 16%;
 }
+
+footer {
+  margin-top: 150px;
+}
 .footer-title {
   font-size: 2vh;
 }
@@ -18,7 +22,7 @@
   background-color: #a5e6b9;
   border: none;
   border-radius: 54px;
-  font-size: 2.5vh;
+  font-size: 2vh;
   width: 150px;
   height: 50px;
   box-shadow: 5px 5px 5px #c8c8c8;

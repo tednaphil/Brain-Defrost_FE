@@ -50,7 +50,7 @@ interface GameResponse {
 }
 
 
-interface GetFinalGameStatsResponse {
+export interface GetFinalGameStatsResponse {
   data: {
     id: string;
     type: string;

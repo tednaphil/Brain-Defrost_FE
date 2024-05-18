@@ -46,8 +46,10 @@ function Game() {
   const checkAnswer = async (ans: string) => {
     if (ans === currentAnswer) {
       await patchPlayer(gameid!);
+      //@ts-expect-error
+      console.log(JSON.parse(sessionStorage.getItem("currentPlayer")))
     }
-    const playersList = await getAllPlayers();
+    const playersList = await getAllPlayers(gameid);
     let rightUsers = playersList.data.filter((player:Player ) =>
       player.attributes.questions_correct.some(
         (qNum: string) => qNum === questionCounter.toString()
