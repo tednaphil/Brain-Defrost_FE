@@ -164,7 +164,7 @@ const getFinalStats = async () => {
   }
 };
 
-const patchGame = async (gameID: string) => {
+const patchGame = async (gameID: string | undefined) => {
   try {
     const response = await fetch(
       `https://c98a077d-6c2a-4ca9-a867-cf11b6279230.mock.pstmn.io/api/v1/games/${gameID}`,

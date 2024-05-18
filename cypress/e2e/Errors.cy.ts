@@ -83,5 +83,26 @@ describe('Brain Defrost Error Handling', () => {
     .get('alert-modal').should('not.exist')
   })
   it('Displays error message if game cannot be started', () => {
+    cy.intercept('POST', 'https://c98a077d-6c2a-4ca9-a867-cf11b6279230.mock.pstmn.io/api/v1/games',
+      {
+        statusCode: 201,
+        fixture: 'createdGame'
+      }).as('createGame')
+    cy.intercept('PATCH', 'https://c98a077d-6c2a-4ca9-a867-cf11b6279230.mock.pstmn.io/api/v1/games/1',
+      {
+        statusCode: 500,
+        body: ''
+      }).as('startGameServerErr')
+    cy.visit('http://localhost:3000/Brain-Defrost_FE')
+    .get('#name').type('creator').should('have.value', 'creator')
+    .get('#topic').type('music').should('have.value', 'music')
+    .get('#players').clear().type('3').should('have.value', '3')
+    .get('#questions').clear().type('2').should('have.value', '2')
+    .get('.create-btn').click()
+    .get('.start-game-btn').click()
+    .get('.alert-modal').contains('h2', 'Alert!')
+    .get('.alert-modal').contains('p', 'Couldn\'t start game - 500')
+    .get('.close-btn').contains('Close').click()
+    .get('alert-modal').should('not.exist')
   })
 })
