@@ -1,53 +1,52 @@
-import './JoinGameForm.css';
-import { useParams, useNavigate } from 'react-router-dom';
-import { useState, useEffect } from 'react';
-import { postPlayer } from '../Util/fetchCalls';
-import type { Player } from '../Util/interfaces';
+import "./JoinGameForm.css";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { postPlayer } from "../Util/fetchCalls";
+import type { Player } from "../Util/interfaces";
 import Modal from '../Modal/Modal';
 
 interface Props {
-    setPlayers: (array: Player[]) => void,
-    players: Player[]
-  }
+  setPlayers: (array: Player[]) => void;
+  players: Player[];
+}
 
-function JoinGameForm({players, setPlayers}: Props) {
-    const { gameid } = useParams<string>();
-    const [displayName, setDisplayName] = useState<string>('');
-    const [sessionPlayers, setSessionPlayers] = useState([]);
-    const [sessionGame, setSessionGame] = useState([]);
-    const [nameAvailable, setNameAvailable] = useState<boolean>(true);
-    const [error, setError] = useState<string>('');
-    
-    
-    const navigate = useNavigate();
+function JoinGameForm({ players, setPlayers }: Props) {
+  const location = useLocation();
+  const params = new URLSearchParams(location.search);
+  const encodedString = params.get("data");
+  const { gameid } = useParams<string>();
+  const [displayName, setDisplayName] = useState<string>("");
+  const [sessionPlayers, setSessionPlayers] = useState<Player[]>([]);
+  const [sessionGame, setSessionGame] = useState<any>(null);
+  const [nameAvailable, setNameAvailable] = useState<boolean>(true);
+  const [error, setError] = useState<string>('');
+  const navigate = useNavigate();
 
-    useEffect(() => {
-        // @ts-expect-error
-        const sessionPlayers = JSON.parse(sessionStorage.getItem('players'))
-        setSessionPlayers(sessionPlayers)
-        // @ts-expect-error
-        const sessionGame = JSON.parse(sessionStorage.getItem('game'))
-        setSessionGame(sessionGame)
-    }, [])
-
-    const isNameAvailable = (nameInput: string) => {
-        // @ts-expect-error
-        const playerNames = sessionPlayers.map(player => player.attributes.display_name)
-        console.log('playerNames', playerNames)
-        const matches = playerNames.filter(name => nameInput === name)
-        console.log({matches})
-        if (matches.length) {
-            setNameAvailable(false)
-            return false
-        } else {
-            setNameAvailable(true)
-            return true
-        }
+  useEffect(() => {
+    if(encodedString){
+    const data = JSON.parse(decodeURIComponent(encodedString));
+    setSessionPlayers(data.relationships.players.data);
+    setSessionGame(data);
     }
+  }, [encodedString]);
+
+  const isNameAvailable = (nameInput: string): boolean => {
+    const playerNames = sessionPlayers.map(
+      (player) => player.attributes.display_name
+    );
+    const matches = playerNames.filter((name) => nameInput === name);
+    if (matches.length) {
+      setNameAvailable(false);
+      return false;
+    } else {
+      setNameAvailable(true);
+      return true;
+    }
+  };
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setDisplayName(e.target.value)
-        isNameAvailable(e.target.value)
+        setDisplayName(e.target.value);
+        isNameAvailable(e.target.value);
     }
     
     //on mount, check if game exists
@@ -74,13 +73,10 @@ function JoinGameForm({players, setPlayers}: Props) {
         
     }
 
-    const handleSubmission = async (e: any, gameID: string  | undefined, nameString: string) => {
+    const handleSubmission = async (e: React.FormEvent<HTMLFormElement>, gameID: string  | undefined, nameString: string) => {
         e.preventDefault();
-        createPlayer(gameID, nameString);
-        // if (error === '') {
-        //     navigate(`/game/lobby/${gameid}`, {state: sessionGame});
-        // }
-    }
+        await createPlayer(gameID, nameString);
+    };
 
     return (
         <>
@@ -94,4 +90,4 @@ function JoinGameForm({players, setPlayers}: Props) {
     )
 }
 
-export default JoinGameForm
+export default JoinGameForm;

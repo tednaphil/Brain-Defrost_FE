@@ -1,0 +1,105 @@
+.top-three {
+  display: flex;
+}
+
+.stats-display {
+  display: flex;
+  justify-content: space-around;
+  background-color: white;
+  height: 82vh;
+}
+.stats-display h2 {
+  font-size: 4vh;
+}
+.podium-holders {
+  font-size: 3vh;
+}
+.stats-display h1 {
+  font-size: 5vh;
+  color: white;
+  background-color: #7785ac;
+  position: absolute;
+  height: 100px;
+  width: 400px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  margin: 0;
+  top: 12%;
+}
+
+.stats-display button {
+  top: 80%;
+  background-color: #a5e6b9;
+  position: absolute;
+  border: none;
+  border-radius: 54px;
+  font-size: 2.5vh;
+  width: 300px;
+  height: 100px;
+  box-shadow: 5px 5px 5px #c8c8c8;
+  margin: 30px;
+  align-self: center;
+}
+.top-three {
+  display: flex;
+  justify-content: center;
+}
+.podium {
+  margin-top: 30px;
+  display: flex;
+  justify-content: space-around;
+  height: 75%;
+}
+
+.first {
+  height: 250px;
+  background-color: #7785ac;
+}
+.second {
+  height: 175px;
+  background-color: #5b2a85;
+}
+.third {
+  height: 150px;
+  background-color: #9ac6c4;
+}
+.first,
+.second,
+.third {
+  width: 100%;
+  font-size: 6vh;
+  color: white;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  justify-content: flex-end;
+  width: 150px;
+}
+.first-place,
+.second-place,
+.third-place {
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: column;
+}
+
+.rankings-display {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.rankings-list li:first-child {
+  font-size: 6vh;
+}
+.rankings-list li:nth-child(2) {
+  font-size: 5vh;
+}
+.rankings-list li:nth-child(3) {
+    font-size: 4vh;
+}
