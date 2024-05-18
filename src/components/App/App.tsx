@@ -14,6 +14,7 @@ import ErrorPage from "../ErrorPage/ErrorPage";
 function App() {
   const [game, setGame] = useState({});
   const [players, setPlayers] = useState([]);
+  // const [error, setError] = useState<string>('');
   //create questions state and consider also storing in session storage
   console.log(game)
   // useEffect(() => {
@@ -57,13 +58,13 @@ function App() {
       </header>
       <Routes>
         {/* @ts-expect-error */}
-        <Route path = "/" element = {<Home setGame={setGame} setPlayers={setPlayers} />}/>
+        <Route path = "/" element = {<Home setGame={setGame} setPlayers={setPlayers}/* setError={setError}*//>}/>
         <Route path = "/game/lobby/:gameid" element = {<Lobby players={players} />}/>
         {/* @ts-expect-error */}
         <Route path = "/join/:gameid" element = {<JoinGameForm players={players} setPlayers={setPlayers} />}/>
         <Route path = "/game/play/:gameid" element = {<Game />}/>
         <Route path = "/game/results/:gameid" element = {<Stats />}/>
-        <Route path = "*" element = {<ErrorPage />}/>
+        <Route path = "*" element = {<ErrorPage error={'Page not found'}/>}/>
       </Routes>
     </>
   );

@@ -77,7 +77,9 @@ const postPlayer = async (gameID: string | undefined, displayName: string) => {
 const postGame = async (formData: CreateGameRequest) => {
   try {
     const response = await fetch(
-      "https://c98a077d-6c2a-4ca9-a867-cf11b6279230.mock.pstmn.io/api/v1/games/",
+      // "https://c98a077d-6c2a-4ca9-a867-cf11b6279230.mock.pstmn.io/api/v1/games/",
+      "https://brain-defrost-f8afea5ead0a.herokuapp.com/api/v1/games",
+      // "error simulation",
       {
         method: "POST",
         body: JSON.stringify(formData),
@@ -89,7 +91,7 @@ const postGame = async (formData: CreateGameRequest) => {
     if (!response.ok) {
       const status = response.status;
       console.log(status);
-      throw new Error(`Couldn't get player ${status}`);
+      throw new Error(`Couldn't create game - ${status}`);
     }
     return await response.json();
   } catch (error: unknown) {

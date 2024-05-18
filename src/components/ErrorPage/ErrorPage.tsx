@@ -1,10 +1,21 @@
 import './ErrorPage.css';
+import { Link } from 'react-router-dom';
+import brain from '../../images/VaporWaveBrain.png'
 
-function ErrorPage() {
+interface Props {
+    error: string | never
+}
+
+function ErrorPage({error}: Props) {
+    
     return (
-        <>
-        <h2>Error Page</h2>
-        </>
+        <article className='error-page'>
+            <img className='alert-img' src={brain} alt='vaporwave style brain illustration'/>
+        <h2>Uh oh!</h2>
+        <p>{error}</p>
+        <Link to='/' className='close-btn' autoFocus>Home</Link>
+
+        </article>
     )
 }
 

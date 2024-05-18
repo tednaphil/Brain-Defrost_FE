@@ -1,5 +1,6 @@
 import React, { FormEvent, useState } from "react";
 import "./Home.css";
+import Modal from "../Alert/Alert";
 import { useNavigate } from "react-router-dom";
 import { postGame } from "../Util/fetchCalls";
 import type { Game, Player } from "../Util/interfaces";
@@ -7,9 +8,11 @@ import type { Game, Player } from "../Util/interfaces";
 interface Props {
   setGame: (game: Game) => void;
   setPlayers: (playersArray: Player[]) => void;
+  // setError: (error: string) => void
 }
 
-function Home({ setGame, setPlayers }: Props) {
+function Home({ setGame, setPlayers/*, setError*/ }: Props) {
+  const [error, setError] = useState<string>('');
   const [formData, setFormData] = useState({
     topic: "",
     number_of_questions: 1,
@@ -37,6 +40,13 @@ function Home({ setGame, setPlayers }: Props) {
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     createGame();
+    setFormData({
+      topic: "",
+      number_of_questions: 1,
+      time_limit: 30,
+      number_of_players: 1,
+      display_name: "",
+    })
   };
 
   const createGame = async () => {
@@ -61,12 +71,16 @@ function Home({ setGame, setPlayers }: Props) {
       Navigate(`game/lobby/${gameID}`, { state: newGame.data });
       console.log("newGame", newGame);
     } catch (error) {
+      setError(`${error}`);
+      //display modal
       console.log(error);
     }
   };
 
+    
   return (
     <div className="home">
+      {error && <Modal setError={setError} alert={error}/>}
       <h2 className="form-title">Generate A New Trivia Game!</h2>
       <form className="create-game-form" onSubmit={handleSubmit}>
         <section>
