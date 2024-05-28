@@ -1,7 +1,7 @@
 {
   "name": "brain-defrost-fe",
   "version": "0.1.0",
-  "homepage": "https://Brain-Defrost.github.io/Brain-Defrost_FE",
+  "homepage": "https://brain-defrost.netlify.app",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
