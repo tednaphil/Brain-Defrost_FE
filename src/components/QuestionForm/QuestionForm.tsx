@@ -1,6 +1,7 @@
 import "./QuestionForm.css";
 import type { Question } from "../Util/interfaces";
 import { useEffect, useState } from "react";
+import splat from "../../images/Star 1.png";
 
 interface Props {
   currentQuestion: Question;
@@ -69,7 +70,9 @@ function QuestionForm({
     <>
       <div className="question-form-holder">
         <h2 className="question">{currentQuestion.attributes.question_text}</h2>
-        <p className="time-left">{timeLeft}</p>
+        <div className ="timer-display" style={{ backgroundImage: `url(${splat})` }}>
+          <p className="time-left">Time Left:<br></br>{timeLeft}</p>
+        </div>
         <form className="question-form">
           {answerOptions}
           <button
@@ -81,7 +84,7 @@ function QuestionForm({
             className="submit-answer-btn"
             type="button"
           >
-            {isLockedIn ? <span>Locked In</span> : <span> Lock in?</span>}
+            {isLockedIn ? <span>Locked In</span> : <span>Lock in?</span>}
           </button>
         </form>
         <p className="question-number">

@@ -3,6 +3,7 @@ import { getFinalStats } from "../Util/fetchCalls";
 import { useEffect, useState } from "react";
 import { GetFinalGameStatsResponse, Player } from "../Util/interfaces";
 import { useNavigate } from "react-router-dom";
+import { Award } from "react-feather";
 
 function Stats() {
   const [finalStats, setFinalStats] = useState<GetFinalGameStatsResponse>();
@@ -74,7 +75,7 @@ function Stats() {
         {displayTopThree()}
       </section>
       <section className="rankings-display">
-        <h2>Rankings</h2>
+        <h2><Award></Award>Rankings</h2>
         <ol className="rankings-list">
           {rankings.length > 0 && displayRankings()}
         </ol>
