@@ -6,7 +6,7 @@ describe('Brain Defrost User Stories', () => {
   it('Displays homepage', () => {
     cy.get('h1').contains('Brain Defrost')
     .get('.form-title').contains('Generate A New Trivia Game!')
-    .get('label[for=name]').contains('Choose a display name')
+    .get('label[for=name]').contains('Enter your display name')
     .get('#name').should('have.value', '')
     .get('label[for=topic]').contains('Topic')
     .get('#topic').should('have.value', '')
