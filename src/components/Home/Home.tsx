@@ -83,7 +83,7 @@ function Home({ setGame, setPlayers}: Props) {
       <h2 className="form-title">Generate A New Trivia Game!</h2>
       <form className="create-game-form" onSubmit={handleSubmit}>
         <section>
-          <label htmlFor="name"> Choose a display name</label>
+          <label htmlFor="name">Enter your display name</label>
           <input
             type="text"
             className="name-input"
