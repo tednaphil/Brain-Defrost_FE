@@ -4,10 +4,12 @@ import { useEffect, useState } from "react";
 import { GetFinalGameStatsResponse, Player } from "../Util/interfaces";
 import { useNavigate } from "react-router-dom";
 import { Award } from "react-feather";
+import SendStatsForm from "../SendStatsForm/SendStatsForm";
 
 function Stats() {
   const [finalStats, setFinalStats] = useState<GetFinalGameStatsResponse>();
   const [rankings, setRankings] = useState<Player[]>([]);
+  const [openDialoge, setOpenDialoge] = useState<boolean>(false);
   const Navigate = useNavigate();
   const fetchStat = async () => {
     setFinalStats(await getFinalStats());
@@ -67,6 +69,14 @@ function Stats() {
     );
   }
 
+  function showForm() {
+    setOpenDialoge(true);
+  }
+
+  function closeForm() {
+    setOpenDialoge(false);
+  }
+
   return (
     <div className="stats-display">
       <h1>Good game!</h1>
@@ -81,9 +91,10 @@ function Stats() {
         </ol>
       </section>
       <div className="btns">
-      <button className='send-stats-btn' onClick={goHome}>Send Me The Stats</button>
+      <button className='send-stats-btn' onClick={showForm}>Send Me The Stats</button>
       <button className='new-game-btn' onClick={goHome}>Generate A New Game</button>
       </div>
+      {openDialoge && <SendStatsForm closeForm={closeForm}/>}
     </div>
   );
 }
