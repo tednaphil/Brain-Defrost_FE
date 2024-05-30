@@ -27,20 +27,29 @@
   justify-content: center;
   padding: 20px;
   margin: 0;
-  top: 10%;
+  top: 13%;
 }
 
-.stats-display button {
-  top: 89%;
-  background-color: #a5e6b9;
+.btns {
+  display: flex;
+  flex-direction: row;
+  /* align-items: space-between; */
+  /* justify-content: space-between; */
   position: absolute;
-  border: none;
-  border-radius: 54px;
-  font-size: 2.5vh;
+  top: 89%
+}
+
+.new-game-btn,
+.send-stats-btn {
+  background-color: #a5e6b9;
   width: 300px;
   height: 50px;
   box-shadow: 5px 5px 5px #c8c8c8;
-  align-self: center;
+  border-radius: 54px;
+  border: none;
+  text-align: center;
+  font-size: 2vh;
+  margin: 0 15px;
 }
 .top-three {
   display: flex;
