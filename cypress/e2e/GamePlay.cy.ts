@@ -25,7 +25,7 @@ describe('Brain Defrost GamePlay Stories', () => {
       statusCode: 200,
       fixture: 'gameStats'
     }).as('getStats')
-    cy.visit('http://localhost:3000/Brain-Defrost_FE')
+    cy.visit('http://localhost:3000/')
     cy.get('#name').type('creator').should('have.value', 'creator')
     .get('#topic').type('music').should('have.value', 'music')
     .get('#players').clear().type('3').should('have.value', '3')

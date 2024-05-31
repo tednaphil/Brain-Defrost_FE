@@ -8,7 +8,7 @@ describe('Brain Defrost Error Handling', () => {
     .get('.error-page').contains('h2', 'Uh oh!')
     .get('.error-page').contains('p', 'Page not found')
     .get('.close-btn').contains('Home').click()
-    .url().should('eq', 'http://localhost:3000')
+    .url().should('eq', 'http://localhost:3000/')
     .get('.form-title').contains('Generate A New Trivia Game!')
   })
   it('Displays error message if game cannot be made because of server error', () => {
