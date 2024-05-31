@@ -1,14 +1,14 @@
 describe('Brain Defrost Error Handling', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:3000/Brain-Defrost_FE')
+    cy.visit('http://localhost:3000')
   })
   it('Displays error message if bad path visited', () => {
-    cy.visit('http://localhost:3000/Brain-Defrost_FE/badpath')
+    cy.visit('http://localhost:3000/badpath')
     .get('.alert-img').should('exist')
     .get('.error-page').contains('h2', 'Uh oh!')
     .get('.error-page').contains('p', 'Page not found')
     .get('.close-btn').contains('Home').click()
-    .url().should('eq', 'http://localhost:3000/Brain-Defrost_FE')
+    .url().should('eq', 'http://localhost:3000/')
     .get('.form-title').contains('Generate A New Trivia Game!')
   })
   it('Displays error message if game cannot be made because of server error', () => {

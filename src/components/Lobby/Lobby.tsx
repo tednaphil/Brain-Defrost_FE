@@ -3,7 +3,7 @@ import type { Player, ServerToClientEvents, ClientToServerEvents } from '../Util
 import { useState, useEffect } from 'react';
 import { useNavigate, useParams, useLocation } from 'react-router-dom';
 import { Copy } from 'react-feather';
-import { io, Socket } from 'socket.io-client'; 
+//import { io, Socket } from 'socket.io-client'; 
 
 interface Props {
     players: Player[]
@@ -18,7 +18,7 @@ function Lobby({players}: Props) {
     const { gameid } = useParams();
     const navigate = useNavigate();
     const [joinURL, setJoinUrl] = useState('')
-    const socket: Socket<ServerToClientEvents, ClientToServerEvents> = io();
+    //const socket: Socket<ServerToClientEvents, ClientToServerEvents> = io();
 
 
     useEffect(() => {
