@@ -18,7 +18,7 @@ describe('Brain Defrost User Stories', () => {
     .get('.footer-title').contains('More info about Brain Defrost')
   })
   it('Allows user to generate a new game and see lobby', () => {
-    cy.intercept('POST', 'https://c98a077d-6c2a-4ca9-a867-cf11b6279230.mock.pstmn.io/api/v1/games',
+    cy.intercept('POST', 'https://brain-defrost-f8afea5ead0a.herokuapp.com/api/v1/games',
       {
         statusCode: 201,
         fixture: 'createdGame'
@@ -40,7 +40,7 @@ describe('Brain Defrost User Stories', () => {
     .get('.players').contains('p', 'creator')
   })
   it('Allows user to join a game', () => {
-    cy.intercept('POST', 'https://c98a077d-6c2a-4ca9-a867-cf11b6279230.mock.pstmn.io/api/v1/games',
+    cy.intercept('POST', 'https://brain-defrost-f8afea5ead0a.herokuapp.com/api/v1/games',
       {
         statusCode: 201,
         fixture: 'createdGame'
@@ -50,7 +50,7 @@ describe('Brain Defrost User Stories', () => {
     .get('#players').clear().type('3').should('have.value', '3')
     .get('#questions').clear().type('2').should('have.value', '2')
     .get('.create-btn').click()
-    cy.intercept('POST', 'https://c98a077d-6c2a-4ca9-a867-cf11b6279230.mock.pstmn.io/api/v1/games/1/players',
+    cy.intercept('POST', 'https://brain-defrost-f8afea5ead0a.herokuapp.com/api/v1/games/1/players',
       {
         statusCode: 201,
         fixture: 'createdPlayer2'
