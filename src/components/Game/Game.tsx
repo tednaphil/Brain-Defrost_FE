@@ -51,15 +51,8 @@ function Game() {
   const checkAnswer = async (ans: string) => {
     if (ans === currentAnswer) {
       const currentPlayerId = currentPlayer.id.toString();
-      console.log('check answer')
-      console.log(typeof(currentPlayerId))
-      //  //@ts-expect-error
-      // const currentPlayer = JSON.parse(sessionStorage.getItem("currentPlayer"))
-      // console.log({currentPlayer})
       const updatedPlayer = await patchPlayer(gameid!, currentPlayerId!, currentQuestion);
       console.log(updatedPlayer);
-      //pass currentPlayer id in patchPlayer
-      // console.log(JSON.parse(sessionStorage.getItem("currentPlayer")))
     }
     const playersList = await getAllPlayers(gameid);
     console.log('playersList', playersList);
@@ -68,7 +61,7 @@ function Game() {
         // (qNum: string) => qNum === questionCounter.toString()
         (qNum: string) => qNum.includes(questionCounter.toString()) 
         //waiting for fix from BE team for to have access to question objects instead of strings
-        //refactor this line to access the question number on the object to compare to the questionCounter
+        //after BE fix refactor this line to access the question number to compare to the questionCounter
       )
     );
     if (rightUsers) {
