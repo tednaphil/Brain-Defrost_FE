@@ -1,5 +1,6 @@
 .alert-modal {
     text-align: center;
+    margin-top: 50px;
     width: 50%;
     border: var(--border-style);
     background-color: var(--sec-bg-color);
@@ -9,6 +10,8 @@
         margin: 0;
     }
     & .close-btn {
+        align-self: center;
+        background-color: var(--sec-acc-color);
         border-radius: var(--rounded-border);
         border: none;
         padding: 15px 30px;

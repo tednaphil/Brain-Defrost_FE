@@ -1,11 +1,10 @@
 import type { CreateGameRequest } from "./interfaces";
 
-const getGame = async () => {
+const getGame = async (gameID: string) => {
   try {
     const response = await fetch(
-      "https://c98a077d-6c2a-4ca9-a867-cf11b6279230.mock.pstmn.io/api/v1/games/1"
-      // "https://brain-defrost-f8afea5ead0a.herokuapp.com/api/v1/games/1"
-      //if we use this request, let's make sure we update it to be dynamically invoked
+      // "https://c98a077d-6c2a-4ca9-a867-cf11b6279230.mock.pstmn.io/api/v1/games/1"
+      `https://brain-defrost-f8afea5ead0a.herokuapp.com/api/v1/games/${gameID}`
     );
     if (!response.ok) {
       const status = response.status;
@@ -103,7 +102,7 @@ const postGame = async (formData: CreateGameRequest) => {
     throw error;
   }
 };
-const patchPlayer = async (gameID: string, playerID: string) => {
+const patchPlayer = async (gameID: string, playerID: string, questionNum: number) => {
   try {
     const response = await fetch(
       // `https://c98a077d-6c2a-4ca9-a867-cf11b6279230.mock.pstmn.io/api/v1/games/${gameID}/players/1`,
@@ -111,6 +110,10 @@ const patchPlayer = async (gameID: string, playerID: string) => {
       // `https://brain-defrost-f8afea5ead0a.herokuapp.com/api/v1/games/${gameID}/players/71`,
       {
         method: "PATCH",
+        body: JSON.stringify({
+          question: questionNum,
+          correct: true
+        }),
         headers: {
           "Content-Type": "application/json",
         },
@@ -121,6 +124,7 @@ const patchPlayer = async (gameID: string, playerID: string) => {
       console.log(status);
       throw new Error(`Couldn't update player - ${status}`);
     }
+    // console.log(response.json())
     return await response.json();
   } catch (error: unknown) {
     console.log("API CALLS catch block - patch player", error);
