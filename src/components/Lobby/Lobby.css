@@ -10,15 +10,10 @@
 
 
 .start-game-btn {
-    background-color: var(--sec-acc-color);
     border: none;
     border-radius: 100px;
     padding: 30px;
-    box-shadow: 5px 5px 5px #c8c8c8;
-    &:hover {
-        cursor: pointer;
-        transform: scale(1.1);
-    }
+    box-shadow: var(--main-box-shadow);
 }
 
 .details, .players {
@@ -82,5 +77,4 @@
 .lobby-details{
     margin:0;
     font-size: 4vh;
-    /* font-size: 2rem; */
 }

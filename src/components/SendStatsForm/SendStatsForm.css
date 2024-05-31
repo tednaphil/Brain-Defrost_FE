@@ -3,7 +3,7 @@
     text-align: center;
     border: var(--border-style);
     background-color: var(--sec-bg-color);
-    color: white;
+    color: var(--sec-text-color);
     box-shadow: var(--main-box-shadow);
     margin-top: 80px;
 }
@@ -24,10 +24,8 @@
 }
 
 .submit-btn {
-    background-color: #a5e6b9;
     width: 250px;
     height: 60px;
-    /* box-shadow: 5px 5px 5px #c8c8c8; */
     border-radius: 54px;
     border: none;
     text-align: center;

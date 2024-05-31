@@ -14,30 +14,19 @@
     }
     & input {
         margin: 10px 0;
-        background-color: white;
-        font-weight: 300;
         height: 60px;
         width: 75%;
         font-size: 1.2rem;
-        text-align: center;
         box-shadow: none;
-        &::placeholder {
-            color: hsla(0, 0%, 0%, 0.35);
-        }
     }
     & button {
         width: 75%;
         height: 60px;
-        background-color: var(--sec-acc-color);
         border-radius: var(--rounded-border);
-        &:hover {
-            cursor: pointer;
-            transform: scale(1.1);
-        }
     }
 }
 
 .entry-form-header {
-    color: white;
+    color: var(--sec-text-color);
     margin: 0;
 }

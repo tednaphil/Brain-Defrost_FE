@@ -16,8 +16,8 @@
 }
 .stats-display h1 {
   font-size: 5vh;
-  color: white;
-  background-color: #7785ac;
+  color: var(--sec-text-color);
+  background-color: var(--thrd-acc-color);
   position: absolute;
   height: 100px;
   width: 400px;
@@ -39,10 +39,9 @@
 
 .new-game-btn,
 .send-stats-btn {
-  background-color: #a5e6b9;
   width: 300px;
   height: 50px;
-  box-shadow: 5px 5px 5px #c8c8c8;
+  box-shadow: var(--main-box-shadow);
   border-radius: 54px;
   border: none;
   text-align: center;
@@ -62,22 +61,22 @@
 
 .first {
   height: 250px;
-  background-color: #7785ac;
+  background-color: var(--thrd-acc-color);
 }
 .second {
   height: 175px;
-  background-color: #5b2a85;
+  background-color: var(--sec-bg-color);
 }
 .third {
   height: 150px;
-  background-color: #9ac6c4;
+  background-color: var(--main-bg-color);
 }
 .first,
 .second,
 .third {
   width: 100%;
   font-size: 6vh;
-  color: white;
+  color: var(--sec-text-color);
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -100,7 +99,7 @@
   justify-content: flex-start;
 }
 
-.rankings-list li:first-child {
+/* .rankings-list li:first-child {
   font-size: 6vh;
 }
 .rankings-list li:nth-child(2) {
@@ -108,4 +107,4 @@
 }
 .rankings-list li:nth-child(3) {
     font-size: 4vh;
-}
+} */

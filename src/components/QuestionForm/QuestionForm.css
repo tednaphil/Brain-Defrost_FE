@@ -3,8 +3,8 @@
   margin: 0 auto;
   max-width: 80%;
   text-align: center;
-  color: white;
-  padding-top: 5vh;
+  color: var(--sec-text-color);
+  padding-top: 8vh;
 }
 .question-form {
   padding-top: 60px;
@@ -15,7 +15,7 @@
   
 }
 .question-form-holder {
-  background-color: #5b2a86;
+  background-color: var(--sec-bg-color);
   height: 82.2vh;
 }
 .option-label {
@@ -40,15 +40,9 @@
 } */
 
 .option-label:hover {
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
   transform: scale(1.03);
 }
-.question-number {
-  position: absolute;
-  top: 84%;
-  left: 98%;
-  font-size: 6vh;
-}
+
 .submit-answer-btn {
   position: absolute;
   text-align: center;
@@ -56,12 +50,11 @@
   left: 35%;
   width: 50vh;
   height: 12vh;
-  background-color: #a5e6ba;
   border-radius:100px;
   border: none;
-  box-shadow: 2px 2px 2px #c8c8c8;
   padding: 30px;
 }
+
 .time-left{
   font-size: 2vh;
   margin:0;
@@ -76,20 +69,20 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  outline: none;
-  /* padding: 2px; */
-  height: 15vh;
-  width: 15vh;
+  height: 14vh;
+  width: 14vh;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
 }
 
 .question-number{
-  color:white;
-  font-size: 9vh;
-  margin-top:2vh;
+  color:var(--sec-text-color);
+  font-size: 5vh;
+  margin-top:4vh;
   margin-left:0 ;
   position: absolute;
+  top: 84%;
   left:95%;
 }
+

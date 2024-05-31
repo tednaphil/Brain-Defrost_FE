@@ -1,7 +1,7 @@
 .form-title {
   font-size: 3vh;
   color: var(--sec-text-color);
-  background-color: #7785ac;
+  background-color: var(--thrd-acc-color);
   position: absolute;
   height: 75px;
   display: flex;
@@ -19,18 +19,18 @@ footer {
   font-size: 2vh;
 }
 .create-btn {
-  background-color: #a5e6b9;
+  /* background-color: (--sec-acc-color); */
   border: none;
   border-radius: 54px;
   font-size: 2vh;
   width: 150px;
   height: 50px;
-  box-shadow: 5px 5px 5px #c8c8c8;
+  box-shadow: var(--main-box-shadow);
   margin: 30px;
   align-self: center;
 }
 .create-game-form {
-  background-color: var(--sec-text-color);
+  background-color: white;
   width: 60%;
   display: flex;
   flex-direction: column;
@@ -43,14 +43,14 @@ footer {
   margin-bottom: 90px;
 }
 input[type="text"] {
-  background-color: var(--sec-text-color);
+  background-color: white;
   font-weight: 300;
   text-align: center;
   border: black solid 1px;
   width: 80%;
   height: 55px;
   font-size: 1.6rem;
-  box-shadow: 5px 5px 5px #c8c8c8;
+  box-shadow: var(--main-box-shadow);
   &::placeholder {
     color: hsla(0, 0%, 0%, 0.35);
 }
