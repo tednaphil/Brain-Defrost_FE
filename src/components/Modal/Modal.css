@@ -9,9 +9,7 @@
     & h2 {
         margin: 0;
     }
-    & .close-btn {
-        align-self: center;
-        background-color: var(--sec-acc-color);
+    & .modal-close-btn {
         border-radius: var(--rounded-border);
         border: none;
         padding: 15px 30px;

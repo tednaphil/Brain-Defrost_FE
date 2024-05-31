@@ -7,12 +7,12 @@ describe('Brain Defrost Error Handling', () => {
     .get('.alert-img').should('exist')
     .get('.error-page').contains('h2', 'Uh oh!')
     .get('.error-page').contains('p', 'Page not found')
-    .get('.close-btn').contains('Home').click()
+    .get('.error-close-btn').contains('Home').click()
     .url().should('eq', 'http://localhost:3000/Brain-Defrost_FE')
     .get('.form-title').contains('Generate A New Trivia Game!')
   })
   it('Displays error message if game cannot be made because of server error', () => {
-    cy.intercept('POST', 'https://c98a077d-6c2a-4ca9-a867-cf11b6279230.mock.pstmn.io/api/v1/games',
+    cy.intercept('POST', 'https://brain-defrost-f8afea5ead0a.herokuapp.com/api/v1/games',
       {
         statusCode: 500,
         body: ''
@@ -24,11 +24,11 @@ describe('Brain Defrost Error Handling', () => {
     .get('.create-btn').click()
     .get('.alert-modal').contains('h2', 'Alert!')
     .get('.alert-modal').contains('p', 'Couldn\'t create game - 500')
-    .get('.close-btn').contains('Close').click()
+    .get('.modal-close-btn').contains('Close').click()
     .get('alert-modal').should('not.exist')
   })
   it('Displays error message if game cannot be made because of client error', () => {
-    cy.intercept('POST', 'https://c98a077d-6c2a-4ca9-a867-cf11b6279230.mock.pstmn.io/api/v1/games',
+    cy.intercept('POST', 'https://brain-defrost-f8afea5ead0a.herokuapp.com/api/v1/games',
       {
         statusCode: 400,
         body: ''
@@ -40,11 +40,11 @@ describe('Brain Defrost Error Handling', () => {
     .get('.create-btn').click()
     .get('.alert-modal').contains('h2', 'Alert!')
     .get('.alert-modal').contains('p', 'Couldn\'t create game - 400')
-    .get('.close-btn').contains('Close').click()
+    .get('.modal-close-btn').contains('Close').click()
     .get('alert-modal').should('not.exist')
   })
   it('Displays message if display name is taken', () => {
-    cy.intercept('POST', 'https://c98a077d-6c2a-4ca9-a867-cf11b6279230.mock.pstmn.io/api/v1/games',
+    cy.intercept('POST', 'https://brain-defrost-f8afea5ead0a.herokuapp.com/api/v1/games',
       {
         statusCode: 201,
         fixture: 'createdGame'
@@ -59,7 +59,7 @@ describe('Brain Defrost Error Handling', () => {
     .get('#display-name-notif').contains('That display name is taken. Please choose another one!')
   })
   it('Displays error message if game cannot be joined', () => {
-    cy.intercept('POST', 'https://c98a077d-6c2a-4ca9-a867-cf11b6279230.mock.pstmn.io/api/v1/games',
+    cy.intercept('POST', 'https://brain-defrost-f8afea5ead0a.herokuapp.com/api/v1/games',
     {
       statusCode: 201,
       fixture: 'createdGame'
@@ -69,7 +69,7 @@ describe('Brain Defrost Error Handling', () => {
     .get('#players').clear().type('3').should('have.value', '3')
     .get('#questions').clear().type('2').should('have.value', '2')
     .get('.create-btn').click()
-    cy.intercept('POST', 'https://c98a077d-6c2a-4ca9-a867-cf11b6279230.mock.pstmn.io/api/v1/games/1/players',
+    cy.intercept('POST', 'https://brain-defrost-f8afea5ead0a.herokuapp.com/api/v1/games/1/players',
       {
         statusCode: 403,
         body: ''
@@ -79,16 +79,16 @@ describe('Brain Defrost Error Handling', () => {
     .get('#join-game-button').click()
     .get('.alert-modal').contains('h2', 'Alert!')
     .get('.alert-modal').contains('p', 'Couldn\'t create player - 403')
-    .get('.close-btn').contains('Close').click()
+    .get('.modal-close-btn').contains('Close').click()
     .get('alert-modal').should('not.exist')
   })
   it('Displays error message if game cannot be started', () => {
-    cy.intercept('POST', 'https://c98a077d-6c2a-4ca9-a867-cf11b6279230.mock.pstmn.io/api/v1/games',
+    cy.intercept('POST', 'https://brain-defrost-f8afea5ead0a.herokuapp.com/api/v1/games',
       {
         statusCode: 201,
         fixture: 'createdGame'
       }).as('createGame')
-    cy.intercept('PATCH', 'https://c98a077d-6c2a-4ca9-a867-cf11b6279230.mock.pstmn.io/api/v1/games/1',
+    cy.intercept('PATCH', 'https://brain-defrost-f8afea5ead0a.herokuapp.com/api/v1/games/1',
       {
         statusCode: 500,
         body: ''
@@ -102,7 +102,7 @@ describe('Brain Defrost Error Handling', () => {
     .get('.start-game-btn').click()
     .get('.alert-modal').contains('h2', 'Alert!')
     .get('.alert-modal').contains('p', 'Couldn\'t start game - 500')
-    .get('.close-btn').contains('Close').click()
+    .get('.modal-close-btn').contains('Close').click()
     .get('alert-modal').should('not.exist')
   })
 })

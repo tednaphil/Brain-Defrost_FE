@@ -16,7 +16,7 @@ function Modal({alert, setError}: Props) {
             <h2>Alert!</h2>
             <img className="alert-img" src={brain} alt="vaporwave style brain illustration"/>
             <p>{alert}</p>
-            <button autoFocus className="close-btn" onClick={handleClose}>Close</button>
+            <button autoFocus className="modal-close-btn" onClick={handleClose}>Close</button>
         </dialog>
     )
 
