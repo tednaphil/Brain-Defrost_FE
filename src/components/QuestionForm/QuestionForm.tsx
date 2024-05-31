@@ -19,9 +19,11 @@ function QuestionForm({
   const [isLockedIn, setIsLockedIn] = useState(false);
   const [timeLeft, setTimeLeft] = useState(30);
   const [selectedOption, setSelectedOption] = useState<string>("");
+  const [errorMessage, setErrorMessage] = useState<string>("");
 
   function handleOptionChange(e: React.ChangeEvent<HTMLInputElement>) {
     setSelectedOption(e.target.value);
+    setErrorMessage("");
   }
 
   function roundTimer() {
@@ -76,13 +78,18 @@ function QuestionForm({
             disabled={isLockedIn}
             onClick={(e) => {
               e.preventDefault();
+              if(selectedOption){
               setIsLockedIn(true);
+              }else{
+                setErrorMessage("Please choose an option before locking in");
+              }
             }}
             className="submit-answer-btn"
             type="button"
           >
             {isLockedIn ? <span>Locked In</span> : <span> Lock in?</span>}
           </button>
+          {errorMessage && <p className="error-message">{errorMessage}</p>}
         </form>
         <p className="question-number">
           {currentQuestion.attributes.question_number}
