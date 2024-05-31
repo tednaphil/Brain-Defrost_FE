@@ -51,6 +51,9 @@ input[type="text"] {
   height: 55px;
   font-size: 1.6rem;
   box-shadow: 5px 5px 5px #c8c8c8;
+  &::placeholder {
+    color: hsla(0, 0%, 0%, 0.35);
+}
 }
 section {
   display: flex;
