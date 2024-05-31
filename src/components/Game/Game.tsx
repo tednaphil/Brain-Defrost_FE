@@ -54,11 +54,13 @@ function Game() {
       //  //@ts-expect-error
       // const currentPlayer = JSON.parse(sessionStorage.getItem("currentPlayer"))
       // console.log({currentPlayer})
-      await patchPlayer(gameid!, currentPlayerId!);
+      const updatedPlayer = await patchPlayer(gameid!, currentPlayerId!);
+      console.log(updatedPlayer);
       //pass currentPlayer id in patchPlayer
       // console.log(JSON.parse(sessionStorage.getItem("currentPlayer")))
     }
     const playersList = await getAllPlayers(gameid);
+    console.log('playersList', playersList);
     let rightUsers = playersList.data.filter((player:Player ) =>
       player.attributes.questions_correct.some(
         (qNum: string) => qNum === questionCounter.toString()

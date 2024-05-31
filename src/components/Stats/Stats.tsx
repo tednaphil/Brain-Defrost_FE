@@ -2,7 +2,7 @@ import "./Stats.css";
 import { getFinalStats } from "../Util/fetchCalls";
 import { useEffect, useState } from "react";
 import { GetFinalGameStatsResponse, Player } from "../Util/interfaces";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Award } from "react-feather";
 import SendStatsForm from "../SendStatsForm/SendStatsForm";
 
@@ -10,10 +10,10 @@ function Stats() {
   const [finalStats, setFinalStats] = useState<GetFinalGameStatsResponse>();
   const [rankings, setRankings] = useState<Player[]>([]);
   const [openDialoge, setOpenDialoge] = useState<boolean>(false);
-  const gameId = finalStats?.data.id;
+  const {gameid} = useParams();
   const Navigate = useNavigate();
   const fetchStat = async () => {
-    setFinalStats(await getFinalStats(gameId));
+    setFinalStats(await getFinalStats(gameid));
   };
 
   useEffect(() => {
