@@ -92,7 +92,24 @@ describe('Brain Defrost GamePlay Stories', () => {
     .get('.third-place').contains('h3', 'student1')
     .get('.third').contains('3rd')
     .get('.new-game-btn').contains('Generate A New Game')
+    .get('.send-stats-btn').contains('Send Me The Stats')
     
+  })
+  it('Allows user to submit email address to receive copy of the results', () => {
+    cy.intercept('GET', 'https://c98a077d-6c2a-4ca9-a867-cf11b6279230.mock.pstmn.io/api/v1/games/1/stats',
+    {
+      statusCode: 200,
+      fixture: 'gameStats'
+    }).as('getStats')
+    cy.visit('http://localhost:3000/Brain-Defrost_FE/game/results/1')
+    .get('.send-stats-btn').contains('Send Me The Stats').click()
+    .get('.form-message').contains('Send me those stats!')
+    .get('label[for=email]').contains('Enter your Email Address')
+    .get('#email').should('have.value', '').type('frosty@example.com').should('have.value', 'frosty@example.com')
+    .get('.submit-btn').click()
+    //check that confirmation message is displayed
+    .get('.close-btn').click()
+    .get('.form-modal').should('not.exist')
   })
   // it('Allows non-creator player to play game', () => {
     

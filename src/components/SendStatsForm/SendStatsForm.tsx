@@ -23,13 +23,19 @@ function SendStatsForm({closeForm, gameId}: Props) {
             //consider also setting an error for more descriptive feedback
     }
 
+    function handleSubmission(e: React.FormEvent<HTMLFormElement>) {
+        e.preventDefault();
+        submitEmail();
+        setEmailInput('');
+    }
+
     return (
         <dialog open className="form-modal">
             <button title='Close' className="close-btn" onClick={closeForm}><XCircle color="#A5E6BA"></XCircle></button>
-            <h2>Send me those stats!</h2>
+            <h2 className="form-message">Send me those stats!</h2>
             {/* have h2 render the confirmation message once email succesfully submitted */}
             {/* if submission unsuccesful(succesfulSubmission === false), h2 will display notification text */}
-            <form className="send-results-form" onSubmit={submitEmail}>
+            <form className="send-results-form" onSubmit={(e) => {handleSubmission(e)}}>
                 <label htmlFor="email">Enter your Email Address</label>
                 <input autoFocus type='text' name='email' id='email' required placeholder="brainiac@example.com" value={emailInput} onChange={(e) => {setEmailInput(e.target.value)}}></input>
                 <button className="submit-btn">Submit</button>

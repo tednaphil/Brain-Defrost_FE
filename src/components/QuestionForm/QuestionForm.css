@@ -71,6 +71,7 @@
 .timer-display {
   position: absolute;
   top: 20%;
+  left: 10px;
   text-align: center;
   display: flex;
   justify-content: center;
