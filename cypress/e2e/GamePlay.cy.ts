@@ -1,26 +1,26 @@
 describe('Brain Defrost GamePlay Stories', () => {
   it('Allows user to start and play game', () => {
-    cy.intercept('POST', 'https://c98a077d-6c2a-4ca9-a867-cf11b6279230.mock.pstmn.io/api/v1/games',
+    cy.intercept('POST', 'https://brain-defrost-f8afea5ead0a.herokuapp.com/api/v1/games',
       {
         statusCode: 201,
         fixture: 'createdGame'
       }).as('createGame')
-    cy.intercept('PATCH', 'https://c98a077d-6c2a-4ca9-a867-cf11b6279230.mock.pstmn.io/api/v1/games/1',
+    cy.intercept('PATCH', 'https://brain-defrost-f8afea5ead0a.herokuapp.com/api/v1/games/1',
     {
       statusCode: 200,
       fixture: 'patchedGame'
     }).as('startGame')
-    cy.intercept('PATCH', 'https://c98a077d-6c2a-4ca9-a867-cf11b6279230.mock.pstmn.io/api/v1/games/1/players/1',
+    cy.intercept('PATCH', 'https://brain-defrost-f8afea5ead0a.herokuapp.com/api/v1/games/1/players/1',
       {
         statusCode: 200,
         fixture: 'patchedPlayer1'
       }).as('updatePlayer1')
-    cy.intercept('GET', 'https://c98a077d-6c2a-4ca9-a867-cf11b6279230.mock.pstmn.io/api/v1/games/1/players',
+    cy.intercept('GET', 'https://brain-defrost-f8afea5ead0a.herokuapp.com/api/v1/games/1/players',
       {
         statusCode: 200,
         fixture: 'intermissionResponse'
       }).as('getIntermission')
-    cy.intercept('GET', 'https://c98a077d-6c2a-4ca9-a867-cf11b6279230.mock.pstmn.io/api/v1/games/1/stats',
+    cy.intercept('GET', 'https://brain-defrost-f8afea5ead0a.herokuapp.com/api/v1/games/1/stats',
     {
       statusCode: 200,
       fixture: 'gameStats'
@@ -96,7 +96,7 @@ describe('Brain Defrost GamePlay Stories', () => {
     
   })
   it('Allows user to submit email address to receive copy of the results', () => {
-    cy.intercept('GET', 'https://c98a077d-6c2a-4ca9-a867-cf11b6279230.mock.pstmn.io/api/v1/games/1/stats',
+    cy.intercept('GET', 'https://brain-defrost-f8afea5ead0a.herokuapp.com/api/v1/games/1/stats',
     {
       statusCode: 200,
       fixture: 'gameStats'
