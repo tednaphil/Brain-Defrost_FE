@@ -1,7 +1,7 @@
 .form-title {
   font-size: 3vh;
-  color: white;
-  background-color: #7785ac;
+  color: var(--sec-text-color);
+  background-color: var(--thrd-acc-color);
   position: absolute;
   height: 75px;
   display: flex;
@@ -19,13 +19,13 @@ footer {
   font-size: 2vh;
 }
 .create-btn {
-  background-color: #a5e6b9;
+  /* background-color: (--sec-acc-color); */
   border: none;
   border-radius: 54px;
   font-size: 2vh;
   width: 150px;
   height: 50px;
-  box-shadow: 5px 5px 5px #c8c8c8;
+  box-shadow: var(--main-box-shadow);
   margin: 30px;
   align-self: center;
 }
@@ -39,25 +39,21 @@ footer {
   margin-top: 20px;
 }
 .name-input{
-  background-color: #d9d9d9;
-  border: none;
-  grid-column: 1 / span 1;
-  grid-row: 1 / span 1;
-  width: 30%;
-  height: 40px;
-  margin-bottom: 150px;
-  font-size: 3vh;
+  margin-top: 15px;
+  margin-bottom: 90px;
 }
 input[type="text"] {
-  background-color: #d9d9d9;
+  background-color: white;
   font-weight: 300;
   text-align: center;
-  border: none;
-  grid-column: 1 / span 1;
-  grid-row: 1 / span 1;
+  border: black solid 1px;
   width: 80%;
-  height: 40px;
-  font-size: 2.5vh;
+  height: 55px;
+  font-size: 1.6rem;
+  box-shadow: var(--main-box-shadow);
+  &::placeholder {
+    color: hsla(0, 0%, 0%, 0.35);
+}
 }
 section {
   display: flex;
@@ -90,6 +86,7 @@ input[type="number"] {
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
   opacity: 1;
+  background: none;
 }
 
 

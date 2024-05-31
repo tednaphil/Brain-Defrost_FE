@@ -10,15 +10,10 @@
 
 
 .start-game-btn {
-    background-color: var(--sec-acc-color);
     border: none;
     border-radius: 100px;
     padding: 30px;
-    box-shadow: 5px 5px 5px #c8c8c8;
-    &:hover {
-        cursor: pointer;
-        transform: scale(1.1);
-    }
+    box-shadow: var(--main-box-shadow);
 }
 
 .details, .players {
@@ -30,17 +25,26 @@
     max-width: 60%;
     & .game-topic {
         text-transform: capitalize;
+        & span {
+            font-weight: 200;
+        }
     }
+}
+
+.players-heading {
+    background-color: var(--thrd-acc-color);
+    color: var(--sec-text-color);
+    padding: 15px 40px;
+    font-size: 2rem;
+    position: absolute;
+    top: 17%;
 }
 
 .players {
     min-width: 30%;
-    & .players-heading {
-        background-color: var(--thrd-acc-color);
-        color: var(--sec-text-color);
-        padding: 15px 40px;
-        font-size: 2rem;
-        margin-top: -240px;
+    & p {
+        text-transform: capitalize;
+        font-size: 1.2rem;
     }
 }
 
@@ -53,11 +57,13 @@
     justify-content: space-evenly;
     & .join-url {
         margin: 0;
-        font-size: 2rem;
+        font-size: 3vh;
+        padding: 5px;
         font-weight: 200;
     }
     & #copy-url-btn {
         background: none;
+        padding: 5px;
         border: none;
         height: 24;
         & :hover {

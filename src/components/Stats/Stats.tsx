@@ -2,18 +2,23 @@ import "./Stats.css";
 import { getFinalStats } from "../Util/fetchCalls";
 import { useEffect, useState } from "react";
 import { GetFinalGameStatsResponse, Player } from "../Util/interfaces";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { Award } from "react-feather";
+import SendStatsForm from "../SendStatsForm/SendStatsForm";
 
 function Stats() {
   const [finalStats, setFinalStats] = useState<GetFinalGameStatsResponse>();
   const [rankings, setRankings] = useState<Player[]>([]);
+  const [openDialoge, setOpenDialoge] = useState<boolean>(false);
+  const {gameid} = useParams();
   const Navigate = useNavigate();
   const fetchStat = async () => {
-    setFinalStats(await getFinalStats());
+    setFinalStats(await getFinalStats(gameid));
   };
 
   useEffect(() => {
     fetchStat();
+    // eslint-disable-next-line
   }, []);
 
   useEffect(() => {
@@ -66,6 +71,14 @@ function Stats() {
     );
   }
 
+  function showForm() {
+    setOpenDialoge(true);
+  }
+
+  function closeForm() {
+    setOpenDialoge(false);
+  }
+
   return (
     <div className="stats-display">
       <h1>Good game!</h1>
@@ -74,12 +87,16 @@ function Stats() {
         {displayTopThree()}
       </section>
       <section className="rankings-display">
-        <h2>Rankings</h2>
+        <h2><Award></Award>Rankings</h2>
         <ol className="rankings-list">
           {rankings.length > 0 && displayRankings()}
         </ol>
       </section>
+      <div className="btns">
+      <button className='send-stats-btn' onClick={showForm}>Send Me The Stats</button>
       <button className='new-game-btn' onClick={goHome}>Generate A New Game</button>
+      </div>
+      {openDialoge && <SendStatsForm closeForm={closeForm} gameId={finalStats?.data.id}/>}
     </div>
   );
 }

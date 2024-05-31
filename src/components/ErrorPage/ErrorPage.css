@@ -6,7 +6,7 @@
     width: 80%;
     border: var(--border-style);
     background-color: var(--sec-bg-color);
-    color: white;
+    color: var(--sec-text-color);
     filter: var(--sec-drop-shadow);
     & h2 {
         margin: 0;
@@ -14,7 +14,7 @@
     & p {
         padding-bottom: 20px;
     }
-    & .close-btn {
+    & .error-close-btn {
         text-decoration: none;
         color: var(--main-text-color);
         border-radius: var(--rounded-border);

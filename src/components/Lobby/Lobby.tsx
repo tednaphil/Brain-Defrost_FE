@@ -65,7 +65,7 @@ function Lobby({players}: Props) {
                 <h2 className='join-url-heading lobby-details'>Share the Link to invite players!</h2>
                 <div className='join-url-container'>
                     <p onClick={copyURL} className='join-url'>Copy Link</p>
-                    <button id='copy-url-btn' onClick={copyURL}><Copy /></button>
+                    <button id='copy-url-btn' onClick={copyURL} title='Copy game link'><Copy /></button>
                 </div>
                 <button className='start-game-btn' onClick={startGame}>Start Game!</button>
             </section>
