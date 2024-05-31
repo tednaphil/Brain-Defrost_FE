@@ -50,17 +50,12 @@ function JoinGameForm({ players, setPlayers }: Props) {
     isNameAvailable(e.target.value);
   };
 
-  //on mount, check if game exists
-  //if it does not, show user feedback and a link to home page
-  //if it does return the form elemnents
-
   const createPlayer = async (
     gameID: string | undefined,
     nameString: string
   ) => {
     try {
       const newPlayer = await postPlayer(gameID, nameString);
-      // console.log({newPlayer});
       setPlayers([...players, newPlayer.data]);
       sessionStorage.setItem('currentPlayer', JSON.stringify(newPlayer.data))
       sessionStorage.setItem(

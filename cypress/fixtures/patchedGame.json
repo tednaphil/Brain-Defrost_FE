@@ -1,0 +1,46 @@
+{
+    "data": {
+      "id": 0,
+      "type": "string",
+      "attributes": {
+        "link": "string",
+        "started": true,
+        "number_of_questions": 0,
+        "number_of_players": 0,
+        "topic": "string",
+        "time_limit": 0
+      },
+      "relationships": {
+        "players": {
+          "data": [
+            {
+              "id": 0,
+              "type": "string",
+              "attributes": {
+                "display_name": "string",
+                "answers_correct": 0,
+                "answers_incorrect": 0
+              }
+            }
+          ]
+        },
+        "questions": {
+          "data": [
+            {
+              "id": "Unknown Type: string,null",
+              "type": "string",
+              "attributes": {
+                "topic": "string",
+                "question_text": "string",
+                "question_number": 0,
+                "answer": "string",
+                "options": [
+                  "string"
+                ]
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
