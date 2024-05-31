@@ -10,14 +10,15 @@ function Stats() {
   const [finalStats, setFinalStats] = useState<GetFinalGameStatsResponse>();
   const [rankings, setRankings] = useState<Player[]>([]);
   const [openDialoge, setOpenDialoge] = useState<boolean>(false);
-  // const gameId = finalStats?.data.id;
+  const gameId = finalStats?.data.id;
   const Navigate = useNavigate();
   const fetchStat = async () => {
-    setFinalStats(await getFinalStats());
+    setFinalStats(await getFinalStats(gameId));
   };
 
   useEffect(() => {
     fetchStat();
+    // eslint-disable-next-line
   }, []);
 
   useEffect(() => {

@@ -21,8 +21,8 @@ const getGame = async () => {
 const getPlayer = async () => {
   try {
     const response = await fetch(
-      "https://c98a077d-6c2a-4ca9-a867-cf11b6279230.mock.pstmn.io/api/v1/games/1/players/1"
-      // "https://brain-defrost-f8afea5ead0a.herokuapp.com/api/v1/games/1/players/1"
+      // "https://c98a077d-6c2a-4ca9-a867-cf11b6279230.mock.pstmn.io/api/v1/games/1/players/1"
+      "https://brain-defrost-f8afea5ead0a.herokuapp.com/api/v1/games/1/players/1"
     );
     if (!response.ok) {
       const status = response.status;
@@ -38,8 +38,8 @@ const getPlayer = async () => {
 const getStats = async (gameID: string) => {
   try {
     const response = await fetch(
-      "https://c98a077d-6c2a-4ca9-a867-cf11b6279230.mock.pstmn.io/api/v1/games/1/stats"
-      // `https://brain-defrost-f8afea5ead0a.herokuapp.com/api/v1/games/${gameID}/stats`
+      // "https://c98a077d-6c2a-4ca9-a867-cf11b6279230.mock.pstmn.io/api/v1/games/1/stats"
+      `https://brain-defrost-f8afea5ead0a.herokuapp.com/api/v1/games/${gameID}/stats`
     );
     if (!response.ok) {
       const status = response.status;
@@ -56,8 +56,8 @@ const getStats = async (gameID: string) => {
 const postPlayer = async (gameID: string | undefined, displayName: string) => {
   try {
     const response = await fetch(
-      `https://c98a077d-6c2a-4ca9-a867-cf11b6279230.mock.pstmn.io/api/v1/games/${gameID}/players`,
-      // `https://brain-defrost-f8afea5ead0a.herokuapp.com/api/v1/games/${gameID}/players`,
+      // `https://c98a077d-6c2a-4ca9-a867-cf11b6279230.mock.pstmn.io/api/v1/games/${gameID}/players`,
+      `https://brain-defrost-f8afea5ead0a.herokuapp.com/api/v1/games/${gameID}/players`,
       {
         method: "POST",
         body: JSON.stringify({
@@ -82,8 +82,8 @@ const postPlayer = async (gameID: string | undefined, displayName: string) => {
 const postGame = async (formData: CreateGameRequest) => {
   try {
     const response = await fetch(
-      "https://c98a077d-6c2a-4ca9-a867-cf11b6279230.mock.pstmn.io/api/v1/games/",
-      // "https://brain-defrost-f8afea5ead0a.herokuapp.com/api/v1/games",
+      // "https://c98a077d-6c2a-4ca9-a867-cf11b6279230.mock.pstmn.io/api/v1/games/",
+      "https://brain-defrost-f8afea5ead0a.herokuapp.com/api/v1/games",
       {
         method: "POST",
         body: JSON.stringify(formData),
@@ -103,11 +103,12 @@ const postGame = async (formData: CreateGameRequest) => {
     throw error;
   }
 };
-const patchPlayer = async (gameID: string/*, playerID: string*/) => {
+const patchPlayer = async (gameID: string, playerID: string) => {
   try {
     const response = await fetch(
-      `https://c98a077d-6c2a-4ca9-a867-cf11b6279230.mock.pstmn.io/api/v1/games/${gameID}/players/1`,
-      // `https://brain-defrost-f8afea5ead0a.herokuapp.com/api/v1/games/${gameid}/players/${playerID}`,
+      // `https://c98a077d-6c2a-4ca9-a867-cf11b6279230.mock.pstmn.io/api/v1/games/${gameID}/players/1`,
+      `https://brain-defrost-f8afea5ead0a.herokuapp.com/api/v1/games/${gameID}/players/${playerID}`,
+      // `https://brain-defrost-f8afea5ead0a.herokuapp.com/api/v1/games/${gameID}/players/71`,
       {
         method: "PATCH",
         headers: {
@@ -130,8 +131,8 @@ const patchPlayer = async (gameID: string/*, playerID: string*/) => {
 const getAllPlayers = async (gameID: string | undefined) => {
   try {
     const response = await fetch(
-      `https://c98a077d-6c2a-4ca9-a867-cf11b6279230.mock.pstmn.io/api/v1/games/1/players`,
-      // `https://brain-defrost-f8afea5ead0a.herokuapp.com/api/v1/games/${gameID}/players`,
+      // `https://c98a077d-6c2a-4ca9-a867-cf11b6279230.mock.pstmn.io/api/v1/games/1/players`,
+      `https://brain-defrost-f8afea5ead0a.herokuapp.com/api/v1/games/${gameID}/players`,
       { method: "GET" }
     );
     if (!response.ok) {
@@ -141,25 +142,26 @@ const getAllPlayers = async (gameID: string | undefined) => {
     }
     return await response.json();
   } catch (error: unknown) {
-    console.log("API CALLS catch block - patch player", error);
+    console.log("API CALLS catch block - get players", error);
     throw error;
   }
 };
 
-const getFinalStats = async () => {
+const getFinalStats = async (gameID: string | undefined) => {
   try {
     const response = await fetch(
-      `https://c98a077d-6c2a-4ca9-a867-cf11b6279230.mock.pstmn.io/api/v1/games/1/stats`,
+      // `https://c98a077d-6c2a-4ca9-a867-cf11b6279230.mock.pstmn.io/api/v1/games/1/stats`,
+      `https://brain-defrost-f8afea5ead0a.herokuapp.com/api/v1/games/${gameID}/stats`,
       { method: "GET" }
     );
     if (!response.ok) {
       const status = response.status;
       console.log(status);
-      throw new Error(`Couldn't get player ${status}`);
+      throw new Error(`Couldn't get stats ${status}`);
     }
     return await response.json();
   } catch (error: unknown) {
-    console.log("API CALLS catch block - patch player", error);
+    console.log("API CALLS catch block - get final stats", error);
     throw error;
   }
 };
@@ -167,8 +169,8 @@ const getFinalStats = async () => {
 const patchGame = async (gameID: string | undefined) => {
   try {
     const response = await fetch(
-      `https://c98a077d-6c2a-4ca9-a867-cf11b6279230.mock.pstmn.io/api/v1/games/${gameID}`,
-      // `https://brain-defrost-f8afea5ead0a.herokuapp.com/api/v1/games/${gameid}`,
+      // `https://c98a077d-6c2a-4ca9-a867-cf11b6279230.mock.pstmn.io/api/v1/games/${gameID}`,
+      `https://brain-defrost-f8afea5ead0a.herokuapp.com/api/v1/games/${gameID}`,
       {
         method: "PATCH",
         body: JSON.stringify({

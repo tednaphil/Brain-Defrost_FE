@@ -16,12 +16,17 @@ function Game() {
   const [currentQuestion, setCurrentQuestion] = useState(
     sessionGame.relationships.questions.data.find(
       (question: Question) =>
-        question.attributes.question_number === questionCounter
+        Number(question.attributes.question_number) === questionCounter
     )
   );
+
+  //@ts-expect-error
+  const currentPlayer = JSON.parse(sessionStorage.getItem("currentPlayer"));
+  // console.log({currentPlayer});
+
   const [currentAnswer, setCurrentAnswer] = useState(
     sessionGame.relationships.questions.data.find(
-      (question: Question) => question.attributes.question_number === 1
+      (question: Question) => Number(question.attributes.question_number) === 1
     )?.attributes.answer
   );
   const [isRoundGoing, setIsRoundGoing] = useState(true);
@@ -32,7 +37,7 @@ function Game() {
 
     const nextQuestion = sessionGame.relationships.questions.data.find(
       (question: Question) =>
-        question.attributes.question_number === newQuestionCounter
+        Number(question.attributes.question_number) === newQuestionCounter
     );
 
     if (nextQuestion) {
@@ -45,9 +50,13 @@ function Game() {
   }
   const checkAnswer = async (ans: string) => {
     if (ans === currentAnswer) {
-      await patchPlayer(gameid!);
-      //@ts-expect-error
-      console.log(JSON.parse(sessionStorage.getItem("currentPlayer")))
+      const currentPlayerId = currentPlayer.id;
+      //  //@ts-expect-error
+      // const currentPlayer = JSON.parse(sessionStorage.getItem("currentPlayer"))
+      // console.log({currentPlayer})
+      await patchPlayer(gameid!, currentPlayerId!);
+      //pass currentPlayer id in patchPlayer
+      // console.log(JSON.parse(sessionStorage.getItem("currentPlayer")))
     }
     const playersList = await getAllPlayers(gameid);
     let rightUsers = playersList.data.filter((player:Player ) =>
