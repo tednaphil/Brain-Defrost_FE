@@ -102,7 +102,7 @@ describe('Brain Defrost GamePlay Stories', () => {
       fixture: 'gameStats'
     }).as('getStats')
     //stub email address post request
-    cy.visit('http://localhost:3000/Brain-Defrost_FE/game/results/1')
+    cy.visit('http://localhost:3000/game/results/1')
     .get('.send-stats-btn').contains('Send Me The Stats').click()
     .get('.form-message').contains('Send me those stats!')
     .get('label[for=email]').contains('Enter your Email Address')
