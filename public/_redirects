@@ -1,2 +1,2 @@
-/join/:id/?data /index.html   200
+/join/:id/:data /join/:id/:data 200
 /*    /index.html   200
