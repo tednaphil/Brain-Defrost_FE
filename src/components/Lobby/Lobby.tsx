@@ -26,7 +26,7 @@ function Lobby({players}: Props) {
         setSessionGame(sessionGame)
         let stringQuestion = JSON.stringify(game)
         let encodedQuestion = encodeURIComponent(stringQuestion)
-        setJoinUrl(`http://localhost:3000/Brain-Defrost_FE/join/${gameid}/?data=${encodedQuestion}`)
+        setJoinUrl(`https://brain-defrost.netlify.app/join/${gameid}/?data=${encodedQuestion}`)
         // @ts-expect-error
         const sessionPlayers = JSON.parse(sessionStorage.getItem('players'))
         setSessionPlayers(sessionPlayers)
