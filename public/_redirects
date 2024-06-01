@@ -1,2 +1,2 @@
-/join/*/*/*    /index.html   200
+/join/:gameId/:gameData   /index.html   200
 /*    /index.html   200
