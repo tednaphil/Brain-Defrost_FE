@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { postGame } from "../Util/fetchCalls";
 import type { Game, Player } from "../Util/interfaces";
 import brainGif from "../../images/Brain gif.gif"
-import star from "../../Star 1.png"
+import star from "../../images/Star 1.png"
 interface Props {
   setGame: (game: Game) => void;
   setPlayers: (playersArray: Player[]) => void;
