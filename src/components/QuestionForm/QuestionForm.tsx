@@ -43,10 +43,10 @@ function QuestionForm({
     // eslint-disable-next-line
   }, [timeLeft]);
 
-  useEffect(() => {
-    roundTimer();
-    // eslint-disable-next-line
-  }, []);
+  // useEffect(() => {
+  //   roundTimer();
+  //   // eslint-disable-next-line
+  // }, []);
 
   let answerOptions = currentQuestion.attributes.options.map((option, index) => {
     return (

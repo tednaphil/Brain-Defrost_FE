@@ -7,12 +7,12 @@
   padding-top: 8vh;
 }
 .question-form {
-  padding-top: 60px;
+  padding: 60px 10px;
+  padding-bottom: 0;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 15px;
   justify-items: center;
-  
 }
 .question-form-holder {
   background-color: var(--sec-bg-color);
@@ -29,7 +29,7 @@
   text-align: center;
   background-color: white;
   height: 100px;
-  width: 500px;
+  width: 100%;
 }
 
 .option-input {
@@ -47,12 +47,11 @@
   position: absolute;
   text-align: center;
   top: 85%;
-  left: 35%;
+  margin: 0 auto;
   width: 50vh;
   height: 12vh;
   border-radius:100px;
   border: none;
-  padding: 30px;
 }
 
 .time-left{
@@ -71,7 +70,7 @@
   align-items: center;
   height: 14vh;
   width: 14vh;
-  background-size: cover;
+  background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
 }
@@ -87,10 +86,76 @@
 }
 
 @media screen and (max-width: 1024px) {
-    
+  .timer-display {
+    height: 150px;
+    width: 150px;
+    top: 19%;
+    left: 10px;
+  }
+  .time-left{
+    font-size: 1rem;
+  }
+  .question {
+    font-size: 3vh;
+    padding-top: 155px;
+  }
+  .option-label {
+    height: 12vh;
+    & span {
+      font-size: 1.2rem;
+    }
+  }
+  .question-number{
+    font-size: 2.5rem;
+    top: 90%;
+  }
+  .submit-answer-btn {
+    & span {
+      font-size: 1.5rem;
+    }
+  } 
 } 
 
 @media screen and (max-width: 767px) {
-
+  .timer-display {
+    height: 70px;
+    width: 70px;
+    top: 19%;
+    left: 10px;
+  }
+  .time-left{
+    font-size: .57rem;
+  }
+  .question {
+    font-size: 3vh;
+    padding-top: 80px;
+  }
+  .question-form {
+    padding-top: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .option-label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    font-size: 1rem;
+    height: 10%;
+    width: 90%;
+    & span {
+      font-size: .8rem;
+    }
+  }
+  .question-number{
+    font-size: 1.5rem;
+    top: 90%;
+  }
+  .submit-answer-btn {
+    width: 300px;
+    height: 70px;
+    margin-top: 15px;
+  }
 }
 
