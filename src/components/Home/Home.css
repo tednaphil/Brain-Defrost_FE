@@ -24,7 +24,7 @@
   margin-left: 25%;
   padding: 30px;
 }
-.loading h1 {
+.loading h2 {
   margin-top:20px;
   font-weight: 200;
 }
@@ -145,10 +145,10 @@ input[type="number"]::-webkit-outer-spin-button {
     font-size: 1rem;
   }
   label {
-    font-size: .8rem;
+    font-size: .7rem;
   }
-  /* .form-holder {
-    display: flex;
-    flex-direction: column;
-  } */
+  .loading h2 {
+    margin-top:20px;
+    font-weight: 400;
+  }
 }
