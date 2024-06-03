@@ -33,9 +33,6 @@
     margin-top: 40px;
 }
 
-/* @media screen and (max-width: 1024px) {
-    
-} */
 @media screen and (max-width: 767px) {
     .form-modal {
         width: 80%;

@@ -1,5 +1,6 @@
 import "./Modal.css";
 import brain from '../../images/VaporWaveBrain.png'
+import { XCircle } from "react-feather";
 
 interface Props {
     alert: string,
@@ -13,6 +14,7 @@ function Modal({alert, setError}: Props) {
 
     return (
         <dialog open className="alert-modal">
+            <button title='Close' className="close-btn" onClick={handleClose}><XCircle color="#A5E6BA"></XCircle></button>
             <h2>Alert!</h2>
             <img className="alert-img" src={brain} alt="vaporwave style brain illustration"/>
             <p>{alert}</p>

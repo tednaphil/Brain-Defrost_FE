@@ -89,7 +89,7 @@ function Home({ setGame, setPlayers }: Props) {
       {isGameBeingCreated ? (
         <div className="loading" style={{backgroundImage:`url(${star})`}}>
           <img alt="wiggling brain icon" src={brainGif}/> 
-          <h2 className="loading-text">Loading...</h2>
+          <h1 className="loading-text">Loading...</h1>
         </div>
       ) : (
         <div className="home">

@@ -16,7 +16,7 @@
 }
 .question-form-holder {
   background-color: var(--sec-bg-color);
-  height: 82.2vh;
+  height: 87vh;
 }
 .option-label {
   display: flex;
@@ -35,9 +35,6 @@
 .option-input {
   cursor: pointer;
 }
-
-/* input[type="radio"]:checked {
-} */
 
 .option-label:hover {
   transform: scale(1.03);
