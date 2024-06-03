@@ -81,7 +81,7 @@ function Stats() {
 
   return (
     <div className="stats-display">
-      <h1>Good game!</h1>
+      <h1 className="stats-header">Good game!</h1>
       <section className="podium">
         <h2>Top Scorers</h2>
         {displayTopThree()}

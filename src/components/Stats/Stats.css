@@ -34,7 +34,7 @@
   display: flex;
   flex-direction: row;
   position: absolute;
-  top: 89%
+  top: 89%;
 }
 
 .new-game-btn,
@@ -82,7 +82,7 @@
   flex-direction: column;
   margin: 0;
   justify-content: flex-end;
-  width: 150px;
+  /* width: 150px; */
 }
 .first-place,
 .second-place,
@@ -90,6 +90,7 @@
   display: flex;
   justify-content: flex-end;
   flex-direction: column;
+  width: 150px;
 }
 
 .rankings-display {
@@ -108,3 +109,54 @@
 .rankings-list li:nth-child(3) {
     font-size: 4vh;
 } */
+
+@media screen and (max-width: 1024px) {
+  .first,
+  .second,
+  .third {
+    font-size: 5vh;
+  }
+
+  .podium-holders {
+    font-size: 2vh;
+  }
+
+  .new-game-btn,
+  .send-stats-btn {
+    width: 350px;
+    height: 60px;
+    font-size: 1.8vh;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .stats-display {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+  }
+  .stats-display h1 {
+    width: 300px;
+  }
+  .podium {
+    margin-top: 0;
+    justify-content: center;
+    height: 50%;
+  }
+  .first-place,
+  .second-place,
+  .third-place {
+    width: 100px;
+  }
+  .btns {
+    top: 80%;
+  }
+  .new-game-btn,
+  .send-stats-btn {
+    width: 150px;
+    height: 50px;
+    font-size: 1.5vh;
+}
+  
+}

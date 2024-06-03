@@ -32,3 +32,16 @@
     font-size: 2vh;
     margin-top: 40px;
 }
+
+/* @media screen and (max-width: 1024px) {
+    
+} */
+@media screen and (max-width: 767px) {
+    .form-modal {
+        width: 80%;
+        margin-top: -10%;
+    }
+    #email {
+        font-size: .8rem;
+    }
+}
