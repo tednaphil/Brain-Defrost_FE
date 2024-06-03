@@ -10,15 +10,10 @@
 
 
 .start-game-btn {
-    background-color: var(--sec-acc-color);
     border: none;
     border-radius: 100px;
     padding: 30px;
-    box-shadow: 5px 5px 5px #c8c8c8;
-    &:hover {
-        cursor: pointer;
-        transform: scale(1.1);
-    }
+    box-shadow: var(--main-box-shadow);
 }
 
 .details, .players {
@@ -30,17 +25,29 @@
     max-width: 60%;
     & .game-topic {
         text-transform: capitalize;
+        & span {
+            font-weight: 200;
+        }
     }
+}
+
+.players-heading {
+    background-color: var(--thrd-acc-color);
+    color: var(--sec-text-color);
+    padding: 15px 40px;
+    font-size: 2rem;
+    margin-top: -80px;
 }
 
 .players {
     min-width: 30%;
-    & .players-heading {
-        background-color: var(--thrd-acc-color);
-        color: var(--sec-text-color);
-        padding: 15px 40px;
-        font-size: 2rem;
-        margin-top: -240px;
+    padding-top: 35px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    & p {
+        text-transform: capitalize;
+        font-size: 1.2rem;
     }
 }
 
@@ -53,11 +60,13 @@
     justify-content: space-evenly;
     & .join-url {
         margin: 0;
-        font-size: 2rem;
+        font-size: 3vh;
+        padding: 5px;
         font-weight: 200;
     }
     & #copy-url-btn {
         background: none;
+        padding: 5px;
         border: none;
         height: 24;
         & :hover {
@@ -71,4 +80,60 @@
 .lobby-details{
     margin:0;
     font-size: 4vh;
+}
+
+@media screen and (max-width: 1024px) {
+    .lobby {
+        padding: 60px 20px;
+    }
+    .details,
+    .players {
+        max-width: 60%;
+    }
+} 
+
+@media screen and (max-width: 767px) {
+    .lobby {
+        flex-direction: column;
+        justify-content: flex-start;
+        padding: 30px 20px;
+        height: 100vh;
+    }
+
+    .details,
+    .players {
+        max-width: 100%;
+    }
+
+    .details {
+        margin-bottom: 50px;
+    }
+
+    .lobby-details{
+        font-size: 1.2rem;
+        padding-bottom: 15px;
+    }
+
+    .question-count {
+        padding-bottom: 30px;
+    }
+
+    .join-url-container {
+        width: 85%;
+        & .join-url {
+            margin: 0;
+            font-size: 1.2rem;
+            padding: 5px;
+            font-weight: 200;
+        }
+    }
+
+    .start-game-btn {
+        margin-top: 30px;
+    }
+
+    .players-heading {
+        margin-top: -65px;
+        font-size: 1rem;
+    }
 }

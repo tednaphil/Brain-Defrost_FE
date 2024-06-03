@@ -87,6 +87,7 @@ function JoinGameForm({ players, setPlayers }: Props) {
           handleSubmission(e, gameid, displayName);
         }}
       >
+        <h2 className="entry-form-header">Join the Game!</h2>
         {!nameAvailable && (
           <p id="display-name-notif">
             That display name is taken. Please choose another one!

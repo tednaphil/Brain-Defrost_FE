@@ -1,7 +1,7 @@
 .form-title {
   font-size: 3vh;
-  color: white;
-  background-color: #7785ac;
+  color: var(--sec-text-color);
+  background-color: var(--thrd-acc-color);
   position: absolute;
   height: 75px;
   display: flex;
@@ -10,6 +10,27 @@
   padding: 20px;
   margin: 0;
   top: 16%;
+  text-align: center;
+}
+.loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 50%;
+  background-size:contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  margin-left: 25%;
+  padding: 30px;
+}
+.loading h2 {
+  margin-top:20px;
+  font-weight: 200;
+}
+.loading img {
+  width: 50%;
+  margin-top:10%;
 }
 
 footer {
@@ -19,13 +40,12 @@ footer {
   font-size: 2vh;
 }
 .create-btn {
-  background-color: #a5e6b9;
   border: none;
   border-radius: 54px;
   font-size: 2vh;
   width: 150px;
   height: 50px;
-  box-shadow: 5px 5px 5px #c8c8c8;
+  box-shadow: var(--main-box-shadow);
   margin: 30px;
   align-self: center;
 }
@@ -38,26 +58,22 @@ footer {
   padding-top: 100px;
   margin-top: 20px;
 }
-.name-input{
-  background-color: #d9d9d9;
-  border: none;
-  grid-column: 1 / span 1;
-  grid-row: 1 / span 1;
-  width: 30%;
-  height: 40px;
-  margin-bottom: 150px;
-  font-size: 3vh;
+.name-input {
+  margin-top: 15px;
+  margin-bottom: 90px;
 }
 input[type="text"] {
-  background-color: #d9d9d9;
+  background-color: white;
   font-weight: 300;
   text-align: center;
-  border: none;
-  grid-column: 1 / span 1;
-  grid-row: 1 / span 1;
+  border: black solid 1px;
   width: 80%;
-  height: 40px;
-  font-size: 2.5vh;
+  height: 55px;
+  font-size: 1.6rem;
+  box-shadow: var(--main-box-shadow);
+  &::placeholder {
+    color: hsla(0, 0%, 0%, 0.35);
+  }
 }
 section {
   display: flex;
@@ -70,12 +86,6 @@ section {
   display: flex;
   justify-content: space-evenly;
 }
-.category-display {
-  margin: 0;
-  font-size: 3vh;
-  font-weight: 700;
-
-}
 .home {
   display: flex;
   flex-direction: column;
@@ -85,11 +95,47 @@ input[type="number"] {
   font-size: 3vh;
   border: none;
   font-weight: 700;
+  text-align: center;
 }
 
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
   opacity: 1;
+  background: none;
 }
 
+@media screen and (max-width: 1024px) {
+  .create-game-form {
+    width: 80%;
+  }
+  input[type="text"],
+  input[type="number"] {
+    font-size: 1.2rem;
+  }
+  label {
+    font-size: 1rem;
+  }
+} 
 
+@media screen and (max-width: 767px) {
+  .header-text{
+    text-align: center;
+  }
+  .form-title{
+    font-size: 1rem;
+  }
+  .create-game-form {
+    width: 90%;
+  }
+  input[type="text"],
+  input[type="number"] {
+    font-size: 1rem;
+  }
+  label {
+    font-size: .7rem;
+  }
+  .loading h1 {
+    margin-top:40px;
+    font-size: 1.8rem;
+  }
+}

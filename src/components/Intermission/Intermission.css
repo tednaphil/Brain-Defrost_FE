@@ -10,10 +10,18 @@
   font-size: 3vh;
 }
 
+.correct-users {
+  font-weight: 200;
+}
+
 .correct-player-display {
   height: 70%;
   display: flex;
   justify-content: space-evenly;
+  & ul {
+    text-align: center;
+    padding: 0;
+  }
 }
 .correct-answer-holder{
   height: 100%;
@@ -24,6 +32,7 @@
 .correct-player-display li {
   overflow-y: auto;
   width: 100%;
+  text-align: center;
 }
 
 .correct-answer-display {
@@ -33,7 +42,20 @@
   align-items: center;
   height: 50vh;
   width: 50vh;
-  background-size: cover;
+  background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
+}
+
+@media screen and (max-width: 1024px) {
+  .correct-answer-display {
+    height: 40vh;
+    width: 40vh;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .intermission-holder {
+    flex-direction: column;
+  }
 }

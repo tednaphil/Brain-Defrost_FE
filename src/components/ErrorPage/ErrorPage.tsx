@@ -13,7 +13,7 @@ function ErrorPage({error}: Props) {
             <img className='alert-img' src={brain} alt='vaporwave style brain illustration'/>
         <h2>Uh oh!</h2>
         <p>{error}</p>
-        <Link to='/' className='close-btn' autoFocus>Home</Link>
+        <Link to='/' className='error-close-btn' autoFocus>Home</Link>
 
         </article>
     )

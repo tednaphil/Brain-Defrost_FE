@@ -1,6 +1,9 @@
-
 .header-text{
   font-size: 7vh;
   margin-left: 2%;
-  font-weight: 500;
+  font-weight: 500;  
+
+}
+header h1{
+ cursor:pointer;  
 }

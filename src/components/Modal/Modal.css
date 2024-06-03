@@ -1,20 +1,30 @@
 .alert-modal {
     text-align: center;
+    margin-top: 50px;
     width: 50%;
     border: var(--border-style);
     background-color: var(--sec-bg-color);
-    color: white;
+    color: var(--sec-text-color);
     box-shadow: var(--main-box-shadow);
     & h2 {
         margin: 0;
     }
-    & .close-btn {
+    & .modal-close-btn {
         border-radius: var(--rounded-border);
         border: none;
-        background-color: var(--sec-acc-color);
         padding: 15px 30px;
     }
 }
 .alert-img {
     width: 230px;
+}
+
+@media screen and (max-width: 1024px) {
+    
+  } 
+  
+@media screen and (max-width: 767px) {
+.alert-modal {
+    width: 75%;
+}
 }

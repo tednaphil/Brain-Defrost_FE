@@ -1,5 +1,5 @@
 import React from "react";
-import {Routes, Route} from "react-router-dom"
+import {Routes, Route, useNavigate} from "react-router-dom"
 import "./App.css";
 import Home from "../Home/Home";
 import Lobby from "../Lobby/Lobby";
@@ -11,15 +11,17 @@ import ErrorPage from "../ErrorPage/ErrorPage";
 
 
 function App() {
+  const Navigate = useNavigate();
+  // eslint-disable-next-line
   const [game, setGame] = useState({});
   const [players, setPlayers] = useState([]);
-  console.log(game)
+  // console.log(game)
 
   return (
 
     <>
       <header>
-        <h1 className="header-text">Brain Defrost</h1>
+        <h1  onClick={() => Navigate("/")} className="header-text">Brain Defrost</h1>
       </header>
       <Routes>
         {/* @ts-expect-error */}
