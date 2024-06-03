@@ -29,7 +29,7 @@ function Intermission({
 
   function displayUsers() {
     return usersRight.map((user: string, index: number) => {
-      return <h3 key={index}>{user}</h3>;
+      return <h3 className='correct-users' key={index}>{user}</h3>;
     });
   }
 
@@ -49,12 +49,12 @@ function Intermission({
 
   return (
     <>
-      <p className="time-left">{intermissionTimer}</p>
+      <p className="time-left">Next question in: {intermissionTimer}</p>
       <div className="intermission-holder">
         <section className="correct-answer-holder">
           <h2>The Correct Answer Is:</h2>
           <div className ="correct-answer-display" style={{ backgroundImage: `url(${splat})` }}>
-          <h3>
+          <h3 className="correct-answer">
             {correctAnswer}
           </h3>
           </div>
@@ -65,7 +65,7 @@ function Intermission({
             {usersRight.length > 0 ? (
               displayUsers()
             ) : (
-              <h3>No one got it right!</h3>
+              <h3 className="correct-users">No one got it right!</h3>
             )}
           </ul>
         </section>

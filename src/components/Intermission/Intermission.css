@@ -10,6 +10,10 @@
   font-size: 3vh;
 }
 
+.correct-users {
+  font-weight: 200;
+}
+
 .correct-player-display {
   height: 70%;
   display: flex;
@@ -41,4 +45,17 @@
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
+}
+
+@media screen and (max-width: 1024px) {
+  .correct-answer-display {
+    height: 40vh;
+    width: 40vh;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .intermission-holder {
+    flex-direction: column;
+  }
 }
