@@ -34,7 +34,7 @@ function Intermission({
   }
 
   useEffect(() => {
-    console.log(correctAnswer);
+    // console.log(correctAnswer);
     roundTimer();
     // eslint-disable-next-line
   }, []);

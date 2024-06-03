@@ -51,11 +51,10 @@ function Game() {
   const checkAnswer = async (ans: string) => {
     if (ans === currentAnswer) {
       const currentPlayerId = currentPlayer.id.toString();
-      const updatedPlayer = await patchPlayer(gameid!, currentPlayerId!, currentQuestion);
-      console.log(updatedPlayer);
+      await patchPlayer(gameid!, currentPlayerId!, currentQuestion);
     }
     const playersList = await getAllPlayers(gameid);
-    console.log('playersList', playersList);
+    // console.log('playersList', playersList);
     let rightUsers = playersList.data.filter((player:Player ) =>
       player.attributes.questions_correct.some(
         // (qNum: string) => qNum === questionCounter.toString()

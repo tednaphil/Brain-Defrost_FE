@@ -76,7 +76,7 @@ function Home({ setGame, setPlayers }: Props) {
       const gameID = newGame.data.id;
       Navigate(`game/lobby/${gameID}`, { state: newGame.data });
       setIsGameCreate(false)
-      console.log("newGame", newGame);
+      // console.log("newGame", newGame);
     } catch (error) {
       setIsGameCreate(false)
       setError(`${error}`);

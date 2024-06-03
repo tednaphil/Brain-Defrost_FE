@@ -11,10 +11,11 @@ import ErrorPage from "../ErrorPage/ErrorPage";
 
 
 function App() {
-  const Navigate = useNavigate()
+  const Navigate = useNavigate();
+  // eslint-disable-next-line
   const [game, setGame] = useState({});
   const [players, setPlayers] = useState([]);
-  console.log(game)
+  // console.log(game)
 
   return (
 
