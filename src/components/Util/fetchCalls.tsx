@@ -70,7 +70,8 @@ const postPlayer = async (gameID: string | undefined, displayName: string) => {
     if (!response.ok) {
       const status = response.status;
       console.log(status);
-      throw new Error(`Couldn't create player - ${status}`);
+      const error = status === 403 ? `Max players reached` : `Couldn't create player - ${status}`
+      throw new Error(error);
     }
     return await response.json();
   } catch (error: unknown) {
