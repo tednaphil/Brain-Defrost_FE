@@ -78,9 +78,10 @@ describe('Brain Defrost Error Handling', () => {
     .get('#display-name-input').type('student1').should('have.value', 'student1')
     .get('#join-game-button').click()
     .get('.alert-modal').contains('h2', 'Alert!')
-    .get('.alert-modal').contains('p', 'Couldn\'t create player - 403')
-    .get('.modal-close-btn').contains('Close').click()
+    .get('.alert-modal').contains('p', 'Max players reached')
+    .get('.modal-close-btn').contains('Home').click()
     .get('alert-modal').should('not.exist')
+    .get('.form-title').contains('Generate A New Trivia Game!')
   })
   it('Displays error message if game cannot be started', () => {
     cy.intercept('POST', 'https://brain-defrost-f8afea5ead0a.herokuapp.com/api/v1/games',

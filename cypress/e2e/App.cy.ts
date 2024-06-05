@@ -1,6 +1,5 @@
 describe('Brain Defrost User Stories', () => {
   beforeEach(() => {
-    // cy.viewport(1025, 700)
     cy.visit('http://localhost:3000')
   })
   it('Displays homepage', () => {
