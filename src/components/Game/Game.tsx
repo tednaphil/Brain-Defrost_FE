@@ -11,7 +11,6 @@ function Game() {
   const Navigate = useNavigate();
   const { gameid } = useParams();
   const sessionGame = location.state;
-  // console.log(sessionGame)
   const [questionCounter, setQuestionCounter] = useState(1);
   const [usersRight, setUsersRight] = useState<string[]>([]);
   const [currentQuestion, setCurrentQuestion] = useState(
