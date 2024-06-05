@@ -1,6 +1,11 @@
 describe('Brain Defrost Error Handling', () => {
   beforeEach(() => {
     cy.visit('http://localhost:3000')
+    cy.intercept('GET', 'https://brain-defrost-f8afea5ead0a.herokuapp.com/api/v1/games/1',
+      {
+        statusCode: 201,
+        fixture: 'patchedGame'
+      }).as('getGame')
   })
   it('Displays error message if bad path visited', () => {
     cy.visit('http://localhost:3000/badpath')
