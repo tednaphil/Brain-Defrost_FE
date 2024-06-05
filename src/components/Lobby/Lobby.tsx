@@ -1,6 +1,6 @@
 import './Lobby.css';
 import type { Player } from '../Util/interfaces';
-import { patchGame } from '../Util/fetchCalls';
+import { patchGame, getGame } from '../Util/fetchCalls';
 import { useState, useEffect } from 'react';
 import { useNavigate, useParams, useLocation } from 'react-router-dom';
 import { Copy } from 'react-feather';
@@ -14,7 +14,8 @@ function Lobby({players}: Props) {
     const [sessionGame, setSessionGame] = useState({});
     const [sessionPlayers, setSessionPlayers] = useState([]);
     const location = useLocation();
-    const game = location.state;
+    // const game = location.state;
+    const [game, setGame] = useState(location.state);
     const { gameid } = useParams();
     const navigate = useNavigate();
     const [joinURL, setJoinUrl] = useState('');
@@ -22,34 +23,54 @@ function Lobby({players}: Props) {
 
     useEffect(() => {
         // @ts-expect-error
+        fetchGame(gameid);
+        // @ts-expect-error
         const sessionGame = JSON.parse(sessionStorage.getItem('game'))
         setSessionGame(sessionGame)
-        let stringQuestion = JSON.stringify(game)
-        let encodedQuestion = encodeURIComponent(stringQuestion)
-        setJoinUrl(`https://brain-defrost.netlify.app/join/${gameid}/?data=${encodedQuestion}`)
+        // let stringQuestion = JSON.stringify(game)
+        // let encodedQuestion = encodeURIComponent(stringQuestion)
+        // setJoinUrl(`https://brain-defrost.netlify.app/join/${gameid}/?data=${encodedQuestion}`)
+        setJoinUrl(`https://brain-defrost.netlify.app/join/${gameid}/`)
         // @ts-expect-error
         const sessionPlayers = JSON.parse(sessionStorage.getItem('players'))
         setSessionPlayers(sessionPlayers)
-    }, [players, game, gameid])
+    }, [players, gameid])
+
+    const fetchGame = async (gameID: string) => {
+        try {
+          const currentGame = await getGame(gameID);
+          setGame(currentGame.data);
+          
+        } catch (error) {
+          setError(`${error}`);
+          console.log(error);
+        }
+      };
+
+    // const getLatestGame = async (gameID: string)
+
 
     
-    const playerNames = sessionPlayers.map(player => {
+    const playerNames = game.relationships.players.data.map((player: Player) => {
         return(
             <p
-            // @ts-expect-error
             key={player.id}
-            // @ts-expect-error
             >{player.attributes.display_name}</p>
         )});
+
+   
     
     const copyURL = () => {
         navigator.clipboard.writeText(joinURL);
     };
 
-    const startGame = async () => {
+    const startGame = async (/*gameID: string*/) => {
         try {
             await patchGame(gameid);
-            navigate(`/game/play/${gameid}`, {state: sessionGame});
+            // const currentGame = await getGame(gameid)
+            //do we need to get the game again?
+            navigate(`/game/play/${gameid}`, {state: game});
+            // navigate(`/game/play/${gameid}`, {state: currentGame});
         } catch (error) {
             setError(`${error}`);
             console.log(error)

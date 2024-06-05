@@ -1,7 +1,7 @@
 import "./JoinGameForm.css";
 import { useParams, useNavigate, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { postPlayer } from "../Util/fetchCalls";
+import { postPlayer, getGame } from "../Util/fetchCalls";
 import type { Player } from "../Util/interfaces";
 import Modal from "../Modal/Modal";
 
@@ -18,18 +18,35 @@ function JoinGameForm({ players, setPlayers }: Props) {
   const [displayName, setDisplayName] = useState<string>("");
   const [sessionPlayers, setSessionPlayers] = useState<Player[]>([]);
   const [sessionGame, setSessionGame] = useState<any>(null);
+  const [game, setGame] = useState<any>(null);
+  // const [players, setPlayers] = useState<Player[]>([]);
   const [nameAvailable, setNameAvailable] = useState<boolean>(true);
   const [error, setError] = useState<string>("");
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (encodedString) {
-      const data = JSON.parse(decodeURIComponent(encodedString));
-      setSessionPlayers(data.relationships.players.data);
-      setSessionGame(data);
-      sessionStorage.setItem("game", JSON.stringify(data));
+    // @ts-expect-error
+    fetchGame(gameid);
+    // if (encodedString) {
+    //   const data = JSON.parse(decodeURIComponent(encodedString));
+    //   setSessionPlayers(data.relationships.players.data);
+    //   setSessionGame(data);
+    //   sessionStorage.setItem("game", JSON.stringify(data));
+    // }
+  }, [/*encodedString*/]);
+
+  const fetchGame = async (gameID: string) => {
+    try {
+      const currentGame = await getGame(gameID);
+      setGame(currentGame.data);
+      setPlayers(currentGame.data.relationships.players.data)
+      setSessionPlayers(currentGame.data.relationships.players.data)
+      
+    } catch (error) {
+      setError(`${error}`);
+      console.log(error);
     }
-  }, [encodedString]);
+  };
 
   const isNameAvailable = (nameInput: string): boolean => {
     const playerNames = sessionPlayers.map(
@@ -61,8 +78,9 @@ function JoinGameForm({ players, setPlayers }: Props) {
       sessionStorage.setItem(
         "players",
         JSON.stringify([...sessionPlayers, newPlayer.data])
-      );
-      navigate(`/game/lobby/${gameid}`, { state: sessionGame });
+      ); //is this even neccessary?
+      // navigate(`/game/lobby/${gameid}`, { state: sessionGame });
+      navigate(`/game/lobby/${gameid}`, { state: game });
     } catch (error) {
       setError(`${error}`);
       console.log(error);
