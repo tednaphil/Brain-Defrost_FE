@@ -92,9 +92,9 @@ export interface Question {
   };
 }
 
-export interface EmailRequestBody {
-  email: string | undefined;
-  gameId: string | undefined;
-}
+// export interface EmailRequestBody {
+//   email: string | undefined;
+//   gameId: string | undefined;
+// }
 
 export {}

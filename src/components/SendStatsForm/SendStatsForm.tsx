@@ -13,13 +13,13 @@ function SendStatsForm({closeForm, gameId}: Props) {
     const [succesfulSubmission, setSuccessfulSubmission] = useState<boolean | null>(null);
 
     const submitEmail = async () => {
-        const requestBody = {
-            email: emailInput,
-            gameId
-        };
-        console.log({requestBody})
+        // const requestBody = {
+        //     email: emailInput,
+        //     gameId
+        // };
+        // console.log({requestBody})
         try {
-            const response = await postEmail(requestBody.gameId, requestBody);
+            const response = await postEmail(gameId, emailInput);
             console.log(response)
             setSuccessfulSubmission(true)
         } catch (error) {

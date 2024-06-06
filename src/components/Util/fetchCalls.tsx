@@ -1,4 +1,4 @@
-import type { CreateGameRequest, EmailRequestBody } from "./interfaces";
+import type { CreateGameRequest } from "./interfaces";
 
 const getGame = async (gameID: string) => {
   try {
@@ -188,13 +188,15 @@ const patchGame = async (gameID: string | undefined) => {
   }
 };
 
-const postEmail = async (gameID: string | undefined, requestBody: EmailRequestBody) => {
+const postEmail = async (gameID: string | undefined, email: string | undefined) => {
   try {
     const response = await fetch(
-      `endpoint/${gameID}`,
+      `https://brain-defrost-f8afea5ead0a.herokuapp.com/api/v1/games/${gameID}/stats/:email:`,
       {
         method: "PATCH",
-        body: JSON.stringify(requestBody),
+        body: JSON.stringify({
+          email: email
+        }),
         headers: {
           "Content-Type": "application/json",
         },
