@@ -1,90 +1,61 @@
-import "./Lobby.css";
-import type { Player } from "../Util/interfaces";
-import { patchGame } from "../Util/fetchCalls";
-import { useState, useEffect } from "react";
-import { useNavigate, useParams, useLocation } from "react-router-dom";
-import { createConsumer } from "@rails/actioncable";
-import { Copy } from "react-feather";
-import Modal from "../Modal/Modal";
+import './Lobby.css';
+import type { Player } from '../Util/interfaces';
+import { patchGame, getGame } from '../Util/fetchCalls';
+import { useState, useEffect } from 'react';
+import { useNavigate, useParams, useLocation } from 'react-router-dom';
+import { Copy } from 'react-feather';
+import Modal from '../Modal/Modal';
 
 interface Props {
   players: Player[];
 }
 
-function Lobby({ players }: Props) {
-  const [sessionGame, setSessionGame] = useState({});
-  const [sessionPlayers, setSessionPlayers] = useState([]);
-  const location = useLocation();
-  const game = location.state;
-  const { gameid } = useParams();
-  const navigate = useNavigate();
-  const [joinURL, setJoinUrl] = useState("");
-  const [error, setError] = useState<string>("");
-  const [countdown, setCountdown] = useState<number | null>(null);
+function Lobby({players}: Props) {
+    const location = useLocation();
+    const [game, setGame] = useState(location.state);
+    const { gameid } = useParams();
+    const navigate = useNavigate();
+    const [joinURL, setJoinUrl] = useState('');
+    const [error, setError] = useState<string>('');
 
-  useEffect(() => {
-    // @ts-expect-error
-    const sessionGame = JSON.parse(sessionStorage.getItem("game"));
-    setSessionGame(sessionGame);
-    let stringQuestion = JSON.stringify(game);
-    let encodedQuestion = encodeURIComponent(stringQuestion);
-    setJoinUrl(
-      `https://brain-defrost.netlify.app/join/${gameid}/?data=${encodedQuestion}`
-    );
-    // @ts-expect-error
-    const sessionPlayers = JSON.parse(sessionStorage.getItem("players"));
-    setSessionPlayers(sessionPlayers);
-    const cabel = createConsumer('placeholder fetch link lol ')
-    const link = cabel.subscriptions.create(
-        {channel: 'placeholder', game_id:gameid},
-        {
-            received:(data) => {
-                if(data.event === "placeholder is game started"){
-                    startCountdown();
-                }else if (data.event === "placeholder player update"){
-                    setSessionPlayers("placeholder player womp womp");
-                }
-            }
+    useEffect(() => {
+        // @ts-expect-error
+        fetchGame(gameid);
+        setJoinUrl(`https://brain-defrost.netlify.app/join/${gameid}/`)
+    }, [players, gameid])
+
+    const fetchGame = async (gameID: string) => {
+        try {
+          const currentGame = await getGame(gameID);
+          setGame(currentGame.data);
+        } catch (error) {
+          setError(`${error}`);
+          console.log(error);
         }
-    )
-  }, [players, game, gameid]);
+      };
+    
+    const playerNames = game.relationships.players.data.map((player: Player) => {
+        return(
+            <p
+            key={player.id}
+            >{player.attributes.display_name}</p>
+        )});
 
-  const playerNames = sessionPlayers.map((player) => {
-    return (
-      <p
-        // @ts-expect-error
-        key={player.id}
-        // @ts-expect-error
-        >{player.attributes.display_name}
-      </p>
-    );
-  });
+   
+    
+    const copyURL = () => {
+        navigator.clipboard.writeText(joinURL);
+    };
 
-  const copyURL = () => {
-    navigator.clipboard.writeText(joinURL);
-  };
-
-  const startCountdown = () => {
-    const timer = setInterval(() => {
-      setCountdown(10);
-      //@ts-ignore
-      setCountdown((preTimeLeft) => preTimeLeft - 1);
-    }, 1000);
-    if (countdown === 0) {
-      navigate(`/game/play/${gameid}`, { state: sessionGame });
-      clearInterval(timer);
-    }
-  };
-
-
-  const startGame = async () => {
-    try {
-      await patchGame(gameid);
-    } catch (error) {
-      setError(`${error}`);
-      console.log(error);
-    }
-  };
+    const startGame = async () => {
+        try {
+            await patchGame(gameid);
+            navigate(`/game/play/${gameid}`, {state: game});
+        } catch (error) {
+            setError(`${error}`);
+            console.log(error)
+        } 
+    };
 
   return (
     <main className="lobby">

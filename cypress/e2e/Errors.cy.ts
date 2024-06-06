@@ -1,6 +1,11 @@
 describe('Brain Defrost Error Handling', () => {
   beforeEach(() => {
     cy.visit('http://localhost:3000')
+    cy.intercept('GET', 'https://brain-defrost-f8afea5ead0a.herokuapp.com/api/v1/games/1',
+      {
+        statusCode: 201,
+        fixture: 'patchedGame'
+      }).as('getGame')
   })
   it('Displays error message if bad path visited', () => {
     cy.visit('http://localhost:3000/badpath')
@@ -23,7 +28,7 @@ describe('Brain Defrost Error Handling', () => {
     .get('#questions').clear().type('2').should('have.value', '2')
     .get('.create-btn').click()
     .get('.alert-modal').contains('h2', 'Alert!')
-    .get('.alert-modal').contains('p', 'Couldn\'t create game - 500')
+    .get('.alert-modal').contains('p', 'Error: Server unavailable - please try again later')
     .get('.modal-close-btn').contains('Close').click()
     .get('alert-modal').should('not.exist')
   })

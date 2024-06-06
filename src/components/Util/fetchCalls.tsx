@@ -1,4 +1,4 @@
-import type { CreateGameRequest } from "./interfaces";
+import type { CreateGameRequest, EmailRequestBody } from "./interfaces";
 
 const getGame = async (gameID: string) => {
   try {
@@ -89,7 +89,9 @@ const postGame = async (formData: CreateGameRequest) => {
     if (!response.ok) {
       const status = response.status;
       console.log(status);
-      throw new Error(`Couldn't create game - ${status}`);
+      const error = status.toString().split('')[0] === '5' ? `Server unavailable - please try again later` : `Couldn't create game - ${status}`
+
+      throw new Error(error);
     }
     return await response.json();
   } catch (error: unknown) {
@@ -185,6 +187,30 @@ const patchGame = async (gameID: string | undefined) => {
     throw error;
   }
 };
+
+const postEmail = async (gameID: string | undefined, requestBody: EmailRequestBody) => {
+  try {
+    const response = await fetch(
+      `endpoint/${gameID}`,
+      {
+        method: "PATCH",
+        body: JSON.stringify(requestBody),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    if (!response.ok) {
+      const status = response.status;
+      console.log(status);
+      throw new Error(`Couldn't send email - ${status}`);
+    }
+    return await response.json();
+  } catch (error: unknown) {
+    console.log("API CALLS catch block - email stats", error);
+    throw error;
+  }
+};
 export {
   getGame,
   getPlayer,
@@ -194,5 +220,6 @@ export {
   patchPlayer,
   getAllPlayers,
   getFinalStats,
-  patchGame
+  patchGame,
+  postEmail
 };
