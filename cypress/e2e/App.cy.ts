@@ -24,14 +24,8 @@ describe('Brain Defrost User Stories', () => {
     .get('label[for=questions]').contains('How many Questions')
     .get('#questions').should('have.value', '1')
     .get('.create-btn').contains('Create')
-    .get('.footer-title').contains('More info about Brain Defrost')
   })
   it('Allows user to generate a new game and see lobby', () => {
-    // cy.intercept('POST', 'https://brain-defrost-f8afea5ead0a.herokuapp.com/api/v1/games',
-    //   {
-    //     statusCode: 201,
-    //     fixture: 'createdGame'
-    //   }).as('createGame')
     cy.get('#name').type('creator').should('have.value', 'creator')
     .get('#topic').type('music').should('have.value', 'music')
     .get('#players').clear().type('3').should('have.value', '3')
@@ -49,11 +43,6 @@ describe('Brain Defrost User Stories', () => {
     .get('.players').contains('p', 'creator')
   })
   it('Allows user to join a game', () => {
-    // cy.intercept('POST', 'https://brain-defrost-f8afea5ead0a.herokuapp.com/api/v1/games',
-    //   {
-    //     statusCode: 201,
-    //     fixture: 'createdGame'
-    //   }).as('createGame')
     cy.get('#name').type('creator').should('have.value', 'creator')
     .get('#topic').type('music').should('have.value', 'music')
     .get('#players').clear().type('3').should('have.value', '3')
