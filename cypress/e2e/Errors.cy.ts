@@ -28,7 +28,7 @@ describe('Brain Defrost Error Handling', () => {
     .get('#questions').clear().type('2').should('have.value', '2')
     .get('.create-btn').click()
     .get('.alert-modal').contains('h2', 'Alert!')
-    .get('.alert-modal').contains('p', 'Couldn\'t create game - 500')
+    .get('.alert-modal').contains('p', 'Error: Server unavailable - please try again later')
     .get('.modal-close-btn').contains('Close').click()
     .get('alert-modal').should('not.exist')
   })
