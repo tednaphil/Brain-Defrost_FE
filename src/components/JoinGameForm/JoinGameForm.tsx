@@ -64,6 +64,7 @@ function JoinGameForm({ players, setPlayers }: Props) {
     try {
       const newPlayer = await postPlayer(gameID, nameString);
       setPlayers([...players, newPlayer.data]);
+      sessionStorage.setItem('currentPlayer', JSON.stringify(newPlayer.data));
       navigate(`/game/lobby/${gameid}`, { state: game });
     } catch (error) {
       setError(`${error}`);
