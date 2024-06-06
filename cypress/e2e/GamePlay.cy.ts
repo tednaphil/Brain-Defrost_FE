@@ -106,7 +106,11 @@ describe('Brain Defrost GamePlay Stories', () => {
       statusCode: 200,
       fixture: 'gameStats'
     }).as('getStats')
-    //stub email address post request
+    cy.intercept('POST', 'https://brain-defrost-f8afea5ead0a.herokuapp.com/api/v1/games/1/stats/:email:',
+    {
+      statusCode: 200,
+      body: ''
+    }).as('postEmail')
     cy.visit('http://localhost:3000/game/results/1')
     .get('.send-stats-btn').contains('Send Me The Stats').click()
     .get('.form-message').contains('Send me those stats!')
@@ -114,10 +118,8 @@ describe('Brain Defrost GamePlay Stories', () => {
     .get('#email').should('have.value', '').type('frosty@example.com').should('have.value', 'frosty@example.com')
     .get('.submit-btn').click()
     //check that confirmation message is displayed
+    // .get('.form-message').contains('Check your email for stats!')
     .get('.close-btn').click()
     .get('.form-modal').should('not.exist')
   })
-  // it('Allows non-creator player to play game', () => {
-    
-  // })
 })
