@@ -21,26 +21,31 @@ function Lobby({ players }: Props) {
   const [error, setError] = useState<string>("");
   const [playerList, setPlayers] = useState(game.relationships.players.data);
   //@ts-expect-error
-const [currentPlayer, setCurrentPlayer] = useState<Player>(sessionStorage.getItem('currentPlayer'))
+  const [currentPlayer, setCurrentPlayer] = useState<Player>(
+    sessionStorage.getItem("currentPlayer")
+  );
 
   useEffect(() => {
     // @ts-expect-error
     fetchGame(gameid);
-    setJoinUrl(`https://brain-defrost.netlify.app/join/${gameid}/`)
+    setJoinUrl(`https://brain-defrost.netlify.app/join/${gameid}/`);
 
-    const cable = createConsumer(`brain-defrost-f8afea5ead0a.herokuapp.com/cable?player_id=${currentPlayer.id}`);
+    const cable = createConsumer(
+      `brain-defrost-f8afea5ead0a.herokuapp.com/cable?player_id=${currentPlayer.id}`
+    );
     const link = cable.subscriptions.create(
       { channel: "GameChannel", game_id: gameid },
       {
         received: (data) => {
           if (data.event === "game_started") {
-            if(data === true){
-            navigate(`/game/play/${gameid}`, { state: game });
-            link.unsubscribe();
-            }else {
-                console.log("hi")
+            if (data === true) {
+              navigate(`/game/play/${gameid}`, { state: game });
+              link.unsubscribe();
+            } else {
+              console.log("Game isnt started");
             }
-          } else if (data.event === "player_list") {
+          }
+          if (data.event === "player_list") {
             setPlayers(data);
           }
         },
