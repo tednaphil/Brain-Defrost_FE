@@ -37,8 +37,7 @@ function Lobby({ players }: Props) {
           console.log(data);
           if (data.game_started === true) {
             navigate(`/game/play/${gameid}`, { state: game });
-            console.log(link)
-            //link.unsubscribe();
+            link.unsubscribe();
           }
           setPlayers(data.player_list);
         },
