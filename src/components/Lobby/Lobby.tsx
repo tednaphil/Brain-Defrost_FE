@@ -19,6 +19,7 @@ function Lobby({ players }: Props) {
   const [joinURL, setJoinUrl] = useState("");
   const [error, setError] = useState<string>("");
   const [playerList, setPlayers] = useState(game.relationships.players.data);
+  const [connectionLink, setConnectionLink] = useState(null);
   //@ts-expect-error
   const currentPlayer = JSON.parse(sessionStorage.getItem("currentPlayer"));
 
@@ -30,6 +31,7 @@ function Lobby({ players }: Props) {
     const cable = createConsumer(
       `wss://brain-defrost-f8afea5ead0a.herokuapp.com/cable?player_id=${currentPlayer.id}`
     );
+
     const link = cable.subscriptions.create(
       { channel: "GameChannel", game_id: gameid },
       {
@@ -43,6 +45,8 @@ function Lobby({ players }: Props) {
         },
       }
     );
+    //@ts-ignore
+    setConnectionLink(link);
     // eslint-disable-next-line
   }, [players, gameid]);
 
@@ -55,8 +59,7 @@ function Lobby({ players }: Props) {
       console.log(error);
     }
   };
-  // i have to make a new interface for this 
-//@ts-expect-error
+  //@ts-ignore
   const playerNames = playerList.map((player) => {
     return <p key={player.id}>{player.display_name}</p>;
   });
@@ -68,6 +71,8 @@ function Lobby({ players }: Props) {
   const startGame = async () => {
     try {
       await patchGame(gameid);
+      //@ts-ignore
+      connectionLink.perform("start_game", { game_id: gameid });
     } catch (error) {
       setError(`${error}`);
       console.log(error);
