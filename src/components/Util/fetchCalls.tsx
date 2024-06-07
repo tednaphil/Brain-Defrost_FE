@@ -193,7 +193,7 @@ const postEmail = async (gameID: string | undefined, email: string | undefined) 
     const response = await fetch(
       `https://brain-defrost-f8afea5ead0a.herokuapp.com/api/v1/games/${gameID}/stats/:email:`,
       {
-        method: "PATCH",
+        method: "POST",
         body: JSON.stringify({
           email: email
         }),
@@ -207,7 +207,7 @@ const postEmail = async (gameID: string | undefined, email: string | undefined) 
       console.log(status);
       throw new Error(`Couldn't send email - ${status}`);
     }
-    return await response.json();
+    // return await response.json();
   } catch (error: unknown) {
     console.log("API CALLS catch block - email stats", error);
     throw error;
