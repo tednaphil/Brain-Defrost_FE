@@ -30,7 +30,6 @@ function Lobby({ players }: Props) {
     const cable = createConsumer(
       `wss://brain-defrost-f8afea5ead0a.herokuapp.com/cable?player_id=${currentPlayer.id}`
     );
-    //@ts-ignore
     const link = cable.subscriptions.create(
       { channel: "GameChannel", game_id: gameid },
       {
@@ -38,6 +37,7 @@ function Lobby({ players }: Props) {
           console.log(data);
           if (data.game_started === true) {
             navigate(`/game/play/${gameid}`, { state: game });
+            console.log(link)
             //link.unsubscribe();
           }
           setPlayers(data.player_list);
