@@ -28,7 +28,7 @@ function Lobby({ players }: Props) {
     setJoinUrl(`https://brain-defrost.netlify.app/join/${gameid}/`);
 
     const cable = createConsumer(
-      `wws://brain-defrost-f8afea5ead0a.herokuapp.com/cable?player_id=${currentPlayer.id}`
+      `wss://brain-defrost-f8afea5ead0a.herokuapp.com/cable?player_id=${currentPlayer.id}`
     );
     const link = cable.subscriptions.create(
       { channel: "GameChannel", game_id: gameid },
