@@ -6,7 +6,6 @@ import { useNavigate, useParams, useLocation } from "react-router-dom";
 import { Copy } from "react-feather";
 import Modal from "../Modal/Modal";
 import { createConsumer } from "@rails/actioncable";
-import { channel } from "diagnostics_channel";
 
 interface Props {
   players: Player[];
@@ -20,8 +19,7 @@ function Lobby({ players }: Props) {
   const [joinURL, setJoinUrl] = useState("");
   const [error, setError] = useState<string>("");
   const [playerList, setPlayers] = useState(game.relationships.players.data);
-  //@ts-expect-error
-  const [currentPlayer, setCurrentPlayer] = useState<Player>(sessionStorage.getItem("currentPlayer"));
+  const currentPlayer = sessionStorage.getItem("currentPlayer")
 
   useEffect(() => {
     // @ts-expect-error
@@ -29,6 +27,7 @@ function Lobby({ players }: Props) {
     setJoinUrl(`https://brain-defrost.netlify.app/join/${gameid}/`);
 
     const cable = createConsumer(
+        //@ts-expect-error
       `brain-defrost-f8afea5ead0a.herokuapp.com/cable?player_id=${currentPlayer.id}`
     );
     const link = cable.subscriptions.create(
