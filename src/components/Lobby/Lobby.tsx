@@ -23,6 +23,9 @@ function Lobby({ players }: Props) {
 
   useEffect(() => {
     console.log(currentPlayer)
+    //@ts-expect-error
+    console.log(currentPlayer.id)
+
     // @ts-expect-error
     fetchGame(gameid);
     setJoinUrl(`https://brain-defrost.netlify.app/join/${gameid}/`);
