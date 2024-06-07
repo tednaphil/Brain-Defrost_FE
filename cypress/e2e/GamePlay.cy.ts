@@ -117,8 +117,7 @@ describe('Brain Defrost GamePlay Stories', () => {
     .get('label[for=email]').contains('Enter your Email Address')
     .get('#email').should('have.value', '').type('frosty@example.com').should('have.value', 'frosty@example.com')
     .get('.submit-btn').click()
-    //check that confirmation message is displayed
-    .get('.form-message').contains('Check your email for stats!')
+    .get('.form-message').contains('Check your email for the stats!')
     .get('.close-btn').click()
     .get('.form-modal').should('not.exist')
   })
