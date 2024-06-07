@@ -1,61 +1,79 @@
-import './Lobby.css';
-import type { Player } from '../Util/interfaces';
-import { patchGame, getGame } from '../Util/fetchCalls';
-import { useState, useEffect } from 'react';
-import { useNavigate, useParams, useLocation } from 'react-router-dom';
-import { Copy } from 'react-feather';
-import Modal from '../Modal/Modal';
+import "./Lobby.css";
+import type { Player } from "../Util/interfaces";
+import { patchGame, getGame } from "../Util/fetchCalls";
+import { useState, useEffect } from "react";
+import { useNavigate, useParams, useLocation } from "react-router-dom";
+import { Copy } from "react-feather";
+import Modal from "../Modal/Modal";
+import { createConsumer } from "@rails/actioncable";
+import { channel } from "diagnostics_channel";
 
 interface Props {
   players: Player[];
 }
 
-function Lobby({players}: Props) {
-    const location = useLocation();
-    const [game, setGame] = useState(location.state);
-    const { gameid } = useParams();
-    const navigate = useNavigate();
-    const [joinURL, setJoinUrl] = useState('');
-    const [error, setError] = useState<string>('');
+function Lobby({ players }: Props) {
+  const location = useLocation();
+  const [game, setGame] = useState(location.state);
+  const { gameid } = useParams();
+  const navigate = useNavigate();
+  const [joinURL, setJoinUrl] = useState("");
+  const [error, setError] = useState<string>("");
+  const [playerList, setPlayers] = useState(game.relationships.players.data);
+  //@ts-expect-error
+const [currentPlayer, setCurrentPlayer] = useState<Player>(sessionStorage.getItem('currentPlayer'))
 
-    useEffect(() => {
-        // @ts-expect-error
-        fetchGame(gameid);
-        setJoinUrl(`https://brain-defrost.netlify.app/join/${gameid}/`)
-    }, [players, gameid])
+  useEffect(() => {
+    // @ts-expect-error
+    fetchGame(gameid);
+    setJoinUrl(`https://brain-defrost.netlify.app/join/${gameid}/`)
 
-    const fetchGame = async (gameID: string) => {
-        try {
-          const currentGame = await getGame(gameID);
-          setGame(currentGame.data);
-        } catch (error) {
-          setError(`${error}`);
-          console.log(error);
-        }
-      };
-    
-    const playerNames = game.relationships.players.data.map((player: Player) => {
-        return(
-            <p
-            key={player.id}
-            >{player.attributes.display_name}</p>
-        )});
+    const cable = createConsumer(`brain-defrost-f8afea5ead0a.herokuapp.com/cable?player_id=${currentPlayer.id}`);
+    const link = cable.subscriptions.create(
+      { channel: "GameChannel", game_id: gameid },
+      {
+        received: (data) => {
+          if (data.event === "game_started") {
+            if(data === true){
+            navigate(`/game/play/${gameid}`, { state: game });
+            link.unsubscribe();
+            }else {
+                console.log("hi")
+            }
+          } else if (data.event === "player_list") {
+            setPlayers(data);
+          }
+        },
+      }
+    );
+  }, [players, gameid]);
 
-   
-    
-    const copyURL = () => {
-        navigator.clipboard.writeText(joinURL);
-    };
+  const fetchGame = async (gameID: string) => {
+    try {
+      const currentGame = await getGame(gameID);
+      setGame(currentGame.data);
+    } catch (error) {
+      setError(`${error}`);
+      console.log(error);
+    }
+  };
 
-    const startGame = async () => {
-        try {
-            await patchGame(gameid);
-            navigate(`/game/play/${gameid}`, {state: game});
-        } catch (error) {
-            setError(`${error}`);
-            console.log(error)
-        } 
-    };
+  const playerNames = playerList.map((player: Player) => {
+    return <p key={player.id}>{player.attributes.display_name}</p>;
+  });
+
+  const copyURL = () => {
+    navigator.clipboard.writeText(joinURL);
+  };
+
+  const startGame = async () => {
+    try {
+      await patchGame(gameid);
+    } catch (error) {
+      setError(`${error}`);
+      console.log(error);
+    }
+  };
 
   return (
     <main className="lobby">
@@ -84,9 +102,12 @@ function Lobby({players}: Props) {
       </section>
       <section className="players">
         <h2 className="players-heading">Players</h2>
-        {playerNames.length && playerNames}
+        {playerList ? (
+          <>{playerNames.length && playerNames}</>
+        ) : (
+          <h2>Loading...</h2>
+        )}
       </section>
-      {countdown && <h1 className="countdown">{countdown}</h1>}
     </main>
   );
 }
