@@ -55,9 +55,10 @@ function Lobby({ players }: Props) {
       console.log(error);
     }
   };
-
-  const playerNames = playerList.map((player: Player) => {
-    return <p key={player.id}>{player.attributes.display_name}</p>;
+  // i have to make a new interface for this 
+//@ts-expect-error
+  const playerNames = playerList.map((player) => {
+    return <p key={player.id}>{player.display_name}</p>;
   });
 
   const copyURL = () => {
