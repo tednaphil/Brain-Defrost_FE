@@ -19,13 +19,10 @@ function Lobby({ players }: Props) {
   const [joinURL, setJoinUrl] = useState("");
   const [error, setError] = useState<string>("");
   const [playerList, setPlayers] = useState(game.relationships.players.data);
-  const currentPlayer = sessionStorage.getItem("currentPlayer");
+  //@ts-expect-error
+  const currentPlayer = JSON.parse(sessionStorage.getItem("currentPlayer"))
 
   useEffect(() => {
-    console.log(currentPlayer)
-    //@ts-expect-error
-    console.log(currentPlayer.id)
-
     // @ts-expect-error
     fetchGame(gameid);
     setJoinUrl(`https://brain-defrost.netlify.app/join/${gameid}/`);
