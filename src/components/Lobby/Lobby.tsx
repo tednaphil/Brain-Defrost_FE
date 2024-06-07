@@ -21,9 +21,7 @@ function Lobby({ players }: Props) {
   const [error, setError] = useState<string>("");
   const [playerList, setPlayers] = useState(game.relationships.players.data);
   //@ts-expect-error
-  const [currentPlayer, setCurrentPlayer] = useState<Player>(
-    sessionStorage.getItem("currentPlayer")
-  );
+  const [currentPlayer, setCurrentPlayer] = useState<Player>(sessionStorage.getItem("currentPlayer"));
 
   useEffect(() => {
     // @ts-expect-error
