@@ -191,7 +191,7 @@ const patchGame = async (gameID: string | undefined) => {
 const postEmail = async (gameID: string | undefined, email: string | undefined) => {
   try {
     const response = await fetch(
-      `https://brain-defrost-f8afea5ead0a.herokuapp.com/api/v1/games/${gameID}/stats/:email:`,
+      `https://brain-defrost-f8afea5ead0a.herokuapp.com/api/v1/games/${gameID}/stats/email`,
       {
         method: "POST",
         body: JSON.stringify({

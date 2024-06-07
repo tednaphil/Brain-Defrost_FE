@@ -106,7 +106,7 @@ describe('Brain Defrost GamePlay Stories', () => {
       statusCode: 200,
       fixture: 'gameStats'
     }).as('getStats')
-    cy.intercept('POST', 'https://brain-defrost-f8afea5ead0a.herokuapp.com/api/v1/games/1/stats/:email:',
+    cy.intercept('POST', 'https://brain-defrost-f8afea5ead0a.herokuapp.com/api/v1/games/1/stats/email',
     {
       statusCode: 200,
       body: ''
