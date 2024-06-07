@@ -20,7 +20,7 @@ function Lobby({ players }: Props) {
   const [error, setError] = useState<string>("");
   const [playerList, setPlayers] = useState(game.relationships.players.data);
   //@ts-expect-error
-  const currentPlayer = JSON.parse(sessionStorage.getItem("currentPlayer"))
+  const currentPlayer = JSON.parse(sessionStorage.getItem("currentPlayer"));
 
   useEffect(() => {
     // @ts-expect-error
@@ -35,17 +35,11 @@ function Lobby({ players }: Props) {
       {
         received: (data) => {
           console.log(data);
-          if (data.event === "game_started") {
-            if (data === true) {
-              navigate(`/game/play/${gameid}`, { state: game });
-              link.unsubscribe();
-            } else {
-              console.log("Game isnt started");
-            }
+          if (data.game_started === true) {
+            navigate(`/game/play/${gameid}`, { state: game });
+            link.unsubscribe();
           }
-          if (data.event === "player_list") {
-            setPlayers(data);
-          }
+          setPlayers(data.player_list);
         },
       }
     );
