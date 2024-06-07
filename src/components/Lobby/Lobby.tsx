@@ -34,6 +34,7 @@ function Lobby({ players }: Props) {
       { channel: "GameChannel", game_id: gameid },
       {
         received: (data) => {
+            console.log(data)
           if (data.event === "game_started") {
             if (data === true) {
               navigate(`/game/play/${gameid}`, { state: game });
