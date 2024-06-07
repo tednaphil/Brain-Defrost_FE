@@ -155,9 +155,9 @@ function Home({ setGame, setPlayers }: Props) {
               Create
             </button>
           </form>
-          <footer>
+          {/* <footer>
             <h4 className="footer-title">More info about Brain Defrost</h4>
-          </footer>
+          </footer> */}
         </div>
       )}
     </>
