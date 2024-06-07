@@ -19,7 +19,7 @@ function Lobby({ players }: Props) {
   const [joinURL, setJoinUrl] = useState("");
   const [error, setError] = useState<string>("");
   const [playerList, setPlayers] = useState(game.relationships.players.data);
-  const currentPlayer = sessionStorage.getItem("currentPlayer")
+  const currentPlayer = sessionStorage.getItem("currentPlayer");
 
   useEffect(() => {
     // @ts-expect-error
@@ -27,14 +27,14 @@ function Lobby({ players }: Props) {
     setJoinUrl(`https://brain-defrost.netlify.app/join/${gameid}/`);
 
     const cable = createConsumer(
-        //@ts-expect-error
+      //@ts-expect-error
       `brain-defrost-f8afea5ead0a.herokuapp.com/cable?player_id=${currentPlayer.id}`
     );
     const link = cable.subscriptions.create(
       { channel: "GameChannel", game_id: gameid },
       {
         received: (data) => {
-            console.log(data)
+          console.log(data);
           if (data.event === "game_started") {
             if (data === true) {
               navigate(`/game/play/${gameid}`, { state: game });
@@ -49,6 +49,7 @@ function Lobby({ players }: Props) {
         },
       }
     );
+    // eslint-disable-next-line
   }, [players, gameid]);
 
   const fetchGame = async (gameID: string) => {
