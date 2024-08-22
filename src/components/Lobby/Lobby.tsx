@@ -61,6 +61,7 @@ function Lobby({ players }: Props) {
   };
   //@ts-ignore
   const playerNames = playerList.map((player) => {
+    console.log(player)
     return <p key={player.id}>{player.attributes.display_name}</p>;
   });
 
