@@ -51,6 +51,11 @@
     }
 }
 
+.names {
+    width: 100%;
+    overflow-y: scroll;
+}
+
 .join-url-container {
     border: solid 1px black;
     width: 50%;

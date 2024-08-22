@@ -105,11 +105,13 @@ function Lobby({ players }: Props) {
       </section>
       <section className="players">
         <h2 className="players-heading">Players</h2>
+        <div className="names">
         {playerList ? (
           <>{playerNames.length && playerNames}</>
         ) : (
           <h2>Loading...</h2>
         )}
+        </div>
       </section>
     </main>
   );
