@@ -16,6 +16,7 @@
                   {
                       "id": 1,
                       "type": "player",
+                      "display_name": "creator",
                       "attributes": {
                           "display_name": "creator",
                           "answers_correct": 0,

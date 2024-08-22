@@ -53,16 +53,14 @@ function Lobby({ players }: Props) {
     try {
       const currentGame = await getGame(gameID);
       setGame(currentGame.data);
-      setPlayers(currentGame.data.relationships.players.data)
     } catch (error) {
       setError(`${error}`);
       console.log(error);
     }
   };
   //@ts-ignore
-  const playerNames = playerList.map((player) => {
-    console.log(player)
-    return <p key={player.id}>{player.attributes.display_name}</p>;
+  const playerNames = playerList?.map((player) => {
+    return <p key={player.id}>{player.display_name}</p>;
   });
 
   const copyURL = () => {
